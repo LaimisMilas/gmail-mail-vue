@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   state: {
     login: {username: "", password: ""},
-    token: "",
+    token: "fsdfs",
     user: {}
   },
   loggedIn() {

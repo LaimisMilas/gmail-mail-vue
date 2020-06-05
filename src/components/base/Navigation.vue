@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link class="text-info" to="/">Board |</router-link>
-    <router-link class="text-info" to="/page2"> Next</router-link>
+    <router-link class="text-info" to="/recipient/list">Recipients</router-link>
   </nav>
 </template>
 

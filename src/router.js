@@ -10,6 +10,7 @@ import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
 import Dashboard from './pages/Dashboard.vue';
+import RecipientList from './pages/RecipientList.vue'
 
 Vue.use(Router);
 
@@ -48,6 +49,12 @@ const router = new Router({
       path: '/',
       name: 'Dashboard',
       component: Dashboard,
+    },
+    {
+
+      path: '/recipient/list',
+      name: 'RecipientList',
+      component: RecipientList,
     }
   ],
 });

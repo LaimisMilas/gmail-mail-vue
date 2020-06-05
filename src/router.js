@@ -9,6 +9,7 @@ import editProfile from './components/profile/EditUserProfile.vue';
 import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
+import Dashboard from './pages/Dashboard.vue';
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ const router = new Router({
       path: '/profile',
       name: 'profile',
       component: profile,
+    },
+    {
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard,
     }
   ],
 });

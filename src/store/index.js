@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
    //baseUrl: 'https://ppm.herokuapp.com'
-   baseUrl: 'http://192.168.1.89:8080'
+   baseUrl: 'http://localhost:8080'
   },
   modules: {login: loginStore, reservation: reservationStore},
 });

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 8081",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -13,6 +13,8 @@
     "@fullcalendar/interaction": "^4.1.0",
     "@fullcalendar/timegrid": "^4.1.0",
     "@fullcalendar/vue": "^4.1.0",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "moment": "^2.24.0",

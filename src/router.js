@@ -2,15 +2,17 @@ import Vue from 'vue';
 import {sync} from 'vuex-router-sync';
 import Router from 'vue-router';
 import store from './store';
-
-import profile from './components/profile/ViewUserProfile.vue';
-import editProfile from './components/profile/EditUserProfile.vue';
-
 import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
 import Dashboard from './pages/Dashboard.vue';
-import RecipientList from './pages/RecipientList.vue'
+import RecipientList from './pages/RecipientList';
+import companyInfoList from './pages/companyInfo/List';
+import companyInfoView from './pages/companyInfo/View';
+import companyInfoEdit from './pages/companyInfo/Edit';
+import companyInfoDelete from './pages/companyInfo/Delete';
+import companyInfoAdd from './pages/companyInfo/Add';
+
 
 Vue.use(Router);
 
@@ -36,16 +38,6 @@ const router = new Router({
       meta: {layout: 'auth'}
     },
     {
-      path: '/profile/edit',
-      name: 'editProfile',
-      component: editProfile,
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: profile,
-    },
-    {
       path: '/',
       name: 'Dashboard',
       component: Dashboard,
@@ -55,7 +47,37 @@ const router = new Router({
       path: '/recipient/list',
       name: 'RecipientList',
       component: RecipientList,
+    },
+   // CompanyInfo router
+    {
+      path: '/company/info/list',
+      name: 'CompanyInfoList',
+      component: companyInfoList
+    },
+    {
+      path: '/company/info/view/:id',
+      name: 'CompanyInfoView',
+      component: companyInfoView,
+      props: true
+    },
+    {
+      path: '/company/info/edit/:id',
+      name: 'CompanyInfoEdit',
+      component: companyInfoEdit,
+      props: true
+    },
+    {
+      path: '/company/info/delete/:id',
+      name: 'CompanyInfoDelete',
+      component: companyInfoDelete,
+      props: true
+    },
+    {
+      path: '/company/info/add',
+      name: 'CompanyInfoAdd',
+      component: companyInfoAdd,
     }
+    // CompanyInfo router end
   ],
 });
 

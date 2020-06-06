@@ -17,12 +17,12 @@ export default {
       //console.info("param state.login " + JSON.stringify(state.login));
 
       axios
-        .post(rootState.baseUrl + "/api/users/login", state.login)
+        .post(rootState.baseUrl + "/auth/users/login", state.login)
         .then(resp => {
           this.commit('login/commitToken', resp.data.token);
           //console.info("this.state " + JSON.stringify(this.state));
           if (this.state.login.token || this.state.login.token.trim().length > 0) {
-            axios.get(rootState.baseUrl + "/api/users/current", {
+            axios.get(rootState.baseUrl + "/auth/users/current", {
               headers: {
                 Authorization: 'Bearer ' + this.state.login.token
               }

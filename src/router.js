@@ -6,13 +6,17 @@ import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
 import Dashboard from './pages/Dashboard.vue';
-import RecipientList from './pages/RecipientList';
 import companyInfoList from './pages/companyInfo/List';
 import companyInfoView from './pages/companyInfo/View';
 import companyInfoEdit from './pages/companyInfo/Edit';
 import companyInfoDelete from './pages/companyInfo/Delete';
 import companyInfoAdd from './pages/companyInfo/Add';
 
+import compRecipientList from './pages/compRecipientList/List';
+import compRecipientListView from './pages/compRecipientList/View';
+import compRecipientListEdit from './pages/compRecipientList/Edit';
+import compRecipientListDelete from './pages/compRecipientList/Delete';
+import compRecipientListAdd from './pages/compRecipientList/Add';
 
 Vue.use(Router);
 
@@ -42,13 +46,37 @@ const router = new Router({
       name: 'Dashboard',
       component: Dashboard,
     },
+    // CompRecipientList router begin
     {
-
-      path: '/recipient/list',
-      name: 'RecipientList',
-      component: RecipientList,
+      path: '/comp/recipient/list',
+      name: 'CompRecipientList',
+      component: compRecipientList
     },
-   // CompanyInfo router
+    {
+      path: '/comp/recipient/list/view/:id',
+      name: 'CompRecipientListView',
+      component: compRecipientListView,
+      props: true
+    },
+    {
+      path: '/comp/recipient/list/edit/:id',
+      name: 'CompRecipientListEdit',
+      component: compRecipientListEdit,
+      props: true
+    },
+    {
+      path: '/comp/recipient/list/delete/:id',
+      name: 'CompRecipientListDelete',
+      component: compRecipientListDelete,
+      props: true
+    },
+    {
+      path: '/comp/recipient/list/add',
+      name: 'CompRecipientListAdd',
+      component: compRecipientListAdd,
+    },
+    // CompRecipientList router end
+   // CompanyInfo router begin
     {
       path: '/company/info/list',
       name: 'CompanyInfoList',

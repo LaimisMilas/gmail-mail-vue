@@ -47,3 +47,14 @@ export default {
   methods: mapActions("login", ["userLogIn"])
 };
 </script>
+
+<style>
+
+  #login .container #login-row #login-column #login-box {
+    height: 280px;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -45px;
+  }
+
+</style>

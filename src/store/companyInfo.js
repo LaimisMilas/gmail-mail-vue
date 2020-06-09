@@ -17,9 +17,13 @@ export default {
     },
     actions: {
         fetchData({state, commit, rootState}) {
+
+            if(!state.companyInfos.length === 0){
+                return;
+            }
+
             axios.get(rootState.baseUrl + "/api/company/info",
                 {
-
                     headers: {
                         'Authorization': 'Bearer ' + this.state.login.token,
                         'Content-Type': 'application/json',

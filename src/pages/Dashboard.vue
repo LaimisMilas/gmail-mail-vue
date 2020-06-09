@@ -16,7 +16,7 @@
             </form>
             <input v-on:click="getStatus" class="btn btn-info btn-md" value="Gauti būsena">
             <input v-on:click="stopProcess" class="btn btn-info btn-md" value="Stabdyti siuntiną">
-
+            <input v-on:click="startProcess" class="btn btn-info btn-md" value="Paleisti siuntiną">
             <div>{{logs}}</div>
         </div>
     </div>
@@ -39,9 +39,14 @@
         methods:{
             runComp(){
                 this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/" + this.localState.compigne, {
+                console.log('Authorization: Bearer ' + this.$store.state.login.token);
+                console.log('Set-Cookie: JSESSIONID=' + this.$store.state.login.sessionId);
+
+                axios.get(this.$store.state.baseUrl + "/api/do/send/init/" + this.localState.compigne, {
                     headers: {
-                        Authorization: 'Bearer ' + this.$store.state.login.token
+                        'Authorization': 'Bearer ' + this.$store.state.login.token,
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'JSESSIONID=' + this.$store.state.login.sessionId
                     }
                 }).then(resp => {
                     this.logs = resp;
@@ -51,7 +56,9 @@
                 this.logs = "";
                 axios.get(this.$store.state.baseUrl + "/api/do/send/status/" + this.localState.compigne, {
                     headers: {
-                        Authorization: 'Bearer ' + this.$store.state.login.token
+                        'Authorization': 'Bearer ' + this.$store.state.login.token,
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'JSESSIONID=' + this.$store.state.login.sessionId
                     }
                 }).then(resp => {
                     this.logs = resp;
@@ -63,7 +70,23 @@
                 this.logs = "";
                 axios.get(this.$store.state.baseUrl + "/api/do/send/stop/" + this.localState.compigne, {
                     headers: {
-                        Authorization: 'Bearer ' + this.$store.state.login.token
+                        'Authorization': 'Bearer ' + this.$store.state.login.token,
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'JSESSIONID=' + this.$store.state.login.sessionId
+                    }
+                }).then(resp => {
+                    this.logs = resp;
+                }).catch(reason => {
+                    this.logs = reason;
+                });
+            },
+            startProcess(){
+                this.logs = "";
+                axios.get(this.$store.state.baseUrl + "/api/do/send/start/" + this.localState.compigne, {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.login.token,
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'JSESSIONID=' + this.$store.state.login.sessionId
                     }
                 }).then(resp => {
                     this.logs = resp;

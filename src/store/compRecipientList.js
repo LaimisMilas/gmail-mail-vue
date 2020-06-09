@@ -47,7 +47,8 @@ export default {
                 });
         },
         create({state, commit, rootState}) {
-            axios
+            this.commit('compRecipientList/commitRecipients', this.state.companyInfo.companyInfos);
+                axios
                 .post(rootState.baseUrl + "/api/company/info/recipients", state.compRecipientList, {
                     headers: {
                         'Authorization': 'Bearer ' + this.state.login.token,
@@ -86,6 +87,9 @@ export default {
         },
         commitResetCompRecipientList(state) {
             state.compRecipientList = {};
+        },
+        commitRecipients(state, recipients) {
+            state.compRecipientList.recipients = recipients;
         }
     }
 }

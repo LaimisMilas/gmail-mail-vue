@@ -1,15 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import loginStore from './login.js';
-import reservationStore from './profile.js';
+import companyInfo from './companyInfo.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-   //baseUrl: 'https://ppm.herokuapp.com'
-   baseUrl: 'https://gmail-mail-sb.herokuapp.com',
-   //baseUrl: 'http://localhost:8080'
+   //baseUrl: 'https://gmail-mail-sb.herokuapp.com',
+   baseUrl: 'http://127.0.0.1:8080'
   },
-  modules: {login: loginStore, reservation: reservationStore},
+  modules: {login: loginStore, companyInfo: companyInfo},
 });

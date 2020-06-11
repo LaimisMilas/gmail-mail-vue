@@ -9,8 +9,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-   //baseUrl: 'https://gmail-mail-sb.herokuapp.com',
-   baseUrl: 'http://127.0.0.1:8080'
+   baseUrl: 'https://gmail-mail-sb.herokuapp.com',
+   //baseUrl: 'http://127.0.0.1:8080'
   },
   modules: {login: loginStore,
       companyInfo: companyInfo,

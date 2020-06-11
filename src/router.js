@@ -2,10 +2,13 @@ import Vue from 'vue';
 import {sync} from 'vuex-router-sync';
 import Router from 'vue-router';
 import store from './store';
+
+import Dashboard from './pages/Dashboard.vue';
+
 import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
-import Dashboard from './pages/Dashboard.vue';
+
 import companyInfoList from './pages/companyInfo/List';
 import companyInfoView from './pages/companyInfo/View';
 import companyInfoEdit from './pages/companyInfo/Edit';
@@ -17,6 +20,12 @@ import compRecipientListView from './pages/compRecipientList/View';
 import compRecipientListEdit from './pages/compRecipientList/Edit';
 import compRecipientListDelete from './pages/compRecipientList/Delete';
 import compRecipientListAdd from './pages/compRecipientList/Add';
+
+import sendRegList from './pages/sendReg/List';
+import sendRegView from './pages/sendReg/View';
+import sendRegEdit from './pages/sendReg/Edit';
+import sendRegDelete from './pages/sendReg/Delete';
+import sendRegAdd from './pages/sendReg/Add';
 
 Vue.use(Router);
 
@@ -46,6 +55,36 @@ const router = new Router({
       name: 'Dashboard',
       component: Dashboard,
     },
+    // SendReg router begin
+    {
+      path: '/send/reg/list',
+      name: 'SendRegList',
+      component: sendRegList
+    },
+    {
+      path: '/send/reg/view/:id',
+      name: 'SendRegView',
+      component: sendRegView,
+      props: true
+    },
+    {
+      path: '/send/reg/edit/:id',
+      name: 'SendRegEdit',
+      component: sendRegEdit,
+      props: true
+    },
+    {
+      path: '/send/reg/delete/:id',
+      name: 'SendRegDelete',
+      component: sendRegDelete,
+      props: true
+    },
+    {
+      path: '/send/reg/add',
+      name: 'SendRegAdd',
+      component: sendRegAdd,
+    },
+    // SendReg router end
     // CompRecipientList router begin
     {
       path: '/comp/recipient/list',

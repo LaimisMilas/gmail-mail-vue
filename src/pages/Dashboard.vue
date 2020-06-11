@@ -11,12 +11,13 @@
                             v-model="localState.compigne" >
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Paleisti siuntiną">
+                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Inicijuoti siuntiną">
                 </div>
             </form>
             <input v-on:click="getStatus" class="btn btn-info btn-md" value="Gauti būsena">
             <input v-on:click="stopProcess" class="btn btn-info btn-md" value="Stabdyti siuntiną">
             <input v-on:click="startProcess" class="btn btn-info btn-md" value="Paleisti siuntiną">
+            <input v-on:click="killProcess" class="btn btn-info btn-md" value="Žudyti siuntiną">
             <div>{{logs}}</div>
         </div>
     </div>
@@ -50,6 +51,8 @@
                     }
                 }).then(resp => {
                     this.logs = resp;
+                }).catch(reason => {
+                    this.logs = reason;
                 });
             },
             getStatus(){
@@ -83,6 +86,20 @@
             startProcess(){
                 this.logs = "";
                 axios.get(this.$store.state.baseUrl + "/api/do/send/start/" + this.localState.compigne, {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.login.token,
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'JSESSIONID=' + this.$store.state.login.sessionId
+                    }
+                }).then(resp => {
+                    this.logs = resp;
+                }).catch(reason => {
+                    this.logs = reason;
+                });
+            },
+            killProcess(){
+                this.logs = "";
+                axios.get(this.$store.state.baseUrl + "/api/do/send/kill/" + this.localState.compigne, {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.login.token,
                         'Content-Type': 'application/json',

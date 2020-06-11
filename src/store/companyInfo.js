@@ -3,57 +3,39 @@ import axios from "axios";
 export default {
     namespaced: true,
     state: {
+        apiUrl: "/api/company/info",
         companyInfos: [],
         companyInfo: {}
     },
-    getters: {
-        header: state => {
-            return {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.login.token
-                }
-            }
-        }
-    },
     actions: {
-        fetchData({state, commit, rootState}) {
-
-            if(!state.companyInfos.length === 0){
+        fetchData({state, commit, rootState, rootGetters}) {
+            if(state.companyInfos.length > 0){
                 return;
             }
-
-            axios.get(rootState.baseUrl + "/api/company/info",
-                {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.state.login.token,
-                        'Content-Type': 'application/json',
-                        'Set-Cookie': 'JSESSIONID=' + this.state.login.sessionId
-                    }
-                }
-            )
+            axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
                 .then(resp => {
-                    this.commit('companyInfo/commitCompanyInfos', resp.data);
+                    commit('commitCompanyInfos', resp.data);
                 });
         },
-        create({state, commit, rootState}) {
+        create({state, dispatch, rootState, rootGetters}) {
             axios
-                .post(rootState.baseUrl + "/api/company/info", state.companyInfo, this.getters.header)
+                .post(rootState.baseUrl + state.apiUrl, state.companyInfo, rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('companyInfo/fetchData');
+                    dispatch('fetchData');
                 });
         },
-        update({state, commit, rootState}) {
+        update({state, dispatch, rootState, rootGetters}) {
             axios
-                .put(rootState.baseUrl + "/api/company/info", state.companyInfo, this.getters.header)
+                .put(rootState.baseUrl + state.apiUrl, state.companyInfo, rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('companyInfo/fetchData');
+                    dispatch('fetchData');
                 });
         },
-        delete({state, commit, rootState}) {
+        delete({state, dispatch, rootState, rootGetters}) {
             axios
-                .delete(rootState.baseUrl + "/api/company/info/" + state.companyInfo.id, this.getters.header)
+                .delete(rootState.baseUrl + state.apiUrl + state.companyInfo.id, rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('companyInfo/fetchData');
+                    dispatch('fetchData');
                 });
         }
     },

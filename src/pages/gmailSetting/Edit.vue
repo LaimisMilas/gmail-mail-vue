@@ -4,23 +4,15 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                            <form @submit.prevent="create" class="form" method="post">
-                            <h3 class="text-center text-info">Gavėjų sąrašo redagavimas</h3>
+                            <form @submit.prevent="update" class="form" method="post">
+                            <h3 class="text-center text-info">Gmail API nustatymu redagavimas</h3>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Id"
-                                           v-model="compRecipientList.id"/><br>
+                                           v-model="item.id"/><br>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="UserId"
-                                           v-model="compRecipientList.userId"/><br>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Title"
-                                           v-model="compRecipientList.title"/><br>
-                                </div>
-                                <div class="form-group">
-                                    <label>Priskirti visas kompanijas</label>
-                                    <input type="checkbox" name="checkedItem" /><br>
+                                           v-model="item.redirectUri"/><br>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" value="Saugoti">
@@ -36,21 +28,21 @@
     import {mapState} from "vuex";
 
     export default {
-        name: "CompRecipientListEdit",
+        name: "GmailSettingEdit",
         props: ["id"],
         computed: mapState({
-            compRecipientList: function (store) {
-                return store.compRecipientList.compRecipientList;
+            item: function (store) {
+                return store.gmailSetting.gmailSetting;
             }
         }),
         created() {
-            this.$store.commit('compRecipientList/commitSelectedRecipientList', this.$props.id);
-            this.$store.dispatch('compRecipientList/getSelected');
+            this.$store.commit('gmailSetting/commitSelectedGmailSetting', this.$props.id);
+            this.$store.dispatch('gmailSetting/getSelected');
         },
         methods: {
-            create() {
-                this.$store.dispatch('compRecipientList/create');
-                this.$router.push({path: '/comp/recipient/list'});
+            update() {
+                this.$store.dispatch('gmailSetting/update');
+                this.$router.push({path: '/gmail/setting/list'});
             }
         }
     };

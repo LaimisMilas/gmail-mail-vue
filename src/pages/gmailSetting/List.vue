@@ -16,10 +16,13 @@
                             <tr>
                                 <td>{{item.id}}</td>
                                 <td>{{item.redirectUri}}</td>
+                                <td>
+                                    <router-link :to="{ name: 'GmailSettingEdit', params: { id: item.id }}">Redaguoti</router-link>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
-                        <jw-pagination :items="sendRegLists" :pageSize="20"
+                        <jw-pagination :items="gmailSettings" :pageSize="20"
                                        @changePage="onChangePage"></jw-pagination>
                     </div>
                 </div>
@@ -32,9 +35,10 @@
     import {mapState} from "vuex";
 
     export default {
-        name: "GmailSettingList",
+        name: "GmailSettingListEdit",
+        props: ["id"],
         computed: mapState({
-            sendRegLists: function (store) {
+            gmailSettings: function (store) {
                 return store.gmailSetting.gmailSettings;
             }
         }),
@@ -47,10 +51,13 @@
             this.$store.dispatch('gmailSetting/fetchData');
         },
         methods: {
+            create() {
+                this.$store.dispatch('gmailSetting/create');
+                this.$router.push({path: '/gmail/setting/list'});
+            },
             onChangePage(pageOfItems) {
                 this.pageOfItems = pageOfItems;
             }
         }
     };
-
 </script>

@@ -27,6 +27,12 @@ import sendRegEdit from './pages/sendReg/Edit';
 import sendRegDelete from './pages/sendReg/Delete';
 import sendRegAdd from './pages/sendReg/Add';
 
+import gmailSettingList from './pages/gmailSetting/List';
+import gmailSettingView from './pages/gmailSetting/View';
+import gmailSettingEdit from './pages/gmailSetting/Edit';
+import gmailSettingDelete from './pages/gmailSetting/Delete';
+import gmailSettingAdd from './pages/gmailSetting/Add';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -55,6 +61,36 @@ const router = new Router({
       name: 'Dashboard',
       component: Dashboard,
     },
+    // GmailSetting router begin
+    {
+      path: '/gmail/setting/list',
+      name: 'GmailSettingList',
+      component: gmailSettingList
+    },
+    {
+      path: '/gmail/setting/view/:id',
+      name: 'GmailSettingView',
+      component: gmailSettingView,
+      props: true
+    },
+    {
+      path: '/gmail/setting/edit/:id',
+      name: 'GmailSettingEdit',
+      component: gmailSettingEdit,
+      props: true
+    },
+    {
+      path: '/gmail/setting/delete/:id',
+      name: 'GmailSettingDelete',
+      component: gmailSettingDelete,
+      props: true
+    },
+    {
+      path: '/gmail/setting/add',
+      name: 'GmailSettingAdd',
+      component: gmailSettingAdd,
+    },
+    // GmailSetting router end
     // SendReg router begin
     {
       path: '/send/reg/list',

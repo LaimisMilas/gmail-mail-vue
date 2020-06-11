@@ -4,7 +4,7 @@ import loginStore from './login.js';
 import companyInfo from './companyInfo.js';
 import compRecipientList from './compRecipientList';
 import sendReg from './sendReg';
-
+import gmailSetting from './gmailSetting'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -15,5 +15,7 @@ export default new Vuex.Store({
   modules: {login: loginStore,
       companyInfo: companyInfo,
       compRecipientList: compRecipientList,
-      sendReg: sendReg},
+      sendReg: sendReg,
+      gmailSetting:gmailSetting
+  },
 });

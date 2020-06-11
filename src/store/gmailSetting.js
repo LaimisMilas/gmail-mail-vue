@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
     namespaced: true,
     state: {
-        apiUrl:"/api/gmail/settings",
+        apiUrl:"/gmail/api/setting",
         gmailSettings: [],
         gmailSetting: {},
         selectedId: 0

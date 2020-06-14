@@ -1,6 +1,6 @@
 # gmail-mail-vue
 
-Project about email sending trouth Gmail API. Project lets you control sending process. Create set off recipients. Create HTML templates as email. Connect to you owne Google APP, and user Gmail API.
+Project about email send via Gmail API. Project lets you control sending process. Create set off recipients. Create HTML templates as email. Connect to you owne Google APP, and user Gmail API.
 
 ## Project setup
 npm install 

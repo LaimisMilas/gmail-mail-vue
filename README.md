@@ -1,24 +1,11 @@
 # gmail-mail-vue
 
 ## Project setup
-```
-npm install
-```
+npm install 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Back-End connection
+./src/store/index.js 
+const state = {
+    //baseUrl: 'https://gmail-mail-sb.herokuapp.com',
+    baseUrl: 'http://127.0.0.1:8080'
+}

@@ -69,7 +69,7 @@
         props: ["id"],
         computed: mapState({
             item: function (store) {
-               return store.cser.user;
+               return store.user.user;
             }
         }),
         created() {

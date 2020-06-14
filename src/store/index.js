@@ -7,7 +7,8 @@ import sendRegStore from './sendReg.js';
 import gmailSettingStore from './gmailSetting.js';
 import campaignStore from './campaign.js';
 import emailHTML from './mailHTML.js';
-import userStore from './user.js'
+import userStore from './user.js';
+import userRole from "./userRole.js";
 
 Vue.use(Vuex)
 
@@ -26,7 +27,8 @@ const store = new Vuex.Store({
         gmailSetting: gmailSettingStore,
         campaign: campaignStore,
         emailHTML: emailHTML,
-        user: userStore
+        user: userStore,
+        userRole: userRole
     }
 });
 

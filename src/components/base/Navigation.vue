@@ -7,6 +7,8 @@
     <router-link class="text-info" to="/gmail/setting/list">{{$t('nav.gmailSetting')}}</router-link>
     <router-link class="text-info" to="/campaign/list">{{$t('nav.campaign')}}</router-link>
     <router-link class="text-info" to="/user/list">{{$t('nav.user')}}</router-link>
+    <router-link class="text-info" to="/user/role/list">{{$t('nav.userRole')}}</router-link>
+
   </nav>
 </template>
 

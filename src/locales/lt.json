@@ -6,7 +6,8 @@
     "sendReg": " Siuntimo registrai ",
     "gmailSetting": " Gmail nustatymai ",
     "compRecipientList": " Gavėjų sąrašai ",
-    "user": " Vartotojai "
+    "user": " Vartotojai ",
+    "userRole": "Vartotojai rolės"
   },
   "login": {
     "title": "Prisijungimas",
@@ -30,10 +31,12 @@
   "role": "Rolė",
   "enabled": "Aktyvuotas",
   "password": "Slaptažodis",
+
   "campaign.edit.view.title": "Kampanijos redagavimas",
   "campaign.delete.view.title": "Kampanijos naikinimas",
   "campaign.view.view.title": "Kampanijos peržiūra",
   "campaign.add.view.title": "Kampanijos sukūrimas",
+
   "campaign.title": "Kampanijos pavadinimas",
   "campaign.subjectLine": "Antraštės",
   "campaign.sender": "Siuntėjas",
@@ -42,8 +45,17 @@
   "campaign.created": "Sukurta",
   "campaign.gmailHTML.tmp": "HTML šablonas",
   "campaign.recipientList.title": "Gavėjų sąrašas",
+
   "user.delete.view.title": "Vartotojo naikinimas",
   "user.add.view.title": "Naujas vartotojas",
+  "user.view.view.title": "Vartotojo peržiūra",
+  "user.edit.view.title": "Naujas redagavimas",
+
+  "user.role.add.view.title" :"Naujos rolė įvedimas",
+  "user.role.delete.view.title": "Rolės naikinimas",
+  "user.role.view.view.title": "Rolės peržiūra",
+  "user.role.edit.view.title": "Rolės redagavimas",
+
   "redirectUri": "redirectUri",
   "clientId": "clientId",
   "clientSecret": "clientSecret",

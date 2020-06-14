@@ -28,10 +28,21 @@
                             </div>
                             <div class="form-group">
                                 <label>{{$t('role')}}</label>
-                                <input type="text" class="form-control"
-                                       v-model="item.roles[0].role"/>
+                                <multiselect
+                                        :placeholder="$t('role')"
+                                        class="form-control"
+                                        :multiple="true"
+                                        label="role"
+                                        track-by="role"
+                                        :custom-label="nameWithLang"
+                                        v-model="item.roles"
+                                        :options="roleLists">
+                                    <template slot="singleLabel" slot-scope="{ option }">
+                                        <strong>Id: {{ option.id }}</strong>
+                                        <strong>,  {{ option.role }}</strong>
+                                    </template>
+                                </multiselect>
                             </div>
-
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
                             </div>
@@ -50,6 +61,9 @@
         name: "UserAdd",
         components: { Multiselect },
         computed: mapState({
+            roleLists: function (store) {
+                return store.userRole.userRoles;
+            },
         }),
         data() {
             return {
@@ -61,6 +75,7 @@
             }
         },
         created() {
+            this.$store.dispatch('userRole/fetchData');
         },
         methods: {
             createItem() {
@@ -68,8 +83,8 @@
                 this.$store.dispatch('user/create');
                 this.$router.push({path: '/user/list'});
             },
-            nameWithLang ({ id, title }) {
-                return `${id}, ${title}`
+            nameWithLang ({ id, role }) {
+                return `${id}, ${role}`
             }
         }
     };

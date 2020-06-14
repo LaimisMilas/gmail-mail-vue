@@ -39,6 +39,12 @@ import userEdit from './pages/user/Edit.vue';
 import userDelete from './pages/user/Delete.vue';
 import userAdd from './pages/user/Add.vue';
 
+import userRoleList from './pages/userRole/List.vue';
+import userRoleView from './pages/userRole/View.vue';
+import userRoleEdit from './pages/userRole/Edit.vue';
+import userRoleDelete from './pages/userRole/Delete.vue';
+import userRoleAdd from './pages/userRole/Add.vue';
+
 import gmailSettingList from './pages/gmailSetting/List.vue';
 import gmailSettingView from './pages/gmailSetting/View.vue';
 import gmailSettingEdit from './pages/gmailSetting/Edit.vue';
@@ -109,7 +115,7 @@ const router = new Router({
       component: gmailSettingAdd,
     },
     // GmailSetting router end
-    // SendReg router begin
+    // User router begin
     {
       path: '/user/list',
       name: 'UserList',
@@ -139,6 +145,36 @@ const router = new Router({
       component: userAdd,
     },
     // SendReg router end
+    // UserRole router begin
+    {
+      path: '/user/role/list',
+      name: 'UserRoleList',
+      component: userRoleList
+    },
+    {
+      path: '/user/role/view/:id',
+      name: 'UserRoleView',
+      component: userRoleView,
+      props: true
+    },
+    {
+      path: '/user/role/edit/:id',
+      name: 'UserRoleEdit',
+      component: userRoleEdit,
+      props: true
+    },
+    {
+      path: '/user/role/delete/:id',
+      name: 'UserRoleDelete',
+      component: userRoleDelete,
+      props: true
+    },
+    {
+      path: '/user/role/add',
+      name: 'UserRoleAdd',
+      component: userRoleAdd,
+    },
+    // UserRole router end
     // SendReg router begin
     {
       path: '/send/reg/list',

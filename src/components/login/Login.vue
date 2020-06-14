@@ -5,7 +5,7 @@
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12">
             <form @submit.prevent="userLogIn" id="login-form" class="form" action="" method="post">
-              <h3 class="text-center text-info">Login</h3>
+              <h3 class="text-center text-info">{{$t("login.title")}}</h3>
               <div class="form-group">
                 <input
                         type="text"
@@ -21,7 +21,7 @@
                         v-model="localLoginState.password">
               </div>
               <div class="form-group">
-                <input type="submit" name="submit" class="btn btn-info btn-md" value="Prisijungti">
+                <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('login.login')">
               </div>
               <div id="register-link" class="text-right">
                 <router-link class="text-info" to="/register">REGISTRUOTIS ČIA</router-link>

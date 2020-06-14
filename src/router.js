@@ -9,29 +9,42 @@ import login from './components/login/Login.vue';
 import register from './components/login/Registration.vue';
 import forgetPassword from './components/login/ForGetPassword.vue';
 
-import companyInfoList from './pages/companyInfo/List';
-import companyInfoView from './pages/companyInfo/View';
-import companyInfoEdit from './pages/companyInfo/Edit';
-import companyInfoDelete from './pages/companyInfo/Delete';
-import companyInfoAdd from './pages/companyInfo/Add';
+import companyInfoList from './pages/companyInfo/List.vue';
+import companyInfoView from './pages/companyInfo/View.vue';
+import companyInfoEdit from './pages/companyInfo/Edit.vue';
+import companyInfoDelete from './pages/companyInfo/Delete.vue';
+import companyInfoAdd from './pages/companyInfo/Add.vue';
 
-import compRecipientList from './pages/compRecipientList/List';
-import compRecipientListView from './pages/compRecipientList/View';
-import compRecipientListEdit from './pages/compRecipientList/Edit';
-import compRecipientListDelete from './pages/compRecipientList/Delete';
-import compRecipientListAdd from './pages/compRecipientList/Add';
+import compRecipientList from './pages/compRecipientList/List.vue';
+import compRecipientListView from './pages/compRecipientList/View.vue';
+import compRecipientListEdit from './pages/compRecipientList/Edit.vue';
+import compRecipientListDelete from './pages/compRecipientList/Delete.vue';
+import compRecipientListAdd from './pages/compRecipientList/Add.vue';
 
-import sendRegList from './pages/sendReg/List';
-import sendRegView from './pages/sendReg/View';
-import sendRegEdit from './pages/sendReg/Edit';
-import sendRegDelete from './pages/sendReg/Delete';
-import sendRegAdd from './pages/sendReg/Add';
+import sendRegList from './pages/sendReg/List.vue';
+import sendRegView from './pages/sendReg/View.vue';
+import sendRegEdit from './pages/sendReg/Edit.vue';
+import sendRegDelete from './pages/sendReg/Delete.vue';
+import sendRegAdd from './pages/sendReg/Add.vue';
 
-import gmailSettingList from './pages/gmailSetting/List';
-import gmailSettingView from './pages/gmailSetting/View';
-import gmailSettingEdit from './pages/gmailSetting/Edit';
-import gmailSettingDelete from './pages/gmailSetting/Delete';
-import gmailSettingAdd from './pages/gmailSetting/Add';
+import campaignList from './pages/campaign/List.vue';
+import campaignView from './pages/campaign/View.vue';
+import campaignEdit from './pages/campaign/Edit.vue';
+import campaignDelete from './pages/campaign/Delete.vue';
+import campaignAdd from './pages/campaign/Add.vue';
+
+import userList from './pages/user/List.vue';
+import userView from './pages/user/View.vue';
+import userEdit from './pages/user/Edit.vue';
+import userDelete from './pages/user/Delete.vue';
+import userAdd from './pages/user/Add.vue';
+
+import gmailSettingList from './pages/gmailSetting/List.vue';
+import gmailSettingView from './pages/gmailSetting/View.vue';
+import gmailSettingEdit from './pages/gmailSetting/Edit.vue';
+import gmailSettingDelete from './pages/gmailSetting/Delete.vue';
+import gmailSettingAdd from './pages/gmailSetting/Add.vue';
+import gmailLoginCallBack from './pages/gmailSetting/GmailLoginCallBack.vue'
 
 Vue.use(Router);
 
@@ -63,6 +76,11 @@ const router = new Router({
     },
     // GmailSetting router begin
     {
+      path: '/auth/login/gmailCallback/:code',
+      name: 'GmailLoginCallBack',
+      component: gmailLoginCallBack
+    },
+    {
       path: '/gmail/setting/list',
       name: 'GmailSettingList',
       component: gmailSettingList
@@ -91,6 +109,36 @@ const router = new Router({
       component: gmailSettingAdd,
     },
     // GmailSetting router end
+    // SendReg router begin
+    {
+      path: '/user/list',
+      name: 'UserList',
+      component: userList
+    },
+    {
+      path: '/user/view/:id',
+      name: 'UserView',
+      component: userView,
+      props: true
+    },
+    {
+      path: '/user/edit/:id',
+      name: 'UserEdit',
+      component: userEdit,
+      props: true
+    },
+    {
+      path: '/user/delete/:id',
+      name: 'UserDelete',
+      component: userDelete,
+      props: true
+    },
+    {
+      path: '/user/add',
+      name: 'UserAdd',
+      component: userAdd,
+    },
+    // SendReg router end
     // SendReg router begin
     {
       path: '/send/reg/list',
@@ -179,8 +227,38 @@ const router = new Router({
       path: '/company/info/add',
       name: 'CompanyInfoAdd',
       component: companyInfoAdd,
-    }
+    },
     // CompanyInfo router end
+    // Campaign router begin
+    {
+      path: '/campaign/list',
+      name: 'CampaignList',
+      component: campaignList
+    },
+    {
+      path: '/campaign/view/:id',
+      name: 'CampaignView',
+      component: campaignView,
+      props: true
+    },
+    {
+      path: '/campaign/edit/:id',
+      name: 'CampaignEdit',
+      component: campaignEdit,
+      props: true
+    },
+    {
+      path: '/campaign/delete/:id',
+      name: 'CampaignDelete',
+      component: campaignDelete,
+      props: true
+    },
+    {
+      path: '/campaign/add',
+      name: 'CampaignAdd',
+      component: campaignAdd,
+    }
+    // Campaign router end
   ],
 });
 

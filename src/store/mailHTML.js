@@ -3,62 +3,66 @@ import axios from "axios";
 export default {
     namespaced: true,
     state: {
-        apiUrl:"/api/send/regs",
-        sendRegs: [],
-        sendReg: {},
+        apiUrl:"/api/email/html",
+        emailHTMLs: [],
+        emailHTML: {
+            id:1
+        },
         selectedId: 0
     },
     actions: {
         getSelected({state, commit}) {
-            state.sendRegs.forEach(item => {
+            state.emailHTMLs.forEach(item => {
+                console.log("item.id: " + item.id)
                 if (item.id === state.selectedId) {
-                    commit('commitSendReg', item);
+                    commit('commitEmailHTML', item);
                 }
             });
         },
         fetchData({state, rootGetters, commit, rootState}) {
-            if(state.sendRegs.length > 0){
+            if(state.emailHTMLs.length > 0){
                 return;
             }
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
                 .then(resp => {
-                    commit('commitSendRegs', resp.data);
+                    commit('commitEmailHTMLs', resp.data);
                 });
         },
         create({state, rootGetters, dispatch, rootState}) {
             axios
-                .post(rootState.baseUrl + state.apiUrl, state.sendReg, rootGetters['login/header'])
+                .post(rootState.baseUrl + state.apiUrl, state.emailHTML, rootGetters['login/header'])
                 .then(resp => {
                     dispatch('fetchData');
                 });
         },
         update({state, rootGetters, dispatch, rootState}) {
             axios
-                .put(rootState.baseUrl + state.apiUrl, state.sendReg, rootGetters['login/header'])
+                .put(rootState.baseUrl + state.apiUrl, state.emailHTML, rootGetters['login/header'])
                 .then(resp => {
                     dispatch('fetchData');
                 });
         },
         delete({state, rootGetters, dispatch, rootState}) {
             axios
-                .delete(rootState.baseUrl + state.apiUrl + state.sendReg.id, rootGetters['login/header'])
+                .delete(rootState.baseUrl + state.apiUrl + "/" + state.emailHTML.id, rootGetters['login/header'])
                 .then(resp => {
                     dispatch('fetchData');
                 });
         }
     },
     mutations: {
-        commitSendRegs(state, sendRegs) {
-            state.sendRegs = sendRegs;
+        commitEmailHTMLs(state, emailHTMLs) {
+            state.emailHTMLs = emailHTMLs;
         },
-        commitSendReg(state, sendReg) {
-            state.sendReg = sendReg;
+        commitEmailHTML(state, emailHTML) {
+            state.emailHTML = emailHTML;
         },
-        commitSelectedSendReg(state, id) {
+        commitSelectedEmailHTML(state, id) {
+            console.log("id: " + id)
             state.selectedId = id;
         },
-        commitResetSendReg(state) {
-            state.sendReg = {};
+        commitResetEmailHTML(state) {
+            state.emailHTML = {};
         }
     }
 }

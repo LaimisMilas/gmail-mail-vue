@@ -1,21 +1,33 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import loginStore from './login.js';
-import companyInfo from './companyInfo.js';
-import compRecipientList from './compRecipientList';
-import sendReg from './sendReg';
-import gmailSetting from './gmailSetting'
-Vue.use(Vuex);
+import companyInfoStore from './companyInfo.js';
+import compRecipientListStore from './compRecipientList.js';
+import sendRegStore from './sendReg.js';
+import gmailSettingStore from './gmailSetting.js';
+import campaignStore from './campaign.js';
+import emailHTML from './mailHTML.js';
+import userStore from './user.js'
 
-export default new Vuex.Store({
-  state: {
-   baseUrl: 'https://gmail-mail-sb.herokuapp.com',
-   //baseUrl: 'http://127.0.0.1:8080'
-  },
-  modules: {login: loginStore,
-      companyInfo: companyInfo,
-      compRecipientList: compRecipientList,
-      sendReg: sendReg,
-      gmailSetting:gmailSetting
-  },
+Vue.use(Vuex)
+
+const state = {
+    //baseUrl: 'https://gmail-mail-sb.herokuapp.com',
+    baseUrl: 'http://127.0.0.1:8080'
+}
+
+const store = new Vuex.Store({
+    state,
+    modules: {
+        login: loginStore,
+        companyInfo: companyInfoStore,
+        compRecipientList: compRecipientListStore,
+        sendReg: sendRegStore,
+        gmailSetting: gmailSettingStore,
+        campaign: campaignStore,
+        emailHTML: emailHTML,
+        user: userStore
+    }
 });
+
+export default store;

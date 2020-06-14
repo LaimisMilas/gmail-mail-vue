@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../router";
 
 export default {
     namespaced: true,
@@ -6,7 +7,8 @@ export default {
         apiUrl:"/api/gmail/api/setting",
         gmailSettings: [],
         gmailSetting: {},
-        selectedId: 0
+        selectedId: 0,
+        code:""
     },
     actions: {
         getSelected({state, commit}) {
@@ -17,7 +19,9 @@ export default {
             });
         },
         fetchData({state, rootGetters, commit, rootState}) {
-            console.log(rootGetters['login/header']);
+            if(state.gmailSettings.length > 0){
+                return;
+            }
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
                 .then(resp => {
                     commit('commitGmailSettings', resp.data);
@@ -27,6 +31,7 @@ export default {
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.gmailSetting, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitGmailSettings', []);
                     dispatch('fetchData');
                 });
         },
@@ -34,6 +39,7 @@ export default {
             axios
                 .put(rootState.baseUrl + state.apiUrl, state.gmailSetting, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitGmailSettings', []);
                     dispatch('fetchData');
                 });
         },
@@ -41,7 +47,15 @@ export default {
             axios
                 .delete(rootState.baseUrl + state.apiUrl + state.gmailSetting.id, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitGmailSettings', []);
                     dispatch('fetchData');
+                });
+        },
+        loginCallBack(state){
+            axios
+                .delete(rootState.baseUrl + "/auth/login/gmailCallback?code=" + state.code)
+                .then(resp => {
+                    router.push({path: '/'})
                 });
         }
     },
@@ -57,6 +71,10 @@ export default {
         },
         commitResetGmailSetting(state) {
             state.gmailSetting = {};
+        },
+        commitGmailSettingCode(state , code) {
+            state.code = code;
         }
+
     }
 }

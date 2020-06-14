@@ -1,5 +1,4 @@
 import axios from "axios";
-import router from "../router";
 
 export default {
     namespaced: true,
@@ -8,70 +7,46 @@ export default {
         compRecipientList: {},
         selectedId: 0
     },
-    getters: {
-        header: state => {
-            return {
-                headers: {
-                    'Authorization': 'Bearer ' + this.state.login.token,
-                    'Content-Type': 'application/json',
-                    'Set-Cookie': 'JSESSIONID=' + this.state.login.sessionId
-                }
-            }
-        }
-    },
     actions: {
-        getSelected({state, commit, rootState}){
+        getSelected({state, commit}){
             state.compRecipientLists.forEach(item => {
-               if(item.id == state.selectedId){
-                   this.commit('compRecipientList/commitCompRecipientList', item);
+               if(item.id === state.selectedId){
+                   commit('compRecipientList/commitCompRecipientList', item);
                }
             });
         },
-        fetchData({state, commit, rootState}) {
+        fetchData({state, commit, rootGetters, rootState}) {
 
-            if (!state.compRecipientLists.length === 0) {
+            if (state.compRecipientLists.length > 0) {
                 return;
             }
 
-            axios.get(rootState.baseUrl + "/api/company/info/recipients",
-                {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.state.login.token,
-                        'Content-Type': 'application/json',
-                        'Set-Cookie': 'JSESSIONID=' + this.state.login.sessionId
-                    }
-                }
-            )
+            axios.get(rootState.baseUrl + "/api/company/info/recipients", rootGetters['login/header'])
                 .then(resp => {
-                    this.commit('compRecipientList/commitCompRecipientLists', resp.data);
+                    commit('commitCompRecipientLists', resp.data);
                 });
         },
-        create({state, commit, rootState}) {
-            this.commit('compRecipientList/commitRecipients', this.state.companyInfo.companyInfos);
+        create({state,dispatch, commit, rootState, rootGetters}) {
+            commit('commitRecipients', this.state.companyInfo.companyInfos);
                 axios
-                .post(rootState.baseUrl + "/api/company/info/recipients", state.compRecipientList, {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.state.login.token,
-                        'Content-Type': 'application/json',
-                        'Set-Cookie': 'JSESSIONID=' + this.state.login.sessionId
-                    }
-                })
+                .post(rootState.baseUrl + "/api/company/info/recipients", state.compRecipientList,
+                    rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('compRecipientList/fetchData');
+                    dispatch('fetchData');
                 });
         },
-        update({state, commit, rootState}) {
+        update({state, dispatch, rootState, rootGetters}) {
             axios
-                .put(rootState.baseUrl + "/api/company/info/recipients", state.compRecipientList, this.getters.header)
+                .put(rootState.baseUrl + "/api/company/info/recipients", state.compRecipientList, rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('compRecipientList/fetchData');
+                    dispatch('fetchData');
                 });
         },
-        delete({state, commit, rootState}) {
+        delete({rootGetters, state, dispatch, rootState}) {
             axios
-                .delete(rootState.baseUrl + "/api/company/info/recipients" + state.compRecipientList.id, this.getters.header)
+                .delete(rootState.baseUrl + "/api/company/info/recipients" + "/" + state.compRecipientList.id, rootGetters['login/header'])
                 .then(resp => {
-                    this.dispatch('compRecipientList/fetchData');
+                    dispatch('fetchData');
                 });
         }
     },

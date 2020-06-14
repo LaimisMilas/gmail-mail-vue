@@ -10,19 +10,19 @@
                 <input
                         type="text"
                         class="form-control"
-                        placeholder="Vardas" v-model="customer.firstName" >
+                        placeholder="Vardas" v-model="user.userName" >
               </div>
               <div class="form-group">
                 <input
                         type="text"
                         class="form-control"
-                        placeholder="El.paštas" v-model="customer.email">
+                        placeholder="El.paštas" v-model="user.email">
               </div>
               <div class="form-group">
                 <input
                         type="text"
                         class="form-control"
-                        placeholder="Slaptažodis" v-model="customer.password">
+                        placeholder="Slaptažodis" v-model="user.password">
               </div>
               <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Registruotis">
@@ -39,23 +39,23 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   data() {
     return {
-      customer: {
+      user: {
         id: 0,
         email: "",
-        firstName: "",
+        userName: "",
         lastName: "",
-        phone: ""
+        phone: "",
+        enabled: true
       }
     };
   },
   methods: {
     userRegistration() {
-      this.$router.push({ path: "/login" });
+      this.$store.dispatch("login/userRegister",this.user)
     }
   }
 };

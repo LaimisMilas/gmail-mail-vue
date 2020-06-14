@@ -5,7 +5,7 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                             <form @submit.prevent="update" class="form" method="post">
-                            <h3 class="text-center text-info">Gmail API nustatymu redagavimas</h3>
+                            <h3 class="text-center text-info">{{$t('user.edit.view.title')}}</h3>
                                 <div class="form-group">
                                     <label>{{$t('id')}}</label>
                                     <input disabled type="text" class="form-control"
@@ -14,47 +14,42 @@
                                 <div class="form-group">
                                     <label>{{$t('userId')}}</label>
                                     <input disabled type="text" class="form-control"
-                                           v-model="item.user.id"/>
+                                           v-model="item.userId"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('clientId')}}</label>
+                                    <label>{{$t('user.title')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.clientId"/>
+                                           v-model="item.title"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('clientSecret')}}</label>
+                                    <label>{{$t('user.subjectLine')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.clientSecret"/>
+                                           v-model="item.subjectLine"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('redirectUri')}}</label>
+                                    <label>{{$t('user.sender')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.redirectUri"/>
+                                           v-model="item.sender"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('applicationName')}}</label>
+                                    <label>{{$t('user.logKey')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.applicationName"/>
+                                           v-model="item.logKey"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('accessTokenUri')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.accessTokenUri"/>
+                                    <label>{{$t('user.unsubscribeListId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.unsubscribeListId"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('userAuthorizationUri')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.userAuthorizationUri"/>
+                                    <label>{{$t('user.gmailHTML.tmp')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.gmailHTML.title"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('scope')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.scope"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('preferTokenInfo')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.preferTokenInfo"/>
+                                    <label>{{$t('user.recipientList.title')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.recipientList.title"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -70,22 +65,21 @@
     import {mapState} from "vuex";
 
     export default {
-        name: "GmailSettingEdit",
+        name: "UserEdit",
         props: ["id"],
         computed: mapState({
             item: function (store) {
-                return store.gmailSetting.gmailSetting;
+               return store.cser.user;
             }
         }),
         created() {
-            this.$store.commit('gmailSetting/commitSelectedGmailSetting', this.$props.id);
-            this.$store.dispatch('gmailSetting/getSelected');
-            console.log(JSON.stringify(this.item));
+           this.$store.commit('user/commitSelectedUser', this.$props.id);
+           this.$store.dispatch('user/getSelected');
         },
         methods: {
             update() {
-                this.$store.dispatch('gmailSetting/update');
-                this.$router.push({path: '/gmail/setting/list'});
+               this.$store.dispatch('user/update');
+               this.$router.push({path: '/user/list'});
             }
         }
     };

@@ -29,6 +29,7 @@ export default {
     actions: {
         getCurrentUser({state, commit, rootState, getters}) {
             axios.get(rootState.baseUrl + state.apiUrl, getters.header).then(resp => {
+                commit('commitUser', resp.data);
                 router.push({path: '/'})
             });
         },
@@ -43,6 +44,14 @@ export default {
                     } else {
                         router.push({path: '/login'});
                     }
+                });
+        },
+        userRegister({rootState}, user) {
+            console.log(user);
+            axios
+                .post(rootState.baseUrl + "/auth/users/register", user)
+                .then(resp => {
+                    router.push({path: '/login'});
                 });
         }
     },

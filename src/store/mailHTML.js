@@ -13,7 +13,6 @@ export default {
     actions: {
         getSelected({state, commit}) {
             state.emailHTMLs.forEach(item => {
-                console.log("item.id: " + item.id)
                 if (item.id === state.selectedId) {
                     commit('commitEmailHTML', item);
                 }
@@ -28,24 +27,27 @@ export default {
                     commit('commitEmailHTMLs', resp.data);
                 });
         },
-        create({state, rootGetters, dispatch, rootState}) {
+        create({state, commit, rootGetters, dispatch, rootState}) {
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.emailHTML, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitEmailHTMLs', []);
                     dispatch('fetchData');
                 });
         },
-        update({state, rootGetters, dispatch, rootState}) {
+        update({state, commit, rootGetters, dispatch, rootState}) {
             axios
                 .put(rootState.baseUrl + state.apiUrl, state.emailHTML, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitEmailHTMLs', []);
                     dispatch('fetchData');
                 });
         },
-        delete({state, rootGetters, dispatch, rootState}) {
+        delete({state, commit, rootGetters, dispatch, rootState}) {
             axios
                 .delete(rootState.baseUrl + state.apiUrl + "/" + state.emailHTML.id, rootGetters['login/header'])
                 .then(resp => {
+                    commit('commitEmailHTMLs', []);
                     dispatch('fetchData');
                 });
         }
@@ -58,7 +60,6 @@ export default {
             state.emailHTML = emailHTML;
         },
         commitSelectedEmailHTML(state, id) {
-            console.log("id: " + id)
             state.selectedId = id;
         },
         commitResetEmailHTML(state) {

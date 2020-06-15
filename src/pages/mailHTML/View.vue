@@ -11,9 +11,18 @@
                          v-model="item.id"/>
               </div>
               <div class="form-group">
-                  <label>{{$t('role')}}</label>
+                  <label>{{$t('userId')}}</label>
                   <input disabled type="text" class="form-control"
-                         v-model="item.role"/>
+                         v-model="item.userId"/>
+              </div>
+              <div class="form-group">
+                  <label>{{$t('title')}}</label>
+                  <input disabled type="text" class="form-control"
+                         v-model="item.title"/>
+              </div>
+              <div class="form-group">
+                  <label>{{$t('htmlContent')}}</label>
+                  <textarea disabled class="form-control" v-model="item.htmlContent"></textarea>
               </div>
           </div>
         </div>

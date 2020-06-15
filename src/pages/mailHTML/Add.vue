@@ -12,9 +12,18 @@
                                        v-model="item.id"/>
                             </div>
                             <div class="form-group">
+                                <label>{{$t('userId')}}</label>
+                                <input disabled type="text" class="form-control"
+                                       v-model="item.userId"/>
+                            </div>
+                            <div class="form-group">
                                 <label>{{$t('title')}}</label>
                                 <input type="text" class="form-control"
-                                       v-model="item.role"/>
+                                       v-model="item.title"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{$t('htmlContent')}}</label>
+                                <textarea class="form-control" v-model="item.htmlContent"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -31,24 +40,30 @@
     import {mapState} from "vuex";
 
     export default {
-        name: "MailHTMLAdd",
+        name: "EmailHTMLAdd",
         computed: mapState({
+            user: function (store) {
+                return store.login.user;
+            },
         }),
         data() {
             return {
                 item: {
                     id: 0,
-                    role: ""
+                    userId: 0,
+                    title: "",
+                    htmlContent: ""
                 }
             }
         },
         created() {
+            this.item.userId = this.user.id;
         },
         methods: {
             createItem() {
-                this.$store.commit('mailHTML/commitMailHTML', this.item);
-                this.$store.dispatch('mailHTML/create');
-                this.$router.push({path: '/mail/html/list'});
+                this.$store.commit('emailHTML/commitEmailHTML', this.item);
+                this.$store.dispatch('emailHTML/create');
+                this.$router.push({path: '/email/html/list'});
             }
         }
     };

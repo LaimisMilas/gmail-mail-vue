@@ -65,6 +65,11 @@
   "user.role.view.view.title": "Rolės peržiūra",
   "user.role.edit.view.title": "Rolės redagavimas",
 
+  "email.html.add.view.title" :"HTML šablono įvedimas",
+  "email.html.delete.view.title": "HTML šablono naikinimas",
+  "email.html.view.view.title": "HTML šablono peržiūra",
+  "email.html.edit.view.title": "HTML šablono redagavimas",
+
   "redirectUri": "redirectUri",
   "clientId": "clientId",
   "clientSecret": "clientSecret",
@@ -75,5 +80,6 @@
   "scope": "scope",
   "preferTokenInfo": "preferTokenInfo",
   "gmail.api.edit.add.title":"Gmail API nustatymu pridejimas",
-  "sendRegs": "sendRegs"
+  "sendRegs": "sendRegs",
+  "htmlContent": "htmlContent"
 }

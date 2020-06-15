@@ -45,6 +45,12 @@ import userRoleEdit from './pages/userRole/Edit.vue';
 import userRoleDelete from './pages/userRole/Delete.vue';
 import userRoleAdd from './pages/userRole/Add.vue';
 
+import mailHTMLList from './pages/mailHTML/List.vue';
+import mailHTMLView from './pages/mailHTML/View.vue';
+import mailHTMLEdit from './pages/mailHTML/Edit.vue';
+import mailHTMLDelete from './pages/mailHTML/Delete.vue';
+import mailHTMLAdd from './pages/mailHTML/Add.vue';
+
 import gmailSettingList from './pages/gmailSetting/List.vue';
 import gmailSettingView from './pages/gmailSetting/View.vue';
 import gmailSettingEdit from './pages/gmailSetting/Edit.vue';
@@ -175,6 +181,36 @@ const router = new Router({
       component: userRoleAdd,
     },
     // UserRole router end
+    // EmailHTML router begin
+    {
+      path: '/email/html/list',
+      name: 'EmailHTMLList',
+      component: mailHTMLList
+    },
+    {
+      path: '/email/html/view/:id',
+      name: 'EmailHTMLView',
+      component: mailHTMLView,
+      props: true
+    },
+    {
+      path: '/email/html/edit/:id',
+      name: 'EmailHTMLEdit',
+      component: mailHTMLEdit,
+      props: true
+    },
+    {
+      path: '/email/html/delete/:id',
+      name: 'EmailHTMLDelete',
+      component: mailHTMLDelete,
+      props: true
+    },
+    {
+      path: '/mail/html/add',
+      name: 'EmailHTMLAdd',
+      component: mailHTMLAdd,
+    },
+    // EmailHTML router end
     // SendReg router begin
     {
       path: '/send/reg/list',

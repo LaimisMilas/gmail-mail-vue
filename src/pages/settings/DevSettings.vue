@@ -6,7 +6,7 @@
                 {{user.email}}, {{user.roles[0].role}}</span><br/>
                 <label>{{$t('sendRegs')}}: </label><span>{{sendRegs.length}}</span>
                 <button class="btn btn-info btn-md" v-on:click="updateSendReg">Atnaujinti</button><br/>
-                <input type="text" :value="baseUrl" />
+                <input type="text" :value="mainStore.baserUrl" />
                 <button class="btn btn-info btn-md" v-on:click="updateBaseUrl">Atnaujinti</button><br/>
             </div>
             <form @submit.prevent="runComp" class="form" action="" method="post">
@@ -50,6 +50,9 @@
         name: "Dashboard",
         components: { Multiselect },
         computed: mapState({
+            mainStore: (store) => {
+                return store.devSettings;
+            },
             user: (store) => {
                 return store.login.user;
             },
@@ -58,13 +61,11 @@
             },
             compigneLists: (store) => {
              return store.campaign.campaigns;
-            },
-            baseUrl: (store) => {
-                return store.devSettings.baseUrl;
-            },
+            }
         }),
         data() {
             return {
+                baserUrl: "",
                 localState: {
                     compigne: {
                         id:0
@@ -74,6 +75,7 @@
             }
         },
         created() {
+
             this.$store.dispatch('campaign/fetchData');
         },
         methods: {
@@ -141,12 +143,13 @@
                 this.$store.commit('sendReg/commitSendRegs', []);
                 this.$store.dispatch('sendReg/fetchData');
             },
+            updateBaseUrl(){
+                this.$store.state.baserUrl = this.mainStore.baseUrl;
+                this.$store.commit('sendReg/commitBaseUrl', this.mainStore.baseUrl);
+            },
             nameWithLang ({ id, title }) {
                 return `${id}, ${title}`
-            },
-            updateBaseUrl(){
-                this.$store.commit('devSettings/commitBaseUrl', this.baseUrl);
-            },
+            }
         }
     }
 </script>

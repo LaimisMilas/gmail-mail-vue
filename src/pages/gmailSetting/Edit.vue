@@ -17,6 +17,11 @@
                                            v-model="item.user.id"/>
                                 </div>
                                 <div class="form-group">
+                                    <label>{{$t('defaultConfig')}}</label>
+                                    <input type="checkbox" class="form-control"
+                                           v-model="item.defaultConfig"/>
+                                </div>
+                                <div class="form-group">
                                     <label>{{$t('clientId')}}</label>
                                     <input type="text" class="form-control"
                                            v-model="item.clientId"/>
@@ -80,7 +85,7 @@
         created() {
             this.$store.commit('gmailSetting/commitSelectedGmailSetting', this.$props.id);
             this.$store.dispatch('gmailSetting/getSelected');
-            console.log(JSON.stringify(this.item));
+           // console.log(JSON.stringify(this.item));
         },
         methods: {
             update() {

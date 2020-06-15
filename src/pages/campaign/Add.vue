@@ -8,12 +8,12 @@
                             <h3 class="text-center text-info">{{$t('campaign.add.view.title')}}</h3>
                             <div class="form-group">
                                 <label>{{$t('id')}}</label>
-                                <input type="text" class="form-control"
+                                <input disabled type="text" class="form-control"
                                        v-model="item.id"/>
                             </div>
                             <div class="form-group">
                                 <label>{{$t('userId')}}</label>
-                                <input type="text" class="form-control"
+                                <input disabled type="text" class="form-control"
                                        v-model="item.userId"/>
                             </div>
                             <div class="form-group">

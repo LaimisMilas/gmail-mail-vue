@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container tag="header" class="bg-primary py-5">
-      <nav-buttom/>
+
     </b-container>
     <b-container tag="main" class="flex-grow-1">
       <router-view/>

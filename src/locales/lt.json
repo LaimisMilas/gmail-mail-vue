@@ -7,7 +7,8 @@
     "gmailSetting": " Gmail nustatymai ",
     "compRecipientList": " Gavėjų sąrašai ",
     "user": " Vartotojai ",
-    "userRole": "Vartotojai rolės"
+    "userRole": " Vartotojai rolės ",
+    "mailHTML": " HTML šablonai "
   },
   "login": {
     "title": "Prisijungimas",
@@ -31,11 +32,19 @@
   "role": "Rolė",
   "enabled": "Aktyvuotas",
   "password": "Slaptažodis",
+  "defaultConfig": "Numatytoji",
+  "init.send":"Inicijuoti siuntimą",
+  "select.campaign.to.send": "Pasirinkti kompanija siuntimui",
 
   "campaign.edit.view.title": "Kampanijos redagavimas",
   "campaign.delete.view.title": "Kampanijos naikinimas",
   "campaign.view.view.title": "Kampanijos peržiūra",
   "campaign.add.view.title": "Kampanijos sukūrimas",
+
+  "mail.html.edit.view.title": "HTML šablono redagavimas",
+  "mail.html.delete.view.title": "HTML šablono naikinimas",
+  "mail.html.view.view.title": "HTML šablono peržiūra",
+  "mail.html.add.view.title": "HTML šablono sukūrimas",
 
   "campaign.title": "Kampanijos pavadinimas",
   "campaign.subjectLine": "Antraštės",

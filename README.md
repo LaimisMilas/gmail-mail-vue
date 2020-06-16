@@ -16,5 +16,5 @@ const state = {
 https://github.com/LaimisMilas/gmail-mail-sb
 Based on Java and Sprigboot framework.
 
-## DEMO hsot Heroku
+## DEMO on Heroku
 https://gmail-mail-vue.herokuapp.com/

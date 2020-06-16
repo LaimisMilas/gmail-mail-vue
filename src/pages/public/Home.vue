@@ -72,9 +72,11 @@
         <br>
         <div>
             <h3>Techiniai dalykai</h3>
-            Back-End - SpringBoot framework'as, HiberNate, MariaDB. Hostinu Heroku platformoje.
+            Back-End - SpringBoot framework'as, HiberNate, MariaDB. Hostinu Heroku platformoje.<br>
             Front-End - Vue.js, vuex, vue-router bibliotekos ir hostinimas ant Heroku platformos.
         </div>
+        <br>
+        <br>
     </div>
 </template>
 <script>

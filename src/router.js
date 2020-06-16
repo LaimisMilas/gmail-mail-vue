@@ -4,10 +4,10 @@ import Router from 'vue-router';
 import store from './store';
 
 import Dashboard from './pages/Dashboard.vue';
-
-import login from './components/login/Login.vue';
-import register from './components/login/Registration.vue';
-import forgetPassword from './components/login/ForGetPassword.vue';
+import home from './pages/public/Home.vue';
+import login from './pages/public/Login.vue';
+import register from './pages/public/Registration.vue';
+import forgetPassword from './pages/public/ForGetPassword.vue';
 
 import companyInfoList from './pages/companyInfo/List.vue';
 import companyInfoView from './pages/companyInfo/View.vue';
@@ -82,9 +82,15 @@ const router = new Router({
       meta: {layout: 'auth'}
     },
     {
-      path: '/',
+      path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard,
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component: home,
+      meta: {layout: 'public'}
     },
     // GmailSetting router begin
     {
@@ -337,7 +343,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   //console.info("router.beforeEach - ", store.state.login.token);
   if (!store.state.login.token) {
-    if (to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
+    if (to.path === '/' || to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
       next();
     } else {
       next({

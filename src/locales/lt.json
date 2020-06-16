@@ -8,7 +8,10 @@
     "compRecipientList": " Gavėjų sąrašai ",
     "user": " Vartotojai ",
     "userRole": " Vartotojai rolės ",
-    "mailHTML": " HTML šablonai "
+    "mailHTML": " HTML šablonai ",
+    "home": " Namai ",
+    "login": " Prisijungti ",
+    "register": " Registruoti "
   },
   "login": {
     "title": "Prisijungimas",

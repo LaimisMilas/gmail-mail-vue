@@ -30,7 +30,7 @@ export default {
         getCurrentUser({state, commit, rootState, getters}) {
             axios.get(rootState.baseUrl + state.apiUrl, getters.header).then(resp => {
                 commit('commitUser', resp.data);
-                router.push({path: '/'})
+                router.push({path: '/dashboard'})
             });
         },
         userLogIn({state, commit, dispatch, rootState}) {

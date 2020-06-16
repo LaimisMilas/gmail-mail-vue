@@ -4,26 +4,29 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                            <form @submit.prevent="create" class="form" method="post">
-                            <h3 class="text-center text-info">Gavėjų sąrašo redagavimas</h3>
+                            <form @submit.prevent="update" class="form" method="post">
+                                <h3 class="text-center text-info">{{$t('campaign.recipient.edit.view.title')}}</h3>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Id"
-                                           v-model="compRecipientList.id"/><br>
+                                    <label>{{$t('id')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.id"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="UserId"
-                                           v-model="compRecipientList.userId"/><br>
+                                    <label>{{$t('userId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.userId"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Title"
-                                           v-model="compRecipientList.title"/><br>
+                                    <label>{{$t('title')}}</label>
+                                    <input type="text" class="form-control"
+                                           v-model="item.title"/>
                                 </div>
                                 <div class="form-group">
                                     <label>Priskirti visas kompanijas</label>
                                     <input type="checkbox" name="checkedItem" /><br>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Saugoti">
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
                                 </div>
                             </form>
                     </div>
@@ -32,6 +35,7 @@
         </div>
     </div>
 </template>
+
 <script>
     import {mapState} from "vuex";
 
@@ -39,7 +43,7 @@
         name: "CompRecipientListEdit",
         props: ["id"],
         computed: mapState({
-            compRecipientList: function (store) {
+            item: function (store) {
                 return store.compRecipientList.compRecipientList;
             }
         }),
@@ -48,7 +52,7 @@
             this.$store.dispatch('compRecipientList/getSelected');
         },
         methods: {
-            create() {
+            update() {
                 this.$store.dispatch('compRecipientList/create');
                 this.$router.push({path: '/comp/recipient/list'});
             }

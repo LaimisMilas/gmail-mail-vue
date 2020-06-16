@@ -19,17 +19,13 @@
                             <tr>
                                 <td @click="viewItem(item)">{{item.id}}</td>
                                 <td @click="viewItem(item)">{{item.title}}</td>
-
-                                <!--      <td @click="viewItem(ci)">{{ci.rawContacts}}</td>
-                                -->
                                 <td>
-                                    <router-link :to="{ name: 'CompRecipientListEdit', params: { id: item.id }}">
-                                        Redaguoti
+                                    <router-link :to="{ name: 'CompRecipientListEdit', params: { id: item.id }}">{{$t('edit')}}
                                     </router-link>
                                 </td>
                                 <td>
                                     <router-link :to="{ name: 'CompRecipientListDelete', params: { id: item.id }}">
-                                        Trinti
+                                        {{$t('delete')}}
                                     </router-link>
                                 </td>
                             </tr>

@@ -53,7 +53,13 @@
   "campaign.unsubscribeListId":"Atsisakiusiūjų sąrašas",
   "campaign.created": "Sukurta",
   "campaign.gmailHTML.tmp": "HTML šablonas",
-  "campaign.recipientList.title": "Gavėjų sąrašas",
+
+  "campaign.recipient.list.title": "Gavėjų sąrašas",
+  "campaign.recipient.edit.view.title": "Gavėjų redagavimas",
+  "campaign.recipient.delete.view.title": "Gavėjų naikinimas",
+  "campaign.recipient.view.view.title": "Gavėjų peržiūra",
+  "campaign.recipient.add.view.title": "Gavėjų sukūrimas",
+
 
   "user.delete.view.title": "Vartotojo naikinimas",
   "user.add.view.title": "Naujas vartotojas",
@@ -70,6 +76,11 @@
   "email.html.view.view.title": "HTML šablono peržiūra",
   "email.html.edit.view.title": "HTML šablono redagavimas",
 
+  "companyInfo.add.view.title" :"Kompanijos info įvedimas",
+  "companyInfo.delete.view.title": "Kompanijos info naikinimas",
+  "companyInfo.view.view.title": "Kompanijos info peržiūra",
+  "companyInfo.edit.view.title": "Kompanijos info redagavimas",
+
   "redirectUri": "redirectUri",
   "clientId": "clientId",
   "clientSecret": "clientSecret",
@@ -81,5 +92,13 @@
   "preferTokenInfo": "preferTokenInfo",
   "gmail.api.edit.add.title":"Gmail API nustatymu pridejimas",
   "sendRegs": "sendRegs",
-  "htmlContent": "htmlContent"
+  "htmlContent": "htmlContent",
+  "sales": "sales",
+  "companyOwner": "companyOwner",
+  "webSiteUrl": "webSiteUrl",
+  "status": "status",
+  "companyUrl": "companyUrl",
+  "rawContacts": "rawContacts",
+  "companyCode": "companyCode",
+  "address": "address"
 }

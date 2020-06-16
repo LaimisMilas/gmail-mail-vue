@@ -8,6 +8,13 @@ export default {
         companyInfo: {}
     },
     actions: {
+        getSelected({state, commit}) {
+            state.companyInfos.forEach(item => {
+                if (item.id === state.selectedId) {
+                    commit('commitCompanyInfo', item);
+                }
+            });
+        },
         fetchData({state, commit, rootState, rootGetters}) {
             if(state.companyInfos.length > 0){
                 return;
@@ -17,24 +24,27 @@ export default {
                     commit('commitCompanyInfos', resp.data);
                 });
         },
-        create({state, dispatch, rootState, rootGetters}) {
+        create({state, commit, dispatch, rootState, rootGetters}) {
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.companyInfo, rootGetters['login/header'])
                 .then(resp => {
+                    commit('companyInfos', []);
                     dispatch('fetchData');
                 });
         },
-        update({state, dispatch, rootState, rootGetters}) {
+        update({state, commit, dispatch, rootState, rootGetters}) {
             axios
                 .put(rootState.baseUrl + state.apiUrl, state.companyInfo, rootGetters['login/header'])
                 .then(resp => {
+                    commit('companyInfos', []);
                     dispatch('fetchData');
                 });
         },
-        delete({state, dispatch, rootState, rootGetters}) {
+        delete({state, commit, dispatch, rootState, rootGetters}) {
             axios
-                .delete(rootState.baseUrl + state.apiUrl + state.companyInfo.id, rootGetters['login/header'])
+                .delete(rootState.baseUrl + state.apiUrl + "/" + state.companyInfo.id, rootGetters['login/header'])
                 .then(resp => {
+                    commit('companyInfos', []);
                     dispatch('fetchData');
                 });
         }
@@ -45,6 +55,9 @@ export default {
         },
         commitCompanyInfo(state, companyInfo) {
             state.companyInfo = companyInfo;
+        },
+        commitSelectedCompanyInfo(state, id) {
+            state.selectedId = id;
         },
         commitResetCompanyInfo(state) {
             state.companyInfo = {};

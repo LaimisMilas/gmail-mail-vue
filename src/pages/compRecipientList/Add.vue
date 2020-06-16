@@ -61,7 +61,7 @@
         },
         methods: {
             createItem() {
-                this.$store.commit('compRecipientList/commitCampaign', this.item);
+                this.$store.commit('compRecipientList/commitCompRecipientList', this.item);
                 this.$store.dispatch('compRecipientList/create');
                 this.$router.push({path: '/comp/recipient/list'});
             },

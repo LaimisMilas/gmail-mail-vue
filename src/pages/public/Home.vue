@@ -1,7 +1,11 @@
 <template>
     <div class="container">
         <div>
-            <h3>Apie</h3>
+            <br>
+            <br>
+            <h4>Nuo&nbsp;&nbsp;&nbsp;&nbsp;<span>Manes</span></h4>
+            <h4>Kam&nbsp;&nbsp;&nbsp;&nbsp;<span>Tau</span></h4>
+            <h4>Tema&nbsp;&nbsp;&nbsp;&nbsp;<span>Programuotojas ieško darbo</span></h4>
             Sveiki, sukuriau šį projektą nes reikėjo pagalbos o kas geriau gali padėti jei ne paties sukurta programa :)
             Daug kartų, teko ieškotis darbo. Bandžiau siusti po viena laišką atrinktom kompanijoms. Paieškos labai
             išsitęsė.
@@ -48,13 +52,11 @@
                             </tr>
                             <tr>
                                 <td>LinkedIn:<a href="https://www.linkedin.com/in/laimonas-mila%C5%A1ius-b74b6a33/"
-                                                target="_blank"
-                                                data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/in/laimonas-mila%25C5%25A1ius-b74b6a33/&amp;source=gmail&amp;ust=1592402682841000&amp;usg=AFQjCNGCQRb5fVDjaNL6NKHcaUeqW-daCg">Laimonas
-                                    Milašius</a></td>
+                                                target="_blank">Laimonas Milašius</a>
+                                </td>
                             </tr>
                             <tr>
-                                <td>GitHub: <a href="https://github.com/LaimisMilas" target="_blank"
-                                               data-saferedirecturl="https://www.google.com/url?q=https://github.com/LaimisMilas&amp;source=gmail&amp;ust=1592402682841000&amp;usg=AFQjCNGlmzjovz-U571JMXGuehuYRGGVYg">projektai</a>
+                                <td>GitHub: <a href="https://github.com/LaimisMilas" target="_blank">projektai</a>
                                 </td>
                             </tr>
                             <tr>

@@ -34,7 +34,7 @@
             <input v-on:click="stopProcess" class="btn btn-info btn-md" value="Stabdyti siuntiną">
             <input v-on:click="startProcess" class="btn btn-info btn-md" value="Paleisti siuntiną">
             <input v-on:click="killProcess" class="btn btn-info btn-md" value="Žudyti siuntimą">
-            <a href="http://127.0.0.1:8080/auth/login/gmail/1">Gmail API Login</a>
+            <a :href="gmailAuthUrl">Gmail API Login</a>
             <div>{{logs}}</div>
         </div>
     </div>
@@ -70,11 +70,13 @@
                         id:0
                     }
                 },
-                logs: ""
+                logs: "",
+                gmailAuthUrl: "http://127.0.0.1:8080/auth/login/gmail/"
             }
         },
         created() {
             this.$store.dispatch('campaign/fetchData');
+            this.gmailAuthUrl = this.gmailAuthUrl + this.user.id;
         },
         methods: {
             runComp() {

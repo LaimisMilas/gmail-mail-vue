@@ -12,44 +12,36 @@
                                            v-model="item.id"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('userId')}}</label>
-                                    <input disabled type="text" class="form-control"
-                                           v-model="item.userId"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('user.title')}}</label>
+                                    <label>{{$t('userName')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.title"/>
+                                           v-model="item.userName"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('user.subjectLine')}}</label>
+                                    <label>{{$t('password')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.subjectLine"/>
+                                           v-model="item.password"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('user.sender')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.sender"/>
+                                    <label>{{$t('enabled')}}</label>
+                                    <input type="checkbox" class="form-control"
+                                           v-model="item.enabled"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('user.logKey')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.logKey"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('user.unsubscribeListId')}}</label>
-                                    <input disabled type="text" class="form-control"
-                                           v-model="item.unsubscribeListId"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('user.gmailHTML.tmp')}}</label>
-                                    <input disabled type="text" class="form-control"
-                                           v-model="item.gmailHTML.title"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('user.recipientList.title')}}</label>
-                                    <input disabled type="text" class="form-control"
-                                           v-model="item.recipientList.title"/>
+                                    <label>{{$t('role')}}</label>
+                                    <multiselect
+                                            :placeholder="$t('role')"
+                                            class="form-control"
+                                            :multiple="true"
+                                            label="role"
+                                            track-by="role"
+                                            :custom-label="nameWithLang"
+                                            v-model="item.roles"
+                                            :options="roleLists">
+                                        <template slot="singleLabel" slot-scope="{ option }">
+                                            <strong>Id: {{ option.id }}</strong>
+                                            <strong>,  {{ option.role }}</strong>
+                                        </template>
+                                    </multiselect>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">

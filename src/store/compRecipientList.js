@@ -27,7 +27,7 @@ export default {
                     commit('commitCompRecipientLists', resp.data);
                 });
         },
-        create({state,dispatch, commit, rootState, rootGetters}) {
+        create({state, dispatch, commit, rootState, rootGetters}) {
             commit('commitRecipients', this.state.companyInfo.companyInfos);
                 axios
                 .post(rootState.baseUrl + state.apiUrl, state.compRecipientList,

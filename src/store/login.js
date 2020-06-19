@@ -1,5 +1,14 @@
 import axios from "axios";
 import router from "../router";
+import companyInfoStore from "./companyInfo";
+import compRecipientListStore from "./compRecipientList";
+import sendRegStore from "./sendReg";
+import gmailSettingStore from "./gmailSetting";
+import campaignStore from "./campaign";
+import emailHTML from "./mailHTML";
+import userStore from "./user";
+import userRole from "./userRole";
+import devSettings from "./devSettings";
 
 export default {
     namespaced: true,
@@ -34,6 +43,7 @@ export default {
             });
         },
         userLogIn({state, commit, dispatch, rootState}) {
+            commit("commitDropData");
             axios
                 .post(rootState.baseUrl + state.apiLoginUrl, state.login)
                 .then(resp => {
@@ -64,6 +74,26 @@ export default {
         },
         commitSessionId(state, sessionId) {
             state.sessionId = sessionId;
+        },
+        commitDropData() {
+            this.commit("campaign/commitCampaigns", []);
+            this.commit("campaign/commitCampaign", {});
+            this.commit("companyInfo/commitCompanyInfos", []);
+            this.commit("companyInfo/commitCompanyInfo", {});
+            this.commit("compRecipientList/commitCompRecipientLists", []);
+            this.commit("compRecipientList/commitCompRecipientList", {});
+            this.commit("sendReg/commitSendRegs", []);
+            this.commit("sendReg/commitSendReg", {});
+            this.commit("gmailSetting/commitGmailSettings", []);
+            this.commit("gmailSetting/commitGmailSetting", {});
+            this.commit("campaign/commitCampaigns", []);
+            this.commit("campaign/commitCampaign", {});
+            this.commit("emailHTML/commitEmailHTMLs", []);
+            this.commit("emailHTML/commitEmailHTML", {});
+            this.commit("user/commitUsers", []);
+            this.commit("user/commitUser", {});
+            this.commit("userRole/commitUserRoles", []);
+            this.commit("userRole/commitUserRole", {});
         }
     }
 }

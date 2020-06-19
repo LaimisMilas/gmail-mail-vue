@@ -15,8 +15,8 @@ Vue.use(Vuex);
 
 let state = {
     //baseUrl: 'https://gmail-mail-sb.herokuapp.com',
-    //baseUrl: 'http://127.0.0.1:8080'
-    baseUrl: 'http://192.168.1.5:8080'
+    baseUrl: 'http://127.0.0.1:8080'
+    //baseUrl: 'http://192.168.1.5:8080'
 }
 
 const store = new Vuex.Store({

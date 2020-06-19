@@ -16,13 +16,25 @@ export default {
                }
             });
         },
-        fetchData({state, commit, rootGetters, rootState}) {
+        fetchAllData({state, commit, rootGetters, rootState}) {
 
             if (state.compRecipientLists.length > 0) {
                 return;
             }
 
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
+                .then(resp => {
+                    commit('commitCompRecipientLists', resp.data);
+                });
+        },
+        fetchData({state, commit, rootGetters, rootState}) {
+
+            if (state.compRecipientLists.length > 0) {
+                return;
+            }
+
+            axios.get(rootState.baseUrl + "/api/company/info/user/" +
+                rootState.login.user.id + "/recipients", rootGetters['login/header'])
                 .then(resp => {
                     commit('commitCompRecipientLists', resp.data);
                 });

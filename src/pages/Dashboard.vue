@@ -11,6 +11,8 @@
             </div>
             <form @submit.prevent="runComp" class="form" action="" method="post">
                 <h3 class="text-center text-info">Kampanija</h3>
+                <div class="form-group">
+
                 <multiselect
                         :placeholder="$t('select.campaign.to.send')"
                         class="form-control"
@@ -24,8 +26,6 @@
                         <strong>, {{ option.title }}</strong>
                     </template>
                 </multiselect>
-
-                <div class="form-group">
                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('init.send')">
                 </div>
             </form>
@@ -60,7 +60,7 @@
              return store.campaign.campaigns;
             },
             baseUrl: (store) => {
-                return store.devSettings.baseUrl;
+                return store.baseUrl;
             },
         }),
         data() {
@@ -71,12 +71,12 @@
                     }
                 },
                 logs: "",
-                gmailAuthUrl: "http://127.0.0.1:8080/auth/login/gmail/"
+                gmailAuthUrl: ""
             }
         },
         created() {
             this.$store.dispatch('campaign/fetchData');
-            this.gmailAuthUrl = this.gmailAuthUrl + this.user.id;
+            this.gmailAuthUrl = "http://127.0.0.1:8080/auth/login/gmail/" + this.user.id;
         },
         methods: {
             runComp() {

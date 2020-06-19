@@ -19,11 +19,20 @@ export default {
                 }
             });
         },
-        fetchData({state, rootGetters, commit, rootState}) {
+        fetchAllData({state, rootGetters, commit, rootState}) {
             if(state.campaigns.length > 0){
                 return;
             }
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
+                .then(resp => {
+                    commit('commitCampaigns', resp.data);
+                });
+        },
+        fetchData({state, rootGetters, commit, rootState}) {
+            if(state.campaigns.length > 0){
+                return;
+            }
+            axios.get(rootState.baseUrl + "/api/gmail/user/"+ rootState.login.user.id +"/campaigns", rootGetters['login/header'])
                 .then(resp => {
                     commit('commitCampaigns', resp.data);
                 });

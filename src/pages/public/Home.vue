@@ -12,7 +12,7 @@
             Čia Aš sumaščiau kad reikia daryti taip kad visi žinotu kad ieškausi darbo nesvarbu kokia veikla užsiema
             įmonė, juk
             jie turi draugų ir partnerių kuriems praneš apie mano laišką.<br/>
-            Tada ir gimė mintis sukurti projektą. Parašiau programą kuri surinktų el.paštus ir įmonių katalogo. Tai buvo
+            Tada ir gimė mintis sukurti projektą. Parašiau programą kuri surinktų el.paštus iš įmonių katalogo. Tai buvo
             taip smagu :)
             Tada padariau prisijungima prie Gmail API, beliko tik parašyti siuntimo algoritmą. Laiškai pradėjo siustis,
             siunčiau negailėdamas.

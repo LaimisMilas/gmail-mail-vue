@@ -16,11 +16,21 @@ export default {
                 }
             });
         },
-        fetchData({state, rootGetters, commit, rootState}) {
+        fetchAllData({state, rootGetters, commit, rootState}) {
             if(state.sendRegs.length > 0){
                 return;
             }
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
+                .then(resp => {
+                    commit('commitSendRegs', resp.data);
+                });
+        },
+        fetchData({state, rootGetters, commit, rootState}) {
+            if(state.sendRegs.length > 0){
+                return;
+            }
+            axios.get(rootState.baseUrl + "/api/send/regs/search/" +
+                rootState.campaign.campaign.logKey, rootGetters['login/header'])
                 .then(resp => {
                     commit('commitSendRegs', resp.data);
                 });

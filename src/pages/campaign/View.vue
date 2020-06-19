@@ -51,7 +51,7 @@
                          v-model="item.gmailHTML.title"/>
               </div>
               <div class="form-group">
-                  <label>{{$t('campaign.recipientList.title')}}</label>
+                  <label>{{$t('campaign.recipient.list.title')}}</label>
                   <input disabled type="text" class="form-control"
                          v-model="item.recipientList.title"/>
               </div>

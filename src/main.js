@@ -13,8 +13,12 @@ import Public from "./layouts/Public.vue";
 import JwPagination from 'jw-vue-pagination';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
+import RouterTab from 'vue-router-tab'
+import 'vue-router-tab/dist/lib/vue-router-tab.css'
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(RouterTab);
 
 Vue.component('nav-buttom', Navigation);
 Vue.component('public-nav', PublicNavigation);

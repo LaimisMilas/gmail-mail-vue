@@ -1,51 +1,59 @@
 <template>
-  <modal name="add" :adaptive="true" :scrollable="true">
-    <form @submit.prevent="create" method="post">
-      <input type="text" placeholder="Title" v-model="companyInfo.title"/>
-      <input type="text" placeholder="Address" v-model="companyInfo.address"/>
-      <input type="text" placeholder="Email" v-model="companyInfo.email"/>
-      <input type="text" placeholder="Company code" v-model="companyInfo.companyCode"/>
-      <input type="text" placeholder="Raw contacts" v-model="companyInfo.rawContacts"/>
-      <input type="text" placeholder="Company url" v-model="companyInfo.companyUrl"/>
-      <input type="text" placeholder="status" v-model="companyInfo.status"/>
-      <input type="text" placeholder="Web site url" v-model="companyInfo.webSiteUrl"/>
-      <input type="text" placeholder="Company owner" v-model="companyInfo.companyOwner"/>
-      <input type="text" placeholder="Sales" v-model="companyInfo.sales"/>
-      <button type="submit">Save</button>
-    </form>
-  </modal>
+    <div id="add_item">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <h3 class="text-center text-info">{{$t('campaign.recipient.view.view.title')}}</h3>
+                        <router-link :to="{ name: 'CampaignView', params: { id: item.id }}">
+                            {{$t('view')}}
+                        </router-link>
+                        <router-link :to="{ name: 'CampaignRegListView'}">
+                            {{$t('nav.sendReg')}}
+                        </router-link>
+                        <router-link :to="{ name: 'CampaignMailHTMLView'}">
+                            {{$t('nav.mailHTML')}}
+                        </router-link>
+                        <router-link :to="{ name: 'CampaignRecipientListView'}">
+                            {{$t('nav.compRecipientList')}}
+                        </router-link>
+                        <div class="form-group">
+                            <label>{{$t('id')}}</label>
+                            <input disabled type="text" class="form-control"
+                                   v-model="item.recipientList.id"/>
+                        </div>
+                        <div class="form-group">
+                            <label>{{$t('userId')}}</label>
+                            <input disabled type="text" class="form-control"
+                                   v-model="item.recipientList.userId"/>
+                        </div>
+                        <div class="form-group">
+                            <label>{{$t('title')}}</label>
+                            <input disabled type="text" class="form-control"
+                                   v-model="item.recipientList.title"/>
+                        </div>
+                        <div class="form-group">
+                            <label>{{item.recipientList.id}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
-<script>
-  import axios from "axios";
 
-  export default {
-    props: ['id'],
-    data() {
-      return {
-        companyInfo: {
-          id: 0,
-          title: "UAB Krabaėęčs",
-          address: "Vilnius, Nemencines pl. 32-2",
-          email: "info@krabas.com",
-          companyCode: "1231212312",
-          rawContacts: "",
-          companyUrl: "http://rekvizitai.lt/krabas",
-          status: 0,
-          webSiteUrl: "http://krabas.lt",
-          companyOwner: "Stasius Andriulaitis",
-          sales: ""
-        }
-      };
-    },
-    created() {
-      this.fetch();
-    },
-    methods: {
-      fetch() {
-        axios.get(this.$store.state.baseUrl + "/api/company/info/" + this.$props.id).then(response => {
-          this.companyInfo = response.data;
-        });
-      }
-    }
-  };
+<script>
+    import {mapState} from "vuex";
+
+    export default {
+        name: "CompaignRecipientListView",
+        computed: mapState({
+            item: function (store) {
+                return store.campaign.campaign;
+            }
+        }),
+        created() {
+        },
+        methods: {}
+    };
 </script>

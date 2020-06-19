@@ -5,6 +5,18 @@
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12">
               <h3 class="text-center text-info">{{$t('campaign.view.view.title')}}</h3>
+              <router-link :to="{ name: 'CampaignView', params: { id: item.id }}">
+                  {{$t('view')}}
+              </router-link>
+              <router-link :to="{ name: 'CampaignRegListView'}">
+                  {{$t('nav.sendReg')}}
+              </router-link>
+              <router-link :to="{ name: 'CampaignMailHTMLView', params: { id: item.gmailHTML.id }}">
+                  {{$t('nav.mailHTML')}}
+              </router-link>
+              <router-link :to="{ name: 'CampaignRecipientListView'}">
+                  {{$t('nav.compRecipientList')}}
+              </router-link>
               <div class="form-group">
                   <label>{{$t('id')}}</label>
                   <input disabled type="text" class="form-control"

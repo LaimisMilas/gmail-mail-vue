@@ -4,33 +4,33 @@
             <div class="row justify-content-center align-items-center" id="login-row">
                 <div class="col-md-6" id="login-column">
                     <div class="col-md-12" id="login-box">
-                        <router-link to="/comp/recipient/list/add"> {{$t('add')}}</router-link>
+                        <h3 class="text-center text-info">{{$t('campaign.regLog.list.title')}}</h3>
+                        <router-link :to="{ name: 'CampaignView', params: { id: campaign.id }}">
+                            {{$t('view')}}
+                        </router-link>
+                        <router-link :to="{ name: 'CampaignRegListView'}">
+                            {{$t('nav.sendReg')}}
+                        </router-link>
+                        <router-link :to="{ name: 'CampaignMailHTMLView', params: { id: campaign.gmailHTML.id }}">
+                            {{$t('nav.mailHTML')}}
+                        </router-link>
                         <table>
                             <thead>
                             <tr>
                                 <th></th>
                                 <th>Id</th>
-                                <th>Title</th>
-                                <th></th>
-                                <th></th>
+                                <th>Logs</th>
                             </tr>
                             </thead>
-                            <tbody :key="item.id" v-for="item in itemList">
+                            <tbody :key="item.id" v-for="item in pageOfItems">
                             <tr>
-                                <td @click="viewItem(item)">{{item.id}}</td>
-                                <td @click="viewItem(item)">{{item.title}}</td>
-                                <td>
-                                    <router-link :to="{ name: 'CompRecipientListEdit', params: { id: item.id }}">{{$t('edit')}}
-                                    </router-link>
-                                </td>
-                                <td>
-                                    <router-link :to="{ name: 'CompRecipientListDelete', params: { id: item.id }}">
-                                        {{$t('delete')}}
-                                    </router-link>
-                                </td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.logs}}</td>
                             </tr>
                             </tbody>
                         </table>
+                        <jw-pagination :items="sendRegLists" :pageSize="20"
+                                       @changePage="onChangePage"></jw-pagination>
                     </div>
                 </div>
             </div>
@@ -40,12 +40,10 @@
 
 <script>
     import {mapState} from "vuex";
-
     export default {
-        name: "CompRecipientList",
         computed: mapState({
-            itemList: function (store) {
-                return store.compRecipientList.compRecipientLists;
+            sendRegLists: function (store) {
+                return store.sendReg.sendRegs;
             },
             campaign: function (store) {
                 return store.campaign.campaign;
@@ -57,7 +55,7 @@
             };
         },
         created() {
-            this.$store.dispatch('compRecipientList/fetchData');
+            this.$store.dispatch('sendReg/fetchData');
         },
         methods: {
             onChangePage(pageOfItems) {

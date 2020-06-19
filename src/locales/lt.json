@@ -63,6 +63,11 @@
   "campaign.recipient.view.view.title": "Gavėjų peržiūra",
   "campaign.recipient.add.view.title": "Gavėjų sukūrimas",
 
+  "campaign.regLog.list.title": "Registu sąrašas",
+  "campaign.regLog.edit.view.title": "Registo redagavimas",
+  "campaign.regLog.delete.view.title": "Registo naikinim",
+  "campaign.regLog.view.view.title": "Registo peržiūra",
+  "campaign.regLog.add.view.title": "Registo sukūrimas",
 
   "user.delete.view.title": "Vartotojo naikinimas",
   "user.add.view.title": "Naujas vartotojas",

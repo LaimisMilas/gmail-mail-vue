@@ -1,3 +1,0 @@
-<template>
-    <router-tab />
-</template>

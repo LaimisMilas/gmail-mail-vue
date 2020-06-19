@@ -3,11 +3,6 @@ import {sync} from 'vuex-router-sync';
 import Router from 'vue-router';
 import store from './store';
 
-import { RouterTabRoutes } from 'vue-router-tab'
-import frame from './components/layout/Frame.vue'
-const importPage = page => () =>
-    import(/* webpackChunkName: "p-[request]" */ `./pages/campaign/${page}.vue`);
-
 import Dashboard from './pages/Dashboard.vue';
 import home from './pages/public/Home.vue';
 import login from './pages/public/Login.vue';
@@ -34,6 +29,9 @@ import sendRegAdd from './pages/sendReg/Add.vue';
 
 import campaignList from './pages/campaign/List.vue';
 import campaignView from './pages/campaign/View.vue';
+import campaignRegListView from './pages/campaign/sendReg/List.vue';
+import campaignMailHTMLView from './pages/campaign/mailHTML/View.vue';
+import campaignRecipientListView from './pages/campaign/compRecipientList/View.vue'
 import campaignEdit from './pages/campaign/Edit.vue';
 import campaignDelete from './pages/campaign/Delete.vue';
 import campaignAdd from './pages/campaign/Add.vue';
@@ -68,33 +66,6 @@ Vue.use(Router);
 const router = new Router({
   mode: 'history',
   routes: [
-    {
-      props: true,
-      path: '/campaign/view/:id',
-      component: frame,
-      children: [
-        ...RouterTabRoutes,
-        {
-          path: '/campaign/view/:id',
-          name: 'CampaignView',
-          props: true,
-          component: importPage('View'),
-          meta: {
-            title: 'Kampanija',
-            closable: false
-          }
-        },
-        {
-          path: '/campaign/reg/list',
-          name: 'CampaignRegList',
-          component: importPage('List'),
-          meta: {
-            title: 'Registrai',
-            closable: false
-          }
-        }
-      ]
-    },
     {
       path: '/forget/password',
       name: 'forgetPassword',
@@ -346,9 +317,27 @@ const router = new Router({
       component: campaignList
     },
     {
-      path: '/admin/campaign/view/:id',
-      name: 'AdminCampaignView',
+      path: '/campaign/view/:id',
+      name: 'CampaignView',
       component: campaignView,
+      props: true
+    },
+    {
+      path: '/campaign/reg/list/view',
+      name: 'CampaignRegListView',
+      component: campaignRegListView,
+      props: true
+    },
+    {
+      path: '/campaign/mail/html/view/:id',
+      name: 'CampaignMailHTMLView',
+      component: campaignMailHTMLView,
+      props: true
+    },
+    {
+      path: '/campaign/recipient/list/view/:id',
+      name: 'CampaignRecipientListView',
+      component: campaignRecipientListView,
       props: true
     },
     {

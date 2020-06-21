@@ -5,6 +5,7 @@
                 <div class="col-md-6" id="login-column">
                     <div class="col-md-12" id="login-box">
                         <router-link to="/company/info/add"> {{$t('add')}}</router-link>
+                        <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
                         <table>
                             <thead>
                             <tr>
@@ -48,10 +49,20 @@
         computed: mapState({
             itemList: function (store) {
                 return store.companyInfo.companyInfos;
+            },
+            resultQuery(){
+                if(this.searchQuery){
+                    return this.pageOfItems.filter((item)=>{
+                        return this.searchQuery.toLowerCase().split(' ').every(v => item.email.toLowerCase().includes(v))
+                    })
+                }else{
+                    return this.pageOfItems;
+                }
             }
         }),
         data() {
             return {
+                searchQuery: null,
                 pageOfItems: []
             };
         },

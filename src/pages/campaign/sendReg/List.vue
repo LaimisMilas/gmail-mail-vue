@@ -14,6 +14,7 @@
                         <router-link :to="{ name: 'CampaignMailHTMLView', params: { id: campaign.gmailHTML.id }}">
                             {{$t('nav.mailHTML')}}
                         </router-link>
+                        <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
                         <table>
                             <thead>
                             <tr>
@@ -22,15 +23,15 @@
                                 <th>Logs</th>
                             </tr>
                             </thead>
-                            <tbody :key="item.id" v-for="item in pageOfItems">
+                            <tbody :key="item.id" v-for="item in resultQuery">
                             <tr>
                                 <td>{{item.id}}</td>
                                 <td>{{item.logs}}</td>
                             </tr>
                             </tbody>
                         </table>
-                        <jw-pagination :items="sendRegLists" :pageSize="20"
-                                       @changePage="onChangePage"></jw-pagination>
+                      <!--  <jw-pagination :items="sendRegLists" :pageSize="20"
+                                       @changePage="onChangePage"></jw-pagination> -->
                     </div>
                 </div>
             </div>
@@ -47,10 +48,20 @@
             },
             campaign: function (store) {
                 return store.campaign.campaign;
+            },
+            resultQuery(){
+                if(this.searchQuery){
+                    return this.sendRegLists.filter((item)=>{
+                        return this.searchQuery.toLowerCase().split(' ').every(v => item.logs.toLowerCase().includes(v))
+                    })
+                }else{
+                    return this.sendRegLists;
+                }
             }
         }),
         data() {
             return {
+                searchQuery: null,
                 pageOfItems: []
             };
         },

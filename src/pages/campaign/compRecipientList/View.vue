@@ -32,9 +32,6 @@
                             <input disabled type="text" class="form-control"
                                    v-model="item.recipientList.title"/>
                         </div>
-                        <div class="form-group">
-                            <label>{{item.recipientList.id}}</label>
-                        </div>
                     </div>
                 </div>
             </div>

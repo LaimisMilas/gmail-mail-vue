@@ -11,6 +11,7 @@
     <router-link class="text-info" to="/user/list">{{$t('nav.user')}}</router-link>
     <router-link class="text-info" to="/user/role/list">{{$t('nav.userRole')}}</router-link>
     <router-link class="text-info" to="/email/html/list">{{$t('nav.mailHTML')}}</router-link>
+    <router-link class="text-info" to="/persona/list">{{$t('nav.persona')}}</router-link>
   </nav>
 </template>
 

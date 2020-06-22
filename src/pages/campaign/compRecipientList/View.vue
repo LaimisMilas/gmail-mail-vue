@@ -31,6 +31,7 @@
                             <label>{{$t('title')}}</label>
                             <input disabled type="text" class="form-control"
                                    v-model="item.recipientList.title"/>
+                            <input @click="showList" type="button" class="form-control" :value="item.recipientList.title" />
                         </div>
                     </div>
                 </div>
@@ -51,6 +52,10 @@
         }),
         created() {
         },
-        methods: {}
+        methods: {
+            showList(){
+                alert("Labas as krabas");
+            }
+        }
     };
 </script>

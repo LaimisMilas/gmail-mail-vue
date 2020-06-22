@@ -61,6 +61,12 @@ import gmailSettingDelete from './pages/gmailSetting/Delete.vue';
 import gmailSettingAdd from './pages/gmailSetting/Add.vue';
 import gmailLoginCallBack from './pages/gmailSetting/GmailLoginCallBack.vue'
 
+import personaList from './pages/persona/List.vue';
+import personaView from './pages/persona/View.vue';
+import personaEdit from './pages/persona/Edit.vue';
+import personaDelete from './pages/persona/Delete.vue';
+import personaAdd from './pages/persona/Add.vue';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -130,6 +136,36 @@ const router = new Router({
       component: gmailSettingAdd,
     },
     // GmailSetting router end
+    // Persona router begin
+    {
+      path: '/persona/list',
+      name: 'PersonaList',
+      component: personaList
+    },
+    {
+      path: '/persona/view/:id',
+      name: 'PersonaView',
+      component: personaView,
+      props: true
+    },
+    {
+      path: '/persona/edit/:id',
+      name: 'PersonaEdit',
+      component: personaEdit,
+      props: true
+    },
+    {
+      path: '/persona/delete/:id',
+      name: 'PersonaDelete',
+      component: personaDelete,
+      props: true
+    },
+    {
+      path: '/persona/add',
+      name: 'PersonaAdd',
+      component: personaAdd,
+    },
+    // Persona router end
     // User router begin
     {
       path: '/user/list',
@@ -159,7 +195,7 @@ const router = new Router({
       name: 'UserAdd',
       component: userAdd,
     },
-    // SendReg router end
+    // User router end
     // UserRole router begin
     {
       path: '/user/role/list',

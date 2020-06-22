@@ -11,7 +11,8 @@
     "mailHTML": " HTML šablonai ",
     "home": " Namai ",
     "login": " Prisijungti ",
-    "register": " Registruoti "
+    "register": " Registruoti ",
+    "persona": " Asmenys "
   },
   "login": {
     "title": "Prisijungimas",
@@ -27,10 +28,13 @@
   "view": "Peržirėti",
   "add": "Pridėti",
   "id": "Id",
+  "list": "Sąrašas",
   "userId": "Vartotojo Id",
   "title": "Pavadinimas",
   "logKey": "Raktas",
   "userName": "Vartotojo vardas",
+  "name": "Vardas",
+  "sureName": "Pavardė",
   "email": "El. paštas",
   "role": "Rolė",
   "enabled": "Aktyvuotas",
@@ -88,6 +92,12 @@
   "companyInfo.delete.view.title": "Kompanijos info naikinimas",
   "companyInfo.view.view.title": "Kompanijos info peržiūra",
   "companyInfo.edit.view.title": "Kompanijos info redagavimas",
+
+  "persona.list.view.title": "Asmenų sąrašas",
+  "persona.add.view.title": "Asmens įvedimas",
+  "persona.delete.view.title": "Asmens naikinimas",
+  "persona.view.view.title": "Asmens peržiūra",
+  "persona.edit.view.title": "Asmens redagavimas",
 
   "redirectUri": "redirectUri",
   "clientId": "clientId",

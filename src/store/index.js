@@ -11,6 +11,9 @@ import userStore from './user.js';
 import userRole from "./userRole.js";
 import devSettings from "./devSettings.js"
 import personaStore from "./persona.js"
+import phoneNumberStore from "./phoneNumber.js"
+import emailStore from "./email.js"
+import emailHistoryStore from "./emailHistory.js"
 
 
 Vue.use(Vuex);
@@ -34,7 +37,10 @@ const store = new Vuex.Store({
         user: userStore,
         userRole: userRole,
         devSettings: devSettings,
-        persona: personaStore
+        persona: personaStore,
+        phoneNumber: phoneNumberStore,
+        email: emailStore,
+        emailHistory: emailHistoryStore
     }
 });
 

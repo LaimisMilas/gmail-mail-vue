@@ -4,7 +4,7 @@
       <div id="login-row" class="row justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12">
-              <h3 class="text-center text-info">{{$t('persona.view.view.title')}}</h3>
+              <h3 class="text-center text-info">{{$t('emailHistory.view.view.title')}}</h3>
               <model-nav/>
               <div class="form-group">
                   <label>{{$t('id')}}</label>
@@ -12,21 +12,9 @@
                          v-model="item.id"/>
               </div>
               <div class="form-group">
-                  <label>{{$t('name')}}</label>
+                  <label>{{$t('text')}}</label>
                   <input disabled type="text" class="form-control"
-                         v-model="item.name"/>
-              </div>
-              <div class="form-group">
-                  <label>{{$t('sureName')}}</label>
-                  <input disabled type="text" class="form-control"
-                         v-model="item.sureName"/>
-              </div>
-              <div class="form-group">
-                  <ul>
-                      <li :key="phoneNumber.id" v-for="phoneNumber in item.phoneNumbers">
-                            <label>{{phoneNumber.id}}</label>
-                      </li>
-                  </ul>
+                         v-model="item.text"/>
               </div>
           </div>
         </div>
@@ -35,22 +23,24 @@
   </div>
 </template>
 <script>
+
   import {mapState} from "vuex";
   import modelNav from "./modelNav.vue";
+
   export default {
-    name: "PersonaView",
+    name: "EmailHistoryView",
     components: {
           'model-nav': modelNav
     },
     props: ["id"],
     computed: mapState({
       item: function (store) {
-        return store.persona.persona;
+          return store.emailHistory.emailHistory;
       }
     }),
     created() {
-      this.$store.commit('persona/commitSelectedPersona', this.$props.id);
-      this.$store.dispatch('persona/getSelected');
+        this.$store.commit('emailHistory/commitSelectedEmailHistory', this.$props.id);
+        this.$store.dispatch('emailHistory/getSelected');
     },
     methods: {
     }

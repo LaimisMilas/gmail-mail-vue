@@ -1,14 +1,5 @@
 import axios from "axios";
 import router from "../router";
-import companyInfoStore from "./companyInfo";
-import compRecipientListStore from "./compRecipientList";
-import sendRegStore from "./sendReg";
-import gmailSettingStore from "./gmailSetting";
-import campaignStore from "./campaign";
-import emailHTML from "./mailHTML";
-import userStore from "./user";
-import userRole from "./userRole";
-import devSettings from "./devSettings";
 
 export default {
     namespaced: true,

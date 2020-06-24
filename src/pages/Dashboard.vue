@@ -5,17 +5,17 @@
                 <label>{{$t('id')}}: </label><span>{{user.id}}, {{user.userName}}
                 {{user.email}}, {{user.roles[0].role}}</span><br/>
                 <label>{{$t('sendRegs')}}: </label><span>{{sendRegs.length}}</span>
-                <button class="btn btn-info btn-md" v-on:click="updateSendReg">Atnaujinti</button><br/>
-                <input type="text" :value="baseUrl" />
-                <button class="btn btn-info btn-md" v-on:click="updateBaseUrl">Atnaujinti</button><br/>
+                <button class="btn btn-info btn-md" v-on:click="updateSendReg">Atnaujinti</button>
+                <br/>
+                <input type="text" :value="baseUrl"/>
+                <button class="btn btn-info btn-md" v-on:click="updateBaseUrl">Atnaujinti</button>
+                <br/>
             </div>
-            <form @submit.prevent="runComp" class="form" action="" method="post">
-                <h3 class="text-center text-info">Kampanija</h3>
-                <div class="form-group">
-
+            <h3 class="text-center text-info">Kampanija</h3>
+            <div class="form-group">
+                <input @click="runComp" type="button" class="btn btn-info btn-md" :value="$t('init.send')">
                 <multiselect
                         :placeholder="$t('select.campaign.to.send')"
-                        class="form-control"
                         label="title"
                         track-by="title"
                         :custom-label="nameWithLang"
@@ -26,10 +26,8 @@
                         <strong>, {{ option.title }}</strong>
                     </template>
                 </multiselect>
-                    <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('init.send')">
-                </div>
-            </form>
-            <input v-on:click="getStatus" class="btn btn-info btn-md" value="Gauti būsena">
+            </div>
+            <input @click="getStatus" class="btn btn-info btn-md" value="Gauti būsena">
             <input v-on:click="getServiceStatus" class="btn btn-info btn-md" value="Serviso būsena">
             <input v-on:click="stopProcess" class="btn btn-info btn-md" value="Stabdyti siuntiną">
             <input v-on:click="startProcess" class="btn btn-info btn-md" value="Paleisti siuntiną">
@@ -48,7 +46,7 @@
 
     export default {
         name: "Dashboard",
-        components: { Multiselect },
+        components: {Multiselect},
         computed: mapState({
             user: (store) => {
                 return store.login.user;
@@ -57,7 +55,7 @@
                 return store.sendReg.sendRegs;
             },
             compigneLists: (store) => {
-             return store.campaign.campaigns;
+                return store.campaign.campaigns;
             },
             baseUrl: (store) => {
                 return store.baseUrl;
@@ -139,14 +137,14 @@
                     this.logs = reason;
                 });
             },
-            updateSendReg(){
+            updateSendReg() {
                 this.$store.commit('sendReg/commitSendRegs', []);
                 this.$store.dispatch('sendReg/fetchData');
             },
-            nameWithLang ({ id, title }) {
+            nameWithLang({id, title}) {
                 return `${id}, ${title}`
             },
-            updateBaseUrl(){
+            updateBaseUrl() {
                 this.$store.commit('devSettings/commitBaseUrl', this.baseUrl);
             },
         }

@@ -13,25 +13,9 @@
                                            v-model="item.id"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('name')}}</label>
+                                    <label>{{$t('text')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.name"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('sureName')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.sureName"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('number')}}</label>
-                                    <multiselect
-                                            class="form-control"
-                                            :multiple="true"
-                                            label="number"
-                                            track-by="number"
-                                            v-model="item.phoneNumbers"
-                                            :options="phoneNumbers">
-                                    </multiselect>
+                                           v-model="item.text"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -46,32 +30,26 @@
 <script>
     import {mapState} from "vuex";
     import modelNav from "./modelNav.vue";
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "PersonaEdit",
         components: {
-            'model-nav': modelNav,
-             Multiselect
+            'model-nav': modelNav
         },
         props: ["id"],
         computed: mapState({
             item: function (store) {
-               return store.persona.persona;
-            },
-            phoneNumbers: function (store) {
-                return store.phoneNumber.phoneNumbers;
+                return store.emailHistory.emailHistory;
             }
         }),
         created() {
-           this.$store.commit('persona/commitSelectedPersona', this.$props.id);
-           this.$store.dispatch('persona/getSelected');
-            this.$store.dispatch('phoneNumber/fetchData');
+            this.$store.commit('emailHistory/commitSelectedEmailHistory', this.$props.id);
+            this.$store.dispatch('emailHistory/getSelected');
         },
         methods: {
             updateItem() {
-               this.$store.dispatch('persona/update');
-               this.$router.push({path: '/persona/list'});
+               this.$store.dispatch('emailHistory/update');
+               this.$router.push({path: '//email/history/list'});
             }
         }
     };

@@ -5,32 +5,21 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form @submit.prevent="createItem" class="form" method="post">
-                            <h3 class="text-center text-info">{{$t('persona.add.view.title')}}</h3>
+                            <h3 class="text-center text-info">{{$t('phoneNumber.add.view.title')}}</h3>
                             <div class="form-group">
                                 <label>{{$t('id')}}</label>
                                 <input disabled type="text" class="form-control"
                                        v-model="item.id"/>
                             </div>
                             <div class="form-group">
-                                <label>{{$t('name')}}</label>
-                                <input type="text" class="form-control"
-                                       v-model="item.name"/>
-                            </div>
-                            <div class="form-group">
-                                <label>{{$t('sureName')}}</label>
-                                <input type="text" class="form-control"
-                                       v-model="item.sureName"/>
-                            </div>
-                            <div class="form-group">
                                 <label>{{$t('number')}}</label>
-                                <multiselect
-                                        class="form-control"
-                                        :multiple="true"
-                                        label="number"
-                                        track-by="number"
-                                        v-model="item.phoneNumbers"
-                                        :options="phoneNumbers">
-                                </multiselect>
+                                <input type="text" class="form-control"
+                                       v-model="item.number"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{$t('operator')}}</label>
+                                <input type="text" class="form-control"
+                                       v-model="item.operator"/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -44,37 +33,28 @@
 </template>
 <script>
     import {mapState} from "vuex";
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "PersonaAdd",
-        components: { Multiselect },
         computed: mapState({
             user: function (store) {
-                return store.persona.persona;
+                return store.phoneNumber.phoneNumber;
             },
-            phoneNumbers: function (store) {
-                return store.phoneNumber.phoneNumbers;
-            }
         }),
         data() {
             return {
                 item: {
-                    id: 0,
-                    phoneNumbers: [
-                        {id:0, number:"", operator: ""}
-                    ],
+                    id: 0
                 }
             }
         },
         created() {
-            this.$store.dispatch('phoneNumber/fetchData');
         },
         methods: {
             createItem() {
-                this.$store.commit('persona/commitPersona', this.item);
-                this.$store.dispatch('persona/create');
-                this.$router.push({path: '/persona/list'});
+                this.$store.commit('phoneNumber/commitPhoneNumber', this.item);
+                this.$store.dispatch('phoneNumber/create');
+                this.$router.push({path: '/phone/number/list'});
             }
         }
     };

@@ -12,7 +12,9 @@
     "home": " Namai ",
     "login": " Prisijungti ",
     "register": " Registruoti ",
-    "persona": " Asmenys "
+    "persona": " Asmenys ",
+    "phoneNumber": " Telefonai ",
+    "email": " El.paštas "
   },
   "login": {
     "title": "Prisijungimas",
@@ -34,6 +36,8 @@
   "logKey": "Raktas",
   "userName": "Vartotojo vardas",
   "name": "Vardas",
+  "operator": "Operatorius",
+  "number": "Numeris",
   "sureName": "Pavardė",
   "email": "El. paštas",
   "role": "Rolė",
@@ -41,7 +45,7 @@
   "password": "Slaptažodis",
   "defaultConfig": "Numatytoji",
   "init.send":"Inicijuoti siuntimą",
-  "select.campaign.to.send": "Pasirinkti kompanija siuntimui",
+  "select.campaign.to.send": "Pasirinkti kampanija siuntimui",
 
   "campaign.edit.view.title": "Kampanijos redagavimas",
   "campaign.delete.view.title": "Kampanijos naikinimas",
@@ -98,6 +102,18 @@
   "persona.delete.view.title": "Asmens naikinimas",
   "persona.view.view.title": "Asmens peržiūra",
   "persona.edit.view.title": "Asmens redagavimas",
+
+  "phoneNumber.list.view.title": "Numerių sąrašas",
+  "phoneNumber.add.view.title": "Numerio įvedimas",
+  "phoneNumber.delete.view.title": "Numerio naikinimas",
+  "phoneNumber.view.view.title": "Numerio peržiūra",
+  "phoneNumber.edit.view.title": "Numerio redagavimas",
+
+  "email.list.view.title": "El.paštai sąrašas",
+  "email.add.view.title": "El.pašto įvedimas",
+  "email.delete.view.title": "El.pašto naikinimas",
+  "email.view.view.title": "El.pašto peržiūra",
+  "email.edit.view.title": "El.pašto redagavimas",
 
   "redirectUri": "redirectUri",
   "clientId": "clientId",

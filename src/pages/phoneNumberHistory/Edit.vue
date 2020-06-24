@@ -5,7 +5,7 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                             <form @submit.prevent="updateItem" class="form" method="post">
-                                <h3 class="text-center text-info">{{$t('persona.edit.view.title')}}</h3>
+                                <h3 class="text-center text-info">{{$t('phoneNumber.edit.view.title')}}</h3>
                                 <model-nav/>
                                 <div class="form-group">
                                     <label>{{$t('id')}}</label>
@@ -15,23 +15,12 @@
                                 <div class="form-group">
                                     <label>{{$t('name')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.name"/>
+                                           v-model="item.number"/>
                                 </div>
                                 <div class="form-group">
                                     <label>{{$t('sureName')}}</label>
                                     <input type="text" class="form-control"
-                                           v-model="item.sureName"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{$t('number')}}</label>
-                                    <multiselect
-                                            class="form-control"
-                                            :multiple="true"
-                                            label="number"
-                                            track-by="number"
-                                            v-model="item.phoneNumbers"
-                                            :options="phoneNumbers">
-                                    </multiselect>
+                                           v-model="item.operator"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -46,32 +35,26 @@
 <script>
     import {mapState} from "vuex";
     import modelNav from "./modelNav.vue";
-    import Multiselect from 'vue-multiselect';
 
     export default {
-        name: "PersonaEdit",
+        name: "PhoneNumberEdit",
         components: {
-            'model-nav': modelNav,
-             Multiselect
+            'model-nav': modelNav
         },
         props: ["id"],
         computed: mapState({
             item: function (store) {
-               return store.persona.persona;
-            },
-            phoneNumbers: function (store) {
-                return store.phoneNumber.phoneNumbers;
+               return store.phoneNumber.phoneNumber;
             }
         }),
         created() {
-           this.$store.commit('persona/commitSelectedPersona', this.$props.id);
-           this.$store.dispatch('persona/getSelected');
-            this.$store.dispatch('phoneNumber/fetchData');
+           this.$store.commit('phoneNumber/commitSelectedPhoneNumber', this.$props.id);
+           this.$store.dispatch('phoneNumber/getSelected');
         },
         methods: {
             updateItem() {
-               this.$store.dispatch('persona/update');
-               this.$router.push({path: '/persona/list'});
+               this.$store.dispatch('phoneNumber/update');
+               this.$router.push({path: '/phone/number/list'});
             }
         }
     };

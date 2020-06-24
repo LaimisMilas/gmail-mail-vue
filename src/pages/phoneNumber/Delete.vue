@@ -5,7 +5,7 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form @submit.prevent="deleteItem" class="form" method="post">
-                            <h3 class="text-center text-info">{{$t('persona.delete.view.title')}}</h3>
+                            <h3 class="text-center text-info">{{$t('phoneNumber.delete.view.title')}}</h3>
                             <model-nav/>
                             <div class="form-group">
                                 <label>{{$t('id')}}</label>
@@ -15,19 +15,12 @@
                             <div class="form-group">
                                 <label>{{$t('name')}}</label>
                                 <input disabled type="text" class="form-control"
-                                       v-model="item.name"/>
+                                       v-model="item.number"/>
                             </div>
                             <div class="form-group">
                                 <label>{{$t('sureName')}}</label>
                                 <input disabled type="text" class="form-control"
-                                       v-model="item.sureName"/>
-                            </div>
-                            <div class="form-group">
-                                <ul>
-                                    <li :key="phoneNumber.id" v-for="phoneNumber in item.phoneNumbers">
-                                        <label>{{phoneNumber.number}}</label>
-                                    </li>
-                                </ul>
+                                       v-model="item.operator"/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('delete')">
@@ -38,29 +31,29 @@
             </div>
         </div>
     </div>
-</template>
+</template>N
 <script>
     import {mapState} from "vuex";
     import modelNav from "./modelNav.vue";
     export default {
-        name: "PersonaDelete",
+        name: "PhoneNumberDelete",
         components: {
             'model-nav': modelNav
         },
         props: ["id"],
         computed: mapState({
             item: function (store) {
-                return store.persona.persona;
+                return store.phoneNumber.phoneNumber;
             }
         }),
         created() {
-            this.$store.commit('persona/commitSelectedPersona', this.$props.id);
-            this.$store.dispatch('persona/getSelected');
+            this.$store.commit('phoneNumber/commitSelectedPhoneNumber', this.$props.id);
+            this.$store.dispatch('phoneNumber/getSelected');
         },
         methods: {
             deleteItem() {
-                this.$store.dispatch('persona/delete');
-                this.$router.push({path: '/persona/list'});
+                this.$store.dispatch('phoneNumber/delete');
+                this.$router.push({path: '/phone/number/list'});
             }
         }
     };

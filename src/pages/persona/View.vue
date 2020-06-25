@@ -22,9 +22,18 @@
                          v-model="item.sureName"/>
               </div>
               <div class="form-group">
+                  <label>{{$t('number')}}</label>
                   <ul>
                       <li :key="phoneNumber.id" v-for="phoneNumber in item.phoneNumbers">
-                            <label>{{phoneNumber.id}}</label>
+                            <label>{{phoneNumber.number}}</label>
+                      </li>
+                  </ul>
+              </div>
+              <div class="form-group">
+                  <label>{{$t('email')}}</label>
+                  <ul>
+                      <li :key="email.id" v-for="email in item.emails">
+                          <label>{{email.email}}</label>
                       </li>
                   </ul>
               </div>

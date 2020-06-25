@@ -30,6 +30,13 @@
                                 </ul>
                             </div>
                             <div class="form-group">
+                                <ul>
+                                    <li :key="email.id" v-for="email in item.emails">
+                                        <label>{{email.email}}</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('delete')">
                             </div>
                         </form>

@@ -109,7 +109,7 @@
   "phoneNumber.view.view.title": "Numerio peržiūra",
   "phoneNumber.edit.view.title": "Numerio redagavimas",
 
-  "email.list.view.title": "El.paštai sąrašas",
+  "email.list.view.title": "El.paštų sąrašas",
   "email.add.view.title": "El.pašto įvedimas",
   "email.delete.view.title": "El.pašto naikinimas",
   "email.view.view.title": "El.pašto peržiūra",
@@ -134,5 +134,6 @@
   "companyUrl": "companyUrl",
   "rawContacts": "rawContacts",
   "companyCode": "companyCode",
-  "address": "address"
+  "address": "address",
+  "domain": "Domenas"
 }

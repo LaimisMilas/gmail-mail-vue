@@ -9,7 +9,7 @@
                                 <model-nav/>
                                 <div class="form-group">
                                     <label>{{$t('id')}}</label>
-                                    <input type="text" class="form-control"
+                                    <input disabled type="text" class="form-control"
                                            v-model="item.id"/>
                                 </div>
                                 <div class="form-group">
@@ -31,6 +31,17 @@
                                             track-by="number"
                                             v-model="item.phoneNumbers"
                                             :options="phoneNumbers">
+                                    </multiselect>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{$t('email')}}</label>
+                                    <multiselect
+                                            class="form-control"
+                                            :multiple="true"
+                                            label="email"
+                                            track-by="email"
+                                            v-model="item.emails"
+                                            :options="emails">
                                     </multiselect>
                                 </div>
                                 <div class="form-group">
@@ -61,12 +72,16 @@
             },
             phoneNumbers: function (store) {
                 return store.phoneNumber.phoneNumbers;
+            },
+            emails: function (store) {
+                return store.email.emails;
             }
         }),
         created() {
            this.$store.commit('persona/commitSelectedPersona', this.$props.id);
            this.$store.dispatch('persona/getSelected');
             this.$store.dispatch('phoneNumber/fetchData');
+            this.$store.dispatch('email/fetchData');
         },
         methods: {
             updateItem() {

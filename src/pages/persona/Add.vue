@@ -33,6 +33,17 @@
                                 </multiselect>
                             </div>
                             <div class="form-group">
+                                <label>{{$t('email')}}</label>
+                                <multiselect
+                                        class="form-control"
+                                        :multiple="true"
+                                        label="email"
+                                        track-by="email"
+                                        v-model="item.emails"
+                                        :options="emails">
+                                </multiselect>
+                            </div>
+                            <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
                             </div>
                         </form>
@@ -55,6 +66,9 @@
             },
             phoneNumbers: function (store) {
                 return store.phoneNumber.phoneNumbers;
+            },
+            emails: function (store) {
+                return store.email.emails;
             }
         }),
         data() {
@@ -62,12 +76,14 @@
                 item: {
                     id: 0,
                     phoneNumbers: [
-                        {id:0, number:"", operator: ""}
+                    ],
+                    emails: [
                     ],
                 }
             }
         },
         created() {
+            this.$store.dispatch('email/fetchData');
             this.$store.dispatch('phoneNumber/fetchData');
         },
         methods: {

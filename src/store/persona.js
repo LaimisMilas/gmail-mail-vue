@@ -28,6 +28,7 @@ export default {
                 });
         },
         create({state, commit, rootGetters, dispatch, rootState}) {
+            console.log(JSON.stringify(state.persona));
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.persona, rootGetters['login/header'])
                 .then(resp => {

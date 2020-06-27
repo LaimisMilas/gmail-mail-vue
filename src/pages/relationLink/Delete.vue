@@ -33,6 +33,11 @@
                                        v-model="item.companyId"/>
                             </div>
                             <div class="form-group">
+                                <label>{{$t('friendId')}}</label>
+                                <input disabled type="text" class="form-control"
+                                       v-model="item.friendId"/>
+                            </div>
+                            <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('delete')">
                             </div>
                         </form>

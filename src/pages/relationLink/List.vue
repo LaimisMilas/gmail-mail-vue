@@ -14,6 +14,7 @@
                                 <th>{{$t('phoneId')}}</th>
                                 <th>{{$t('personaId')}}</th>
                                 <th>{{$t('companyId')}}</th>
+                                <th>{{$t('friendId')}}</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -25,6 +26,7 @@
                                 <td>{{item.phoneId}}</td>
                                 <td>{{item.personaId}}</td>
                                 <td>{{item.companyId}}</td>
+                                <td>{{item.friendId}}</td>
                                 <td>
                                     <router-link :to="{ name: 'RelationLinkEdit', params: { id: item.id }}">{{$t('edit')}}
                                     </router-link>

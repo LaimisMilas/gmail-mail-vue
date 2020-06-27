@@ -14,7 +14,8 @@
     "register": " Registruoti ",
     "persona": " Asmenys ",
     "phoneNumber": " Telefonai ",
-    "email": " El.paštas "
+    "email": " El.paštas ",
+    "relationLink": " Rysiai "
   },
   "login": {
     "title": "Prisijungimas",
@@ -109,6 +110,12 @@
   "phoneNumber.view.view.title": "Numerio peržiūra",
   "phoneNumber.edit.view.title": "Numerio redagavimas",
 
+  "relationLink.list.view.title": "Rysiu sąrašas",
+  "relationLink.add.view.title": "Rysio įvedimas",
+  "relationLink.delete.view.title": "Rysio naikinimas",
+  "relationLink.view.view.title": "Rysio peržiūra",
+  "relationLink.edit.view.title": "Rysio redagavimas",
+
   "email.list.view.title": "El.paštų sąrašas",
   "email.add.view.title": "El.pašto įvedimas",
   "email.delete.view.title": "El.pašto naikinimas",
@@ -135,5 +142,7 @@
   "rawContacts": "rawContacts",
   "companyCode": "companyCode",
   "address": "address",
-  "domain": "Domenas"
+  "domain": "Domenas",
+  "reset": "Resetinti",
+  "searchQuery": "Surasti"
 }

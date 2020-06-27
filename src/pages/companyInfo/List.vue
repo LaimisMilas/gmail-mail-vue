@@ -5,7 +5,15 @@
                 <div class="col-md-6" id="login-column">
                     <div class="col-md-12" id="login-box">
                         <router-link to="/company/info/add"> {{$t('add')}}</router-link>
-                        <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                        <form @submit.prevent="search" class="form" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                       v-model="searchQuery"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('searchQuery')">
+                            </div>
+                        </form>
                         <table>
                             <thead>
                             <tr>
@@ -50,12 +58,12 @@
             itemList: function (store) {
                 return store.companyInfo.companyInfos;
             },
-            resultQuery(){
-                if(this.searchQuery){
-                    return this.pageOfItems.filter((item)=>{
+            resultQuery() {
+                if (this.searchQuery) {
+                    return this.pageOfItems.filter((item) => {
                         return this.searchQuery.toLowerCase().split(' ').every(v => item.email.toLowerCase().includes(v))
                     })
-                }else{
+                } else {
                     return this.pageOfItems;
                 }
             }
@@ -75,6 +83,8 @@
             },
             onChangePage(pageOfItems) {
                 this.pageOfItems = pageOfItems;
+            },search(){
+                this.$store.dispatch('companyInfo/fetchDataByEmail', this.searchQuery);
             }
         }
     };

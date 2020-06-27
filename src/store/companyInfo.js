@@ -24,6 +24,12 @@ export default {
                     commit('commitCompanyInfos', resp.data);
                 });
         },
+        fetchDataByEmail({state, commit, rootState, rootGetters}, searchQuery) {
+            axios.get(rootState.baseUrl + state.apiUrl + "/search/email/" + searchQuery, rootGetters['login/header'])
+                .then(resp => {
+                    commit('commitCompanyInfos', resp.data);
+                });
+        },
         create({state, commit, dispatch, rootState, rootGetters}) {
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.companyInfo, rootGetters['login/header'])

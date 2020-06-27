@@ -5,21 +5,31 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form @submit.prevent="createItem" class="form" method="post">
-                            <h3 class="text-center text-info">{{$t('persona.add.view.title')}}</h3>
+                            <h3 class="text-center text-info">{{$t('relationLink.add.view.title')}}</h3>
                             <div class="form-group">
                                 <label>{{$t('id')}}</label>
-                                <input disabled type="text" class="form-control"
+                                <input type="text" class="form-control"
                                        v-model="item.id"/>
                             </div>
                             <div class="form-group">
-                                <label>{{$t('name')}}</label>
+                                <label>{{$t('emailId')}}</label>
                                 <input type="text" class="form-control"
-                                       v-model="item.name"/>
+                                       v-model="item.emailId"/>
                             </div>
                             <div class="form-group">
-                                <label>{{$t('sureName')}}</label>
+                                <label>{{$t('phoneId')}}</label>
                                 <input type="text" class="form-control"
-                                       v-model="item.sureName"/>
+                                       v-model="item.phoneId"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{$t('personaId')}}</label>
+                                <input type="text" class="form-control"
+                                       v-model="item.personaId"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{$t('companyId')}}</label>
+                                <input type="text" class="form-control"
+                                       v-model="item.companyId"/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -33,42 +43,28 @@
 </template>
 <script>
     import {mapState} from "vuex";
-    import Multiselect from 'vue-multiselect';
 
     export default {
-        name: "PersonaAdd",
-        components: { Multiselect },
+        name: "RelationLinkAdd",
         computed: mapState({
             user: function (store) {
-                return store.persona.persona;
+                return store.relationLink.relationLink;
             },
-            phoneNumbers: function (store) {
-                return store.phoneNumber.phoneNumbers;
-            },
-            emails: function (store) {
-                return store.email.emails;
-            }
         }),
         data() {
             return {
                 item: {
-                    id: 0,
-                    phoneNumbers: [
-                    ],
-                    emails: [
-                    ],
+                    id: 0
                 }
             }
         },
         created() {
-            this.$store.dispatch('email/fetchData');
-            this.$store.dispatch('phoneNumber/fetchData');
         },
         methods: {
             createItem() {
-                this.$store.commit('persona/commitPersona', this.item);
-                this.$store.dispatch('persona/create');
-                this.$router.push({path: '/persona/list'});
+                this.$store.commit('relationLink/commitRelationLink', this.item);
+                this.$store.dispatch('relationLink/create');
+                this.$router.push({path:'//relation/link/list'});
             }
         }
     };

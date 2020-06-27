@@ -13,14 +13,24 @@
                                            v-model="item.id"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('name')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.name"/>
+                                    <label>{{$t('emailId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.emailId"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('sureName')}}</label>
-                                    <input type="text" class="form-control"
-                                           v-model="item.sureName"/>
+                                    <label>{{$t('phoneId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.phoneId"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{$t('personaId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.personaId"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{$t('companyId')}}</label>
+                                    <input disabled type="text" class="form-control"
+                                           v-model="item.companyId"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('save')">
@@ -35,36 +45,26 @@
 <script>
     import {mapState} from "vuex";
     import modelNav from "./modelNav.vue";
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "PersonaEdit",
         components: {
-            'model-nav': modelNav,
-             Multiselect
+            'model-nav': modelNav
         },
         props: ["id"],
         computed: mapState({
             item: function (store) {
-               return store.persona.persona;
-            },
-            phoneNumbers: function (store) {
-                return store.phoneNumber.phoneNumbers;
-            },
-            emails: function (store) {
-                return store.email.emails;
+                return store.relationLink.relationLink;
             }
         }),
         created() {
-           this.$store.commit('persona/commitSelectedPersona', this.$props.id);
-           this.$store.dispatch('persona/getSelected');
-            this.$store.dispatch('phoneNumber/fetchData');
-            this.$store.dispatch('email/fetchData');
+            this.$store.commit('relationLink/commitSelectedRelationLink', this.$props.id);
+            this.$store.dispatch('relationLink/getSelected');
         },
         methods: {
             updateItem() {
-               this.$store.dispatch('persona/update');
-               this.$router.push({path: '/persona/list'});
+               this.$store.dispatch('relationLink/update');
+               this.$router.push({path: '/relation/link/list'});
             }
         }
     };

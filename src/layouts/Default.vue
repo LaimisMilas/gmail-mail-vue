@@ -1,14 +1,23 @@
 <template>
-  <div>
-    <b-container tag="header" class="bg-primary py-5">
-      <nav-buttom/>
+    <b-container>
+        <b-row>
+            <b-col>
+                <nav-buttom/>
+            </b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="2">
+            <side-bar-nav/>
+          </b-col>
+          <b-col cols="10">
+                <router-view/>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+            </b-col>
+        </b-row>
     </b-container>
-    <b-container tag="main" class="flex-grow-1">
-      <router-view/>
-    </b-container>
-    <b-container tag="footer" class="bg-primary py-5">
-    </b-container>
-  </div>
 </template>
 
 <script>

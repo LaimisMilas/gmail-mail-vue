@@ -91,471 +91,507 @@ import emailHistoryEdit from './pages/emailHistory/Edit.vue';
 import emailHistoryDelete from './pages/emailHistory/Delete.vue';
 import emailHistoryAdd from './pages/emailHistory/Add.vue';
 
+import relationLinkList from './pages/relationLink/List.vue';
+import relationLinkView from './pages/relationLink/View.vue';
+import relationLinkEdit from './pages/relationLink/Edit.vue';
+import relationLinkDelete from './pages/relationLink/Delete.vue';
+import relationLinkAdd from './pages/relationLink/Add.vue';
+
 Vue.use(Router);
 
 const router = new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/forget/password',
-      name: 'forgetPassword',
-      component: forgetPassword,
-      meta: {layout: 'auth'}
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: register,
-      meta: {layout: 'auth'}
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: login,
-      meta: {layout: 'auth'}
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-    },
-    {
-      path: '/',
-      name: 'Home',
-      component: home,
-      meta: {layout: 'public'}
-    },
-    // GmailSetting router begin
-    {
-      path: '/auth/login/gmailCallback/:code',
-      name: 'GmailLoginCallBack',
-      component: gmailLoginCallBack
-    },
-    {
-      path: '/gmail/setting/list',
-      name: 'GmailSettingList',
-      component: gmailSettingList
-    },
-    {
-      path: '/gmail/setting/view/:id',
-      name: 'GmailSettingView',
-      component: gmailSettingView,
-      props: true
-    },
-    {
-      path: '/gmail/setting/edit/:id',
-      name: 'GmailSettingEdit',
-      component: gmailSettingEdit,
-      props: true
-    },
-    {
-      path: '/gmail/setting/delete/:id',
-      name: 'GmailSettingDelete',
-      component: gmailSettingDelete,
-      props: true
-    },
-    {
-      path: '/gmail/setting/add',
-      name: 'GmailSettingAdd',
-      component: gmailSettingAdd,
-    },
-    // GmailSetting router end
-    // Persona router begin
-    {
-      path: '/persona/list',
-      name: 'PersonaList',
-      component: personaList
-    },
-    {
-      path: '/persona/view/:id',
-      name: 'PersonaView',
-      component: personaView,
-      props: true
-    },
-    {
-      path: '/persona/edit/:id',
-      name: 'PersonaEdit',
-      component: personaEdit,
-      props: true
-    },
-    {
-      path: '/persona/delete/:id',
-      name: 'PersonaDelete',
-      component: personaDelete,
-      props: true
-    },
-    {
-      path: '/persona/add',
-      name: 'PersonaAdd',
-      component: personaAdd,
-    },
-    // Persona router end
-    // Email router begin
-    {
-      path: '/email/list',
-      name: 'EmailList',
-      component: emailList,
-    },
-    {
-      path: '/email/view/:id',
-      name: 'EmailView',
-      component: emailView,
-      props: true
-    },
-    {
-      path: '/email/edit/:id',
-      name: 'EmailEdit',
-      component: emailEdit,
-      props: true
-    },
-    {
-      path: '/email/delete/:id',
-      name: 'EmailDelete',
-      component: emailDelete,
-      props: true
-    },
-    {
-      path: '/email/add',
-      name: 'EmailAdd',
-      component: emailAdd,
-    },
+    mode: 'history',
+    routes: [
+        {
+            path: '/forget/password',
+            name: 'forgetPassword',
+            component: forgetPassword,
+            meta: {layout: 'auth'}
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: register,
+            meta: {layout: 'auth'}
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: login,
+            meta: {layout: 'auth'}
+        },
+        {
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: Dashboard,
+        },
+        {
+            path: '/',
+            name: 'Home',
+            component: home,
+            meta: {layout: 'public'}
+        },
+        // GmailSetting router begin
+        {
+            path: '/auth/login/gmailCallback/:code',
+            name: 'GmailLoginCallBack',
+            component: gmailLoginCallBack
+        },
+        {
+            path: '/gmail/setting/list',
+            name: 'GmailSettingList',
+            component: gmailSettingList
+        },
+        {
+            path: '/gmail/setting/view/:id',
+            name: 'GmailSettingView',
+            component: gmailSettingView,
+            props: true
+        },
+        {
+            path: '/gmail/setting/edit/:id',
+            name: 'GmailSettingEdit',
+            component: gmailSettingEdit,
+            props: true
+        },
+        {
+            path: '/gmail/setting/delete/:id',
+            name: 'GmailSettingDelete',
+            component: gmailSettingDelete,
+            props: true
+        },
+        {
+            path: '/gmail/setting/add',
+            name: 'GmailSettingAdd',
+            component: gmailSettingAdd,
+        },
+        // GmailSetting router end
+        // Persona router begin
+        {
+            path: '/persona/list',
+            name: 'PersonaList',
+            component: personaList
+        },
+        {
+            path: '/persona/view/:id',
+            name: 'PersonaView',
+            component: personaView,
+            props: true
+        },
+        {
+            path: '/persona/edit/:id',
+            name: 'PersonaEdit',
+            component: personaEdit,
+            props: true
+        },
+        {
+            path: '/persona/delete/:id',
+            name: 'PersonaDelete',
+            component: personaDelete,
+            props: true
+        },
+        {
+            path: '/persona/add',
+            name: 'PersonaAdd',
+            component: personaAdd,
+        },
+        // Persona router end
+        // RelationLink router begin
+        {
+            path: '/relation/link/list',
+            name: 'RelationLinkList',
+            component: relationLinkList,
+        },
+        {
+            path: '/relation/link/view/:id',
+            name: 'RelationLinkView',
+            component: relationLinkView,
+            props: true
+        },
+        {
+            path: '/relation/link/edit/:id',
+            name: 'RelationLinkEdit',
+            component: relationLinkEdit,
+            props: true
+        },
+        {
+            path: '/relation/link/delete/:id',
+            name: 'RelationLinkDelete',
+            component: relationLinkDelete,
+            props: true
+        },
+        {
+            path: '/relation/link/add',
+            name: 'RelationLinkAdd',
+            component: relationLinkAdd,
+        },
+        // RelationLink router end
+        // Email router begin
+        {
+            path: '/email/list',
+            name: 'EmailList',
+            component: emailList,
+        },
+        {
+            path: '/email/view/:id',
+            name: 'EmailView',
+            component: emailView,
+            props: true
+        },
+        {
+            path: '/email/edit/:id',
+            name: 'EmailEdit',
+            component: emailEdit,
+            props: true
+        },
+        {
+            path: '/email/delete/:id',
+            name: 'EmailDelete',
+            component: emailDelete,
+            props: true
+        },
+        {
+            path: '/email/add',
+            name: 'EmailAdd',
+            component: emailAdd,
+        },
 // Email router end
-    // PhoneNumberHistory
-    {
-      path: '/phone/number/history/list',
-      name: 'PhoneNumberHistoryList',
-      component: phoneNumberHistoryList,
-    },
-    {
-      path: '/phone/number/history/view/:id',
-      name: 'PhoneNumberHistoryView',
-      component: phoneNumberHistoryView,
-      props: true
-    },
-    {
-      path: '/phone/number/history/edit/:id',
-      name: 'PhoneNumberHistoryEdit',
-      component: phoneNumberHistoryEdit,
-      props: true
-    },
-    {
-      path: '/phone/number/history/delete/:id',
-      name: 'PhoneNumberHistoryDelete',
-      component: phoneNumberHistoryDelete,
-      props: true
-    },
-    {
-      path: '/phone/number/history/add',
-      name: 'PhoneNumberHistoryAdd',
-      component: phoneNumberHistoryAdd,
-    },
-    // PhoneNumberHistory router end
-    // PhoneNumber router begin
+        // PhoneNumberHistory
+        {
+            path: '/phone/number/history/list',
+            name: 'PhoneNumberHistoryList',
+            component: phoneNumberHistoryList,
+        },
+        {
+            path: '/phone/number/history/view/:id',
+            name: 'PhoneNumberHistoryView',
+            component: phoneNumberHistoryView,
+            props: true
+        },
+        {
+            path: '/phone/number/history/edit/:id',
+            name: 'PhoneNumberHistoryEdit',
+            component: phoneNumberHistoryEdit,
+            props: true
+        },
+        {
+            path: '/phone/number/history/delete/:id',
+            name: 'PhoneNumberHistoryDelete',
+            component: phoneNumberHistoryDelete,
+            props: true
+        },
+        {
+            path: '/phone/number/history/add',
+            name: 'PhoneNumberHistoryAdd',
+            component: phoneNumberHistoryAdd,
+        },
+        // PhoneNumberHistory router end
+        // PhoneNumber router begin
 
-    {
-      path: '/phone/number/list',
-      name: 'PhoneNumberList',
-      component: phoneNumberList
-    },
-    {
-      path: '/phone/number/view/:id',
-      name: 'PhoneNumberView',
-      component: phoneNumberView,
-      props: true
-    },
-    {
-      path: '/phone/number/edit/:id',
-      name: 'PhoneNumberEdit',
-      component: phoneNumberEdit,
-      props: true
-    },
-    {
-      path: '/phone/number/delete/:id',
-      name: 'PhoneNumberDelete',
-      component: phoneNumberDelete,
-      props: true
-    },
-    {
-      path: '/phone/number/add',
-      name: 'PhoneNumberAdd',
-      component: phoneNumberAdd,
-    },
-    // PhoneNumber router end
-    // User router begin
-    {
-      path: '/user/list',
-      name: 'UserList',
-      component: userList
-    },
-    {
-      path: '/user/view/:id',
-      name: 'UserView',
-      component: userView,
-      props: true
-    },
-    {
-      path: '/user/edit/:id',
-      name: 'UserEdit',
-      component: userEdit,
-      props: true
-    },
-    {
-      path: '/user/delete/:id',
-      name: 'UserDelete',
-      component: userDelete,
-      props: true
-    },
-    {
-      path: '/user/add',
-      name: 'UserAdd',
-      component: userAdd,
-    },
-    // User router end
-    // EmailHistory router begin
-    {
-      path: '/email/history/list',
-      name: 'EmailHistoryList',
-      component: emailHistoryList,
-    },
-    {
-      path: '/email/history/view/:id',
-      name: 'EmailHistoryView',
-      component: emailHistoryView,
-      props: true
-    },
-    {
-      path: '/email/history/edit/:id',
-      name: 'EmailHistoryEdit',
-      component: emailHistoryEdit,
-      props: true
-    },
-    {
-      path: '/email/history/delete/:id',
-      name: 'EmailHistoryDelete',
-      component: emailHistoryDelete,
-      props: true
-    },
-    {
-      path: '/email/history/add',
-      name: 'EmailHistoryAdd',
-      component: emailHistoryAdd,
-    },
+        {
+            path: '/phone/number/list',
+            name: 'PhoneNumberList',
+            component: phoneNumberList
+        },
+        {
+            path: '/phone/number/view/:id',
+            name: 'PhoneNumberView',
+            component: phoneNumberView,
+            props: true
+        },
+        {
+            path: '/phone/number/edit/:id',
+            name: 'PhoneNumberEdit',
+            component: phoneNumberEdit,
+            props: true
+        },
+        {
+            path: '/phone/number/delete/:id',
+            name: 'PhoneNumberDelete',
+            component: phoneNumberDelete,
+            props: true
+        },
+        {
+            path: '/phone/number/add',
+            name: 'PhoneNumberAdd',
+            component: phoneNumberAdd,
+        },
+        // PhoneNumber router end
+        // User router begin
+        {
+            path: '/user/list',
+            name: 'UserList',
+            component: userList
+        },
+        {
+            path: '/user/view/:id',
+            name: 'UserView',
+            component: userView,
+            props: true
+        },
+        {
+            path: '/user/edit/:id',
+            name: 'UserEdit',
+            component: userEdit,
+            props: true
+        },
+        {
+            path: '/user/delete/:id',
+            name: 'UserDelete',
+            component: userDelete,
+            props: true
+        },
+        {
+            path: '/user/add',
+            name: 'UserAdd',
+            component: userAdd,
+        },
+        // User router end
+        // EmailHistory router begin
+        {
+            path: '/email/history/list',
+            name: 'EmailHistoryList',
+            component: emailHistoryList,
+        },
+        {
+            path: '/email/history/view/:id',
+            name: 'EmailHistoryView',
+            component: emailHistoryView,
+            props: true
+        },
+        {
+            path: '/email/history/edit/:id',
+            name: 'EmailHistoryEdit',
+            component: emailHistoryEdit,
+            props: true
+        },
+        {
+            path: '/email/history/delete/:id',
+            name: 'EmailHistoryDelete',
+            component: emailHistoryDelete,
+            props: true
+        },
+        {
+            path: '/email/history/add',
+            name: 'EmailHistoryAdd',
+            component: emailHistoryAdd,
+        },
 // EmailHistory router end
-    // UserRole router begin
-    {
-      path: '/user/role/list',
-      name: 'UserRoleList',
-      component: userRoleList
-    },
-    {
-      path: '/user/role/view/:id',
-      name: 'UserRoleView',
-      component: userRoleView,
-      props: true
-    },
-    {
-      path: '/user/role/edit/:id',
-      name: 'UserRoleEdit',
-      component: userRoleEdit,
-      props: true
-    },
-    {
-      path: '/user/role/delete/:id',
-      name: 'UserRoleDelete',
-      component: userRoleDelete,
-      props: true
-    },
-    {
-      path: '/user/role/add',
-      name: 'UserRoleAdd',
-      component: userRoleAdd,
-    },
-    // UserRole router end
-    // EmailHTML router begin
-    {
-      path: '/email/html/list',
-      name: 'EmailHTMLList',
-      component: mailHTMLList
-    },
-    {
-      path: '/email/html/view/:id',
-      name: 'EmailHTMLView',
-      component: mailHTMLView,
-      props: true
-    },
-    {
-      path: '/email/html/edit/:id',
-      name: 'EmailHTMLEdit',
-      component: mailHTMLEdit,
-      props: true
-    },
-    {
-      path: '/email/html/delete/:id',
-      name: 'EmailHTMLDelete',
-      component: mailHTMLDelete,
-      props: true
-    },
-    {
-      path: '/mail/html/add',
-      name: 'EmailHTMLAdd',
-      component: mailHTMLAdd,
-    },
-    // EmailHTML router end
-    // SendReg router begin
-    {
-      path: '/send/reg/list',
-      name: 'SendRegList',
-      component: sendRegList
-    },
-    {
-      path: '/send/reg/view/:id',
-      name: 'SendRegView',
-      component: sendRegView,
-      props: true
-    },
-    {
-      path: '/send/reg/edit/:id',
-      name: 'SendRegEdit',
-      component: sendRegEdit,
-      props: true
-    },
-    {
-      path: '/send/reg/delete/:id',
-      name: 'SendRegDelete',
-      component: sendRegDelete,
-      props: true
-    },
-    {
-      path: '/send/reg/add',
-      name: 'SendRegAdd',
-      component: sendRegAdd,
-    },
-    // SendReg router end
-    // CompRecipientList router begin
-    {
-      path: '/comp/recipient/list',
-      name: 'CompRecipientList',
-      component: compRecipientList
-    },
-    {
-      path: '/comp/recipient/list/view/:id',
-      name: 'CompRecipientListView',
-      component: compRecipientListView,
-      props: true
-    },
-    {
-      path: '/comp/recipient/list/edit/:id',
-      name: 'CompRecipientListEdit',
-      component: compRecipientListEdit,
-      props: true
-    },
-    {
-      path: '/comp/recipient/list/delete/:id',
-      name: 'CompRecipientListDelete',
-      component: compRecipientListDelete,
-      props: true
-    },
-    {
-      path: '/comp/recipient/list/add',
-      name: 'CompRecipientListAdd',
-      component: compRecipientListAdd,
-    },
-    // CompRecipientList router end
-   // CompanyInfo router begin
-    {
-      path: '/company/info/list',
-      name: 'CompanyInfoList',
-      component: companyInfoList
-    },
-    {
-      path: '/company/info/view/:id',
-      name: 'CompanyInfoView',
-      component: companyInfoView,
-      props: true
-    },
-    {
-      path: '/company/info/edit/:id',
-      name: 'CompanyInfoEdit',
-      component: companyInfoEdit,
-      props: true
-    },
-    {
-      path: '/company/info/delete/:id',
-      name: 'CompanyInfoDelete',
-      component: companyInfoDelete,
-      props: true
-    },
-    {
-      path: '/company/info/add',
-      name: 'CompanyInfoAdd',
-      component: companyInfoAdd,
-    },
-    // CompanyInfo router end
-    // Campaign router begin
-    {
-      path: '/campaign/list',
-      name: 'CampaignList',
-      component: campaignList
-    },
-    {
-      path: '/campaign/view/:id',
-      name: 'CampaignView',
-      component: campaignView,
-      props: true
-    },
-    {
-      path: '/campaign/reg/list/view',
-      name: 'CampaignRegListView',
-      component: campaignRegListView,
-      props: true
-    },
-    {
-      path: '/campaign/mail/html/view/:id',
-      name: 'CampaignMailHTMLView',
-      component: campaignMailHTMLView,
-      props: true
-    },
-    {
-      path: '/campaign/recipient/list/view/:id',
-      name: 'CampaignRecipientListView',
-      component: campaignRecipientListView,
-      props: true
-    },
-    {
-      path: '/campaign/edit/:id',
-      name: 'CampaignEdit',
-      component: campaignEdit,
-      props: true
-    },
-    {
-      path: '/campaign/delete/:id',
-      name: 'CampaignDelete',
-      component: campaignDelete,
-      props: true
-    },
-    {
-      path: '/campaign/add',
-      name: 'CampaignAdd',
-      component: campaignAdd,
-    }
-    // Campaign router end
-  ],
+        // UserRole router begin
+        {
+            path: '/user/role/list',
+            name: 'UserRoleList',
+            component: userRoleList
+        },
+        {
+            path: '/user/role/view/:id',
+            name: 'UserRoleView',
+            component: userRoleView,
+            props: true
+        },
+        {
+            path: '/user/role/edit/:id',
+            name: 'UserRoleEdit',
+            component: userRoleEdit,
+            props: true
+        },
+        {
+            path: '/user/role/delete/:id',
+            name: 'UserRoleDelete',
+            component: userRoleDelete,
+            props: true
+        },
+        {
+            path: '/user/role/add',
+            name: 'UserRoleAdd',
+            component: userRoleAdd,
+        },
+        // UserRole router end
+        // EmailHTML router begin
+        {
+            path: '/email/html/list',
+            name: 'EmailHTMLList',
+            component: mailHTMLList
+        },
+        {
+            path: '/email/html/view/:id',
+            name: 'EmailHTMLView',
+            component: mailHTMLView,
+            props: true
+        },
+        {
+            path: '/email/html/edit/:id',
+            name: 'EmailHTMLEdit',
+            component: mailHTMLEdit,
+            props: true
+        },
+        {
+            path: '/email/html/delete/:id',
+            name: 'EmailHTMLDelete',
+            component: mailHTMLDelete,
+            props: true
+        },
+        {
+            path: '/mail/html/add',
+            name: 'EmailHTMLAdd',
+            component: mailHTMLAdd,
+        },
+        // EmailHTML router end
+        // SendReg router begin
+        {
+            path: '/send/reg/list',
+            name: 'SendRegList',
+            component: sendRegList
+        },
+        {
+            path: '/send/reg/view/:id',
+            name: 'SendRegView',
+            component: sendRegView,
+            props: true
+        },
+        {
+            path: '/send/reg/edit/:id',
+            name: 'SendRegEdit',
+            component: sendRegEdit,
+            props: true
+        },
+        {
+            path: '/send/reg/delete/:id',
+            name: 'SendRegDelete',
+            component: sendRegDelete,
+            props: true
+        },
+        {
+            path: '/send/reg/add',
+            name: 'SendRegAdd',
+            component: sendRegAdd,
+        },
+        // SendReg router end
+        // CompRecipientList router begin
+        {
+            path: '/comp/recipient/list',
+            name: 'CompRecipientList',
+            component: compRecipientList
+        },
+        {
+            path: '/comp/recipient/list/view/:id',
+            name: 'CompRecipientListView',
+            component: compRecipientListView,
+            props: true
+        },
+        {
+            path: '/comp/recipient/list/edit/:id',
+            name: 'CompRecipientListEdit',
+            component: compRecipientListEdit,
+            props: true
+        },
+        {
+            path: '/comp/recipient/list/delete/:id',
+            name: 'CompRecipientListDelete',
+            component: compRecipientListDelete,
+            props: true
+        },
+        {
+            path: '/comp/recipient/list/add',
+            name: 'CompRecipientListAdd',
+            component: compRecipientListAdd,
+        },
+        // CompRecipientList router end
+        // CompanyInfo router begin
+        {
+            path: '/company/info/list',
+            name: 'CompanyInfoList',
+            component: companyInfoList
+        },
+        {
+            path: '/company/info/view/:id',
+            name: 'CompanyInfoView',
+            component: companyInfoView,
+            props: true
+        },
+        {
+            path: '/company/info/edit/:id',
+            name: 'CompanyInfoEdit',
+            component: companyInfoEdit,
+            props: true
+        },
+        {
+            path: '/company/info/delete/:id',
+            name: 'CompanyInfoDelete',
+            component: companyInfoDelete,
+            props: true
+        },
+        {
+            path: '/company/info/add',
+            name: 'CompanyInfoAdd',
+            component: companyInfoAdd,
+        },
+        // CompanyInfo router end
+        // Campaign router begin
+        {
+            path: '/campaign/list',
+            name: 'CampaignList',
+            component: campaignList
+        },
+        {
+            path: '/campaign/view/:id',
+            name: 'CampaignView',
+            component: campaignView,
+            props: true
+        },
+        {
+            path: '/campaign/reg/list/view',
+            name: 'CampaignRegListView',
+            component: campaignRegListView,
+            props: true
+        },
+        {
+            path: '/campaign/mail/html/view/:id',
+            name: 'CampaignMailHTMLView',
+            component: campaignMailHTMLView,
+            props: true
+        },
+        {
+            path: '/campaign/recipient/list/view/:id',
+            name: 'CampaignRecipientListView',
+            component: campaignRecipientListView,
+            props: true
+        },
+        {
+            path: '/campaign/edit/:id',
+            name: 'CampaignEdit',
+            component: campaignEdit,
+            props: true
+        },
+        {
+            path: '/campaign/delete/:id',
+            name: 'CampaignDelete',
+            component: campaignDelete,
+            props: true
+        },
+        {
+            path: '/campaign/add',
+            name: 'CampaignAdd',
+            component: campaignAdd,
+        }
+        // Campaign router end
+    ],
 });
 
 router.beforeEach((to, from, next) => {
-  //console.info("router.beforeEach - ", store.state.login.token);
-  if (!store.state.login.token) {
-    if (to.path === '/' || to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
-      next();
+    //console.info("router.beforeEach - ", store.state.login.token);
+    if (!store.state.login.token) {
+        if (to.path === '/' || to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
+            next();
+        } else {
+            next({
+                path: '/login',
+                query: {redirect: to.fullPath}
+            });
+        }
     } else {
-      next({
-        path: '/login',
-        query: {redirect: to.fullPath}
-      });
+        next();
     }
-  } else {
-    next();
-  }
 });
 
 sync(store, router);

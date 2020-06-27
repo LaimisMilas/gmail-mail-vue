@@ -14,6 +14,7 @@ import personaStore from "./persona.js"
 import phoneNumberStore from "./phoneNumber.js"
 import emailStore from "./email.js"
 import emailHistoryStore from "./emailHistory.js"
+import relationLinkStore from "./relationLink.js"
 
 
 Vue.use(Vuex);
@@ -40,7 +41,8 @@ const store = new Vuex.Store({
         persona: personaStore,
         phoneNumber: phoneNumberStore,
         email: emailStore,
-        emailHistory: emailHistoryStore
+        emailHistory: emailHistoryStore,
+        relationLink: relationLinkStore
     }
 });
 

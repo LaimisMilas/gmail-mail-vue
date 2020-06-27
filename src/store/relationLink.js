@@ -3,67 +3,67 @@ import axios from "axios";
 export default {
     namespaced: true,
     state: {
-        apiUrl:"/api${path}",
-        ${lowerCase}s: [],
-        ${lowerCase}: {
+        apiUrl:"/api/relation/links",
+        relationLinks: [],
+        relationLink: {
             id:1
         },
         selectedId: 0
     },
     actions: {
         getSelected({state, commit}) {
-            state.${lowerCase}s.forEach(item => {
+            state.relationLinks.forEach(item => {
                 if (item.id === state.selectedId) {
-                    commit('commit${objectName}', item);
+                    commit('commitRelationLink', item);
                 }
             });
         },
         fetchData({state, rootGetters, commit, rootState}) {
-            if(state.${lowerCase}s.length > 0){
+            if(state.relationLinks.length > 0){
                 return;
             }
             axios.get(rootState.baseUrl + state.apiUrl, rootGetters['login/header'])
                 .then(resp => {
-                    commit('commit${objectName}s', resp.data);
+                    commit('commitRelationLinks', resp.data);
                 });
         },
         create({state, commit, rootGetters, dispatch, rootState}) {
             axios
-                .post(rootState.baseUrl + state.apiUrl, state.${lowerCase}, rootGetters['login/header'])
+                .post(rootState.baseUrl + state.apiUrl, state.relationLink, rootGetters['login/header'])
                 .then(resp => {
-                    commit('commit${objectName}s', []);
+                    commit('commitRelationLinks', []);
                     dispatch('fetchData');
                 });
         },
         update({state, commit, rootGetters, dispatch, rootState}) {
             axios
-                .put(rootState.baseUrl + state.apiUrl, state.${lowerCase}, rootGetters['login/header'])
+                .put(rootState.baseUrl + state.apiUrl, state.relationLink, rootGetters['login/header'])
                 .then(resp => {
-                    commit('commit${objectName}s', []);
+                    commit('commitRelationLinks', []);
                     dispatch('fetchData');
                 });
         },
         delete({state, commit, rootGetters, dispatch, rootState}) {
             axios
-                .delete(rootState.baseUrl + state.apiUrl + "/" + state.${lowerCase}.id, rootGetters['login/header'])
+                .delete(rootState.baseUrl + state.apiUrl + "/" + state.relationLink.id, rootGetters['login/header'])
                 .then(resp => {
-                    commit('commit${objectName}s', []);
+                    commit('commitRelationLinks', []);
                     dispatch('fetchData');
                 });
         }
     },
     mutations: {
-        commit${objectName}s(state, ${lowerCase}s) {
-            state.${lowerCase}s = ${lowerCase}s;
+        commitRelationLinks(state, relationLinks) {
+            state.relationLinks = relationLinks;
         },
-        commit${objectName}(state, ${lowerCase}) {
-            state.${lowerCase} = ${lowerCase};
+        commitRelationLink(state, relationLink) {
+            state.relationLink = relationLink;
         },
-        commitSelected${objectName}(state, id) {
+        commitSelectedRelationLink(state, id) {
             state.selectedId = id;
         },
-        commitReset${objectName}(state) {
-            state.${lowerCase} = {};
+        commitResetRelationLink(state) {
+            state.relationLink = {};
         }
     }
 }

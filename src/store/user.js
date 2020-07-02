@@ -40,7 +40,6 @@ export default {
                 });
         },
         create({state, commit, rootGetters, dispatch, rootState}) {
-            console.log(state.user);
             axios
                 .post(rootState.baseUrl + state.apiUrl, state.user, rootGetters['login/header'])
                 .then(resp => {

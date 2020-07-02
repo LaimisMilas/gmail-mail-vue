@@ -42,13 +42,20 @@
                                            v-model="item.unsubscribeListId"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{$t('campaign.gmailHTML.tmp')}}</label>
-                                    <input disabled type="text" class="form-control"
-                                           v-model="item.gmailHTML.title"/>
+                                    <label>{{$t('email.html.tmp')}}</label>
+                                    <multiselect
+                                            :placeholder="$t('select.html.tmp')"
+                                            class="form-control"
+                                            label="title"
+                                            track-by="title"
+                                            v-model="item.gmailHTML"
+                                            :options="gmailHTMLs">
+
+                                    </multiselect>
                                 </div>
                                 <div class="form-group">
                                     <label>{{$t('campaign.recipient.list.title')}}</label>
-                                    <input disabled type="text" class="form-control"
+                                    <input type="text" class="form-control"
                                            v-model="item.recipientList.title"/>
                                 </div>
                                 <div class="form-group">
@@ -63,16 +70,22 @@
 </template>
 <script>
     import {mapState} from "vuex";
+    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "CampaignEdit",
         props: ["id"],
+        components: { Multiselect },
         computed: mapState({
             item: function (store) {
                return store.campaign.campaign;
-            }
+            },
+            gmailHTMLs: function (store) {
+                return store.emailHTML.emailHTMLs;
+            },
         }),
         created() {
+           this.$store.dispatch('emailHTML/fetchData');
            this.$store.commit('campaign/commitSelectedCampaign', this.$props.id);
            this.$store.dispatch('campaign/getSelected');
         },

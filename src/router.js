@@ -3,6 +3,8 @@ import {sync} from 'vuex-router-sync';
 import Router from 'vue-router';
 import store from './store';
 
+import gmailCallBack from "./utils/GmailCallBack.vue";
+
 import Dashboard from './pages/Dashboard.vue';
 import home from './pages/public/Home.vue';
 import login from './pages/public/Login.vue';
@@ -575,12 +577,17 @@ const router = new Router({
             component: campaignAdd,
         }
         // Campaign router end
+        ,{
+            path: '/callback',
+            name: 'GmailCallBack',
+            component: gmailCallBack,
+            props: (route) => ({ code: route.query.code , scope: route.query.scope})
+        }
     ],
 });
 
 router.beforeEach((to, from, next) => {
-    //console.info("router.beforeEach - ", store.state.login.token);
-    if (!store.state.login.token) {
+    if (!store.getters['login/getToken']) {
         if (to.path === '/' || to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
             next();
         } else {

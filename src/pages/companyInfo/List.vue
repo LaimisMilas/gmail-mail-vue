@@ -2,24 +2,30 @@
     <div id="add_item">
         <div class="container">
             <div class="row justify-content-center align-items-center" id="login-row">
-                <div class="col-md-6" id="login-column">
-                    <div class="col-md-12" id="login-box">
+                <div>
+                    <div class="col-md-12">
                         <router-link to="/company/info/add"> {{$t('add')}}</router-link>
-                        <form @submit.prevent="search" class="form" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control"
-                                       v-model="searchQuery"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" :value="$t('searchQuery')">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <input type="text" class="form-control"
+                                   v-model="searchQuery"/>
+                        </div>
+                        <div class="form-group">
+                            <input @click="search" type="submit" class="btn btn-info btn-md"
+                                   :value="$t('byEmail')">
+                            <input @click="filterInRaw" type="submit" class="btn btn-info btn-md"
+                                   :value="$t('inRawData')">
+                            <input @click="filterByTitle" type="submit" class="btn btn-info btn-md"
+                                   :value="$t('byTitle')">
+                            <input @click="filterByCode" type="submit" class="btn btn-info btn-md"
+                                   :value="$t('byCode')">
+                        </div>
                         <table>
                             <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>El.pastas</th>
-                                <th>Adresas</th>
+                                <th>Title</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -28,7 +34,7 @@
                             <tr>
                                 <td @click="viewItem(ci)">{{ci.id}}</td>
                                 <td @click="viewItem(ci)">{{ci.email}}</td>
-                                <td @click="viewItem(ci)">{{ci.address}}</td>
+                                <td @click="viewItem(ci)">{{ci.title}}</td>
                                 <td>
                                     <router-link :to="{ name: 'CompanyInfoEdit', params: { id: ci.id }}">
                                         {{$t('edit')}}
@@ -37,6 +43,11 @@
                                 <td>
                                     <router-link :to="{ name: 'CompanyInfoDelete', params: { id: ci.id }}">
                                         {{$t('delete')}}
+                                    </router-link>
+                                </td>
+                                <td>
+                                    <router-link :to="{ name: 'CompanyInfoView', params: { id: ci.id }}">
+                                        {{$t('view')}}
                                     </router-link>
                                 </td>
                             </tr>
@@ -50,7 +61,7 @@
     </div>
 </template>
 <script>
-    import {mapState, mapActions} from "vuex";
+    import {mapState,} from "vuex";
 
     export default {
         name: "CompanyInfoList",
@@ -58,33 +69,41 @@
             itemList: function (store) {
                 return store.companyInfo.companyInfos;
             },
-            resultQuery() {
-                if (this.searchQuery) {
-                    return this.pageOfItems.filter((item) => {
-                        return this.searchQuery.toLowerCase().split(' ').every(v => item.email.toLowerCase().includes(v))
-                    })
-                } else {
-                    return this.pageOfItems;
-                }
+            pageOfItems: function (store) {
+                return store.companyInfo.pageOfItems;
             }
         }),
         data() {
             return {
                 searchQuery: null,
-                pageOfItems: []
             };
         },
         created() {
             this.$store.dispatch('companyInfo/fetchData');
         },
         methods: {
-            view(ci) {
-                this.$router.push('/company/info/' + ci.id);
-            },
             onChangePage(pageOfItems) {
-                this.pageOfItems = pageOfItems;
-            },search(){
-                this.$store.dispatch('companyInfo/fetchDataByEmail', this.searchQuery);
+                this.$store.commit('companyInfo/commitSearchResult', pageOfItems);
+            },
+            search() {
+                if (this.searchQuery.length > 0) {
+                    this.$store.dispatch('companyInfo/fetchDataByEmail', this.searchQuery);
+                }
+            },
+            filterInRaw() {
+                if (this.searchQuery.length > 0) {
+                    this.$store.dispatch('companyInfo/filterInRaw', this.searchQuery);
+                }
+            },
+            filterByTitle() {
+                if (this.searchQuery.length > 0) {
+                    this.$store.dispatch('companyInfo/filterByTitle', this.searchQuery);
+                }
+            },
+            filterByCode() {
+                if (this.searchQuery.length > 0) {
+                    this.$store.dispatch('companyInfo/filterByCode', this.searchQuery);
+                }
             }
         }
     };

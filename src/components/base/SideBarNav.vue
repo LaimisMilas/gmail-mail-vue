@@ -1,7 +1,6 @@
 <template>
     <div>
     <sidebar-menu :menu="menu" />
-        <input @click="resetSelected" class="btn btn-info btn-md" :value="$t('reset')">
     </div>
 </template>
 
@@ -20,11 +19,7 @@
                     { href: '/campaign/list', title: this.$t('nav.campaign')},
                     { href: '/user/list', title: this.$t('nav.user')},
                     { href: '/user/role/list', title: this.$t('nav.userRole')},
-                    { href: '/email/html/list', title: this.$t('nav.mailHTML')},
-                    { href: '/persona/list', title: this.$t('nav.persona')},
-                    { href: '/phone/number/list', title: this.$t('nav.phoneNumber')},
-                    { href: '/email/list', title: this.$t('nav.email')},
-                    { href: '/relation/link/list', title: this.$t('nav.relationLink')}
+                    { href: '/email/html/list', title: this.$t('nav.mailHTML')}
                 ]
             }
         },

@@ -2,36 +2,62 @@
     <div>
         <div class="container">
             <div class="form-group">
-                <label>{{$t('id')}}: </label><span>{{user.id}}, {{user.userName}}
-                {{user.email}}, {{user.roles[0].role}}</span><br/>
-                <label>{{$t('sendRegs')}}: </label><span>{{sendRegs.length}}</span>
-                <button class="btn btn-info btn-md" v-on:click="updateSendReg">Atnaujinti</button>
+            <h3 class="text-center">Aktuali kampanija</h3>
+                <div>
+                    <label>{{$t('campaign.title')}}</label>
+                    <input disabled type="text"
+                           v-model="campaign.title"/>
+                </div>
+                <div>
+                    <label>{{$t('campaign.subjectLine')}}</label>
+                    <input disabled type="text"
+                           v-model="campaign.subjectLine"/>
+                </div>
+                <div>
+                    <label>{{$t('campaign.logKey')}}</label>
+                    <input disabled type="text"
+                           v-model="campaign.logKey"/>
+                </div>
+                <div>
+                    <label>{{$t('campaign.gmailHTML.tmp')}}</label>
+                    <input disabled type="text"
+                           v-model="campaign.gmailHTML.title"/>
+                </div>
+                <div>
+                    <label>{{$t('campaign.recipient.list.title')}}</label>
+                    <input disabled type="text"
+                           v-model="campaign.recipientList.title"/>
+                </div>
                 <br/>
-                <input type="text" :value="baseUrl"/>
-                <button class="btn btn-info btn-md" v-on:click="updateBaseUrl">Atnaujinti</button>
                 <br/>
             </div>
-            <h3 class="text-center text-info">Kampanija</h3>
-            <div class="form-group">
-                <input @click="runComp" type="button" class="btn btn-info btn-md" :value="$t('init.send')">
-                <multiselect
-                        :placeholder="$t('select.campaign.to.send')"
-                        label="title"
-                        track-by="title"
-                        :custom-label="nameWithLang"
-                        v-model="localState.compigne"
-                        :options="compigneLists">
-                    <template slot="singleLabel" slot-scope="{ option }">
-                        <strong>Id: {{ option.id }}</strong>
-                        <strong>, {{ option.title }}</strong>
-                    </template>
-                </multiselect>
-            </div>
-            <input @click="getStatus" class="btn btn-info btn-md" value="Gauti būsena">
-            <input v-on:click="getServiceStatus" class="btn btn-info btn-md" value="Serviso būsena">
-            <input v-on:click="stopProcess" class="btn btn-info btn-md" value="Stabdyti siuntiną">
-            <input v-on:click="startProcess" class="btn btn-info btn-md" value="Paleisti siuntiną">
-            <input v-on:click="killProcess" class="btn btn-info btn-md" value="Žudyti siuntimą">
+            <h3 class="text-center">Kampanijos</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>{{$t('id')}}</th>
+                    <th>{{$t('userId')}}</th>
+                    <th>{{$t('title')}}</th>
+                    <th>{{$t('logKey')}}</th>
+                </tr>
+                </thead>
+                <tbody :key="item.id" v-for="item in campaignList">
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.userId}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.logKey}}</td>
+                    <td><input type="button" @click="viewCampaign(item.id)"  value="View" /></td>
+                    <td><input type="button" @click="initCompigne(item.id)"  value="Init" /></td>
+                    <td><input type="button" @click="getStatus(item.id)"  value="Status" /></td>
+                    <td><input type="button" @click="stopProcess(item.id)"  value="Stop" /></td>
+                    <td><input type="button" @click="startProcess(item.id)"  value="Start" /></td>
+
+
+                </tr>
+                </tbody>
+            </table>
+            <input type="button" @click="getServiceStatus"  value="Service Status" />
             <a :href="gmailAuthUrl">Gmail API Login</a>
             <div>{{logs}}</div>
         </div>
@@ -42,11 +68,9 @@
 
     import axios from "axios";
     import {mapState} from "vuex";
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "Dashboard",
-        components: {Multiselect},
         computed: mapState({
             user: (store) => {
                 return store.login.user;
@@ -54,7 +78,7 @@
             sendRegs: (store) => {
                 return store.sendReg.sendRegs;
             },
-            compigneLists: (store) => {
+            campaignList: (store) => {
                 return store.campaign.campaigns;
             },
             baseUrl: (store) => {
@@ -69,7 +93,14 @@
                     }
                 },
                 logs: "",
-                gmailAuthUrl: ""
+                gmailAuthUrl: "",
+                campaign: {
+                    title: "",
+                    subjectLine: "",
+                    logKey: "",
+                    gmailHTML: { title: ""},
+                    recipientList: {title: ""}
+                }
             }
         },
         created() {
@@ -77,15 +108,21 @@
             this.gmailAuthUrl = "http://127.0.0.1:8080/auth/login/gmail/" + this.user.id;
         },
         methods: {
-            runComp() {
-                this.logs = "/api/do/send/init/" + this.localState.compigne.id;
-                axios.get(this.$store.state.baseUrl + "/api/do/send/init/" + this.localState.compigne.id,
+            initCompigne(campaignId) {
+                this.logs = "/api/do/send/init/" + campaignId;
+                axios.get(this.$store.state.baseUrl + "/api/do/send/init/" + campaignId,
                     this.$store.getters['login/header'])
                     .then(resp => {
                         this.logs = resp.data;
                     }).catch(reason => {
-                    this.logs = reason;
+                    this.logs = reason;this.localState.compigne.id
                 });
+            },
+            viewCampaign(campaignId){
+                let result = this.campaignList.filter(campaign => campaign.id === campaignId);
+                if(result.length > 0){
+                    this.campaign = result[0];
+                }
             },
             getServiceStatus() {
                 this.logs = "";
@@ -97,9 +134,9 @@
                     this.logs = reason;
                 });
             },
-            getStatus() {
+            getStatus(campaignId) {
                 this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/status/" + this.localState.compigne.id,
+                axios.get(this.$store.state.baseUrl + "/api/do/send/status/" + campaignId,
                     this.$store.getters['login/header'])
                     .then(resp => {
                         this.logs = resp.data;
@@ -107,9 +144,9 @@
                     this.logs = reason;
                 });
             },
-            stopProcess() {
+            stopProcess(campaignId) {
                 this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/stop/" + this.localState.compigne.id,
+                axios.get(this.$store.state.baseUrl + "/api/do/send/stop/" + campaignId,
                     this.$store.getters['login/header'])
                     .then(resp => {
                         this.logs = resp.data;
@@ -117,19 +154,9 @@
                     this.logs = reason;
                 });
             },
-            startProcess() {
+            startProcess(campaignId) {
                 this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/start/" + this.localState.compigne.id,
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;
-                });
-            },
-            killProcess() {
-                this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/kill/" + this.localState.compigne.id,
+                axios.get(this.$store.state.baseUrl + "/api/do/send/start/" + campaignId,
                     this.$store.getters['login/header'])
                     .then(resp => {
                         this.logs = resp.data;
@@ -152,5 +179,7 @@
 </script>
 
 <style scoped>
+
+    label{ width:220px;}
 
 </style>

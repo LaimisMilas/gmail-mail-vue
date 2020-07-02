@@ -7,24 +7,32 @@ export default {
         apiLoginUrl: "/auth/users/login",
         apiUrl: "/api/users/current",
         login: {username: "", password: ""},
-        token: "",
-        sessionId: "",
-        user: {}
+        user: {},
+        callAPI: true
     },
     loggedIn() {
         return !!this.state.token
     },
     getters: {
-        header: (state) => {
+        header: (state, getters) => {
             return {
                 headers: {
-                    'Authorization': 'Bearer ' + state.token,
+                    'Authorization': 'Bearer ' + getters.getToken,
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Access-Control-Allow-Origin': '*',
-                    'Set-Cookie': 'JSESSIONID=' + state.sessionId
+                    'Access-Control-Allow-Origin': '*'
                 }
             };
-        }
+        },
+        getToken: () => {
+            let result = null;
+            if(localStorage.token){
+                result = localStorage.token;
+            }
+            return result;
+        },
+        getUser: (state) => {
+            return state.user;
+        },
     },
     actions: {
         getCurrentUser({state, commit, rootState, getters}) {
@@ -33,14 +41,13 @@ export default {
                 router.push({path: '/dashboard'})
             });
         },
-        userLogIn({state, commit, dispatch, rootState}) {
+        userLogIn({state, commit, dispatch, rootState, getters}) {
             commit("commitDropData");
             axios
                 .post(rootState.baseUrl + state.apiLoginUrl, state.login)
                 .then(resp => {
                     commit('commitToken', resp.data.token);
-                    commit('commitSessionId', resp.data.sessionId);
-                    if (state.token || state.token.trim().length > 0) {
+                    if (getters.getToken || getters.getToken.trim().length > 0) {
                         dispatch('getCurrentUser');
                     } else {
                         router.push({path: '/login'});
@@ -58,13 +65,13 @@ export default {
     },
     mutations: {
         commitToken(state, token) {
-            state.token = token;
+            localStorage.token = token;
         },
         commitUser(state, user) {
             state.user = user;
         },
-        commitSessionId(state, sessionId) {
-            state.sessionId = sessionId;
+        commitCallAPI(state, value) {
+            state.callAPI = value;
         },
         commitDropData() {
             this.commit("campaign/commitCampaigns", []);

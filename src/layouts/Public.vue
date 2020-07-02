@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-container tag="header" class="bg-primary py-5">
+    <b-container tag="header">
       <public-nav/>
     </b-container>
-    <b-container tag="main" class="flex-grow-1">
+    <b-container tag="main" >
       <router-view/>
     </b-container>
-    <b-container tag="footer" class="bg-primary py-5">
+    <b-container tag="footer" >
     </b-container>
   </div>
 </template>

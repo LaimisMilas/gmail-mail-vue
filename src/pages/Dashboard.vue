@@ -1,36 +1,6 @@
 <template>
     <div>
         <div class="container">
-            <div class="form-group">
-            <h3 class="text-center">Aktuali kampanija</h3>
-                <div>
-                    <label>{{$t('campaign.title')}}</label>
-                    <input disabled type="text"
-                           v-model="campaign.title"/>
-                </div>
-                <div>
-                    <label>{{$t('campaign.subjectLine')}}</label>
-                    <input disabled type="text"
-                           v-model="campaign.subjectLine"/>
-                </div>
-                <div>
-                    <label>{{$t('campaign.logKey')}}</label>
-                    <input disabled type="text"
-                           v-model="campaign.logKey"/>
-                </div>
-                <div>
-                    <label>{{$t('campaign.gmailHTML.tmp')}}</label>
-                    <input disabled type="text"
-                           v-model="campaign.gmailHTML.title"/>
-                </div>
-                <div>
-                    <label>{{$t('campaign.recipient.list.title')}}</label>
-                    <input disabled type="text"
-                           v-model="campaign.recipientList.title"/>
-                </div>
-                <br/>
-                <br/>
-            </div>
             <h3 class="text-center">Kampanijos</h3>
             <table>
                 <thead>
@@ -52,8 +22,6 @@
                     <td><input type="button" @click="getStatus(item.id)"  value="Status" /></td>
                     <td><input type="button" @click="stopProcess(item.id)"  value="Stop" /></td>
                     <td><input type="button" @click="startProcess(item.id)"  value="Start" /></td>
-
-
                 </tr>
                 </tbody>
             </table>

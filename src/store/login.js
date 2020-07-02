@@ -4,14 +4,10 @@ import router from "../router";
 export default {
     namespaced: true,
     state: {
-        apiLoginUrl: "/auth/users/login",
-        apiUrl: "/api/users/current",
+        apiUrl: "/auth/users",
         login: {username: "", password: ""},
         user: {},
         callAPI: true
-    },
-    loggedIn() {
-        return !!this.state.token
     },
     getters: {
         header: (state, getters) => {
@@ -25,7 +21,7 @@ export default {
         },
         getToken: () => {
             let result = null;
-            if(localStorage.token){
+            if (localStorage.token) {
                 result = localStorage.token;
             }
             return result;
@@ -33,33 +29,43 @@ export default {
         getUser: (state) => {
             return state.user;
         },
+        getBaseUrl: (state, getters, rootState, rootGetters) => {
+            return rootGetters['getBaseUrl'] + state.apiUrl;
+        }
     },
     actions: {
-        getCurrentUser({state, commit, rootState, getters}) {
-            axios.get(rootState.baseUrl + state.apiUrl, getters.header).then(resp => {
-                commit('commitUser', resp.data);
-                router.push({path: '/dashboard'})
-            });
-        },
-        userLogIn({state, commit, dispatch, rootState, getters}) {
-            commit("commitDropData");
-            axios
-                .post(rootState.baseUrl + state.apiLoginUrl, state.login)
+        getCurrentUser({commit, getters, rootGetters}) {
+            axios.get(rootGetters['getBaseUrl'] +"/api/users/current", getters.header)
                 .then(resp => {
-                    commit('commitToken', resp.data.token);
-                    if (getters.getToken || getters.getToken.trim().length > 0) {
-                        dispatch('getCurrentUser');
-                    } else {
-                        router.push({path: '/login'});
+                    if (resp.status === 200) {
+                        commit('commitUser', resp.data);
+                        router.push({path: '/dashboard'})
                     }
                 });
         },
-        userRegister({rootState}, user) {
+        userLogIn({state, commit, dispatch, getters}) {
+            commit("commitDropData");
+            axios
+                .post(getters.getBaseUrl + "/login", state.login)
+                .then(resp => {
+                    if (resp.status === 200) {
+                        commit('commitToken', resp.data.token);
+                        if (getters.getToken || getters.getToken.trim().length > 0) {
+                            dispatch('getCurrentUser');
+                        } else {
+                            router.push({path: '/login'});
+                        }
+                    }
+                });
+        },
+        userRegister({getters}, user) {
             console.log(user);
             axios
-                .post(rootState.baseUrl + "/auth/users/register", user)
+                .post(getters.getBaseUrl + "/register", user)
                 .then(resp => {
-                    router.push({path: '/login'});
+                    if (resp.status === 200) {
+                        router.push({path: '/login'});
+                    }
                 });
         }
     },

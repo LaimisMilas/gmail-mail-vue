@@ -16,7 +16,7 @@ export default {
             return rootGetters['login/header'];
         },
         getBaseUrl: (state, getters, rootState, rootGetters) => {
-            return rootGetters['getBaseUrl'];
+            return rootGetters['getBaseUrl'] + state.apiUrl;
         }
     },
     actions: {
@@ -31,25 +31,25 @@ export default {
             if (state.companyInfos.length > 0) {
                 return;
             }
-            axios.get(getters["getBaseUrl"] + state.apiUrl, getters['getHeader'])
+            axios.get(getters.getBaseUrl, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('commitCompanyInfos', resp.data);
                     }
                 });
         },
-        fetchDataByEmail({state, commit, getters}, searchQuery) {
-            let url = getters["getBaseUrl"] + state.apiUrl + "/search/email/" + searchQuery;
-            axios.get(url, getters['getHeader'])
+        fetchDataByEmail({commit, getters}, searchQuery) {
+            let url = getters.getBaseUrl + "/search/email/" + searchQuery;
+            axios.get(url, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('commitCompanyInfos', resp.data);
                     }
                 });
         },
-        fetchDataInRawData({state, commit, getters}, searchQuery) {
-            let url = getters["getBaseUrl"] + state.apiUrl + "/search/rawData/" + searchQuery;
-            axios.get(url, getters['getHeader'])
+        fetchDataInRawData({commit, getters}, searchQuery) {
+            let url = getters.getBaseUrl + "/search/rawData/" + searchQuery;
+            axios.get(url, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('commitCompanyInfos', resp.data);
@@ -57,9 +57,8 @@ export default {
                 });
         },
         create({state, commit, dispatch, getters}) {
-            let url = getters["getBaseUrl"] + state.apiUrl;
             axios
-                .post(url, state.companyInfo, getters['getHeader'])
+                .post(getters.getBaseUrl, state.companyInfo, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('companyInfos', []);
@@ -68,9 +67,8 @@ export default {
                 });
         },
         update({state, commit, dispatch, getters}) {
-            let url = getters["getBaseUrl"] + state.apiUrl;
             axios
-                .put(url, state.companyInfo, getters['getHeader'])
+                .put(getters.getBaseUrl, state.companyInfo, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('companyInfos', []);
@@ -79,9 +77,9 @@ export default {
                 });
         },
         delete({state, commit, dispatch, getters}) {
-            let url = getters["getBaseUrl"] + state.apiUrl + "/" + state.companyInfo.id;
+            let url = getters.getBaseUrl + "/" + state.companyInfo.id;
             axios
-                .delete(url, getters['getHeader'])
+                .delete(url, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
                         commit('companyInfos', []);

@@ -27,14 +27,11 @@ export default {
                 }
             });
         },
-        fetchData({state, commit, getters}) {
-            if (state.companyInfos.length > 0) {
-                return;
-            }
+        fetchData({commit, getters}) {
             axios.get(getters.getBaseUrl, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
-                        commit('commitCompanyInfos', resp.data);
+                        commit('commitCompanyInfos', resp.data.slice(0,10));
                     }
                 });
         },
@@ -84,29 +81,40 @@ export default {
                     if (resp.status === 200) {
                         commit('companyInfos', []);
                         dispatch('fetchData');
+                        dispatch
                     }
                 });
         },
-        filterByCode({state, commit}, code) {
-            let result = null;
-            if (state.companyInfos) {
-                result = state.companyInfos.filter(company => company.companyCode.match(code))
-            }
-            commit('commitSearchResult', result);
+        filterByCode({state, commit, dispatch}, code) {
+            dispatch('fetchData')
+                .then(resp => {
+                    let result = null;
+                    dispatch
+                    if (state.companyInfos) {
+                        result = state.companyInfos.filter(company => company.companyCode.match(code))
+                    }
+                    commit('commitSearchResult', result);
+                });
         },
-        filterByTitle({state, commit}, title) {
-            let result = null;
-            if (state.companyInfos) {
-                result = state.companyInfos.filter(company => company.title.match(title))
-            }
-            commit('commitSearchResult', result);
+        filterByTitle({state, commit, dispatch}, title) {
+            dispatch('fetchData')
+                .then(resp => {
+                    let result = null;
+                    if (state.companyInfos) {
+                        result = state.companyInfos.filter(company => company.title.match(title))
+                    }
+                    commit('commitSearchResult', result);
+                })
         },
         filterInRaw({state, commit}, text) {
             let result = null;
             if (state.companyInfos) {
                 result = state.companyInfos.filter((company) => {
-                    let regex = new RegExp(text, "g");
-                    return company.rawContacts.match(regex);
+                    if (company.rawContacts) {
+                        let regex = new RegExp(text, "g");
+                        return company.rawContacts.match(regex);
+                    }
+                    return false;
                 })
             }
             commit('commitSearchResult', result);
@@ -126,7 +134,7 @@ export default {
             state.companyInfo = {};
         },
         commitSearchResult(state, items) {
-            state.pageOfItems = items;
+            state.companyInfos = items;
         },
     }
 }

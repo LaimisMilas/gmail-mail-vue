@@ -30,30 +30,29 @@
                                 <th></th>
                             </tr>
                             </thead>
-                            <tbody v-for="ci in pageOfItems" :key="ci.id">
+                            <tbody v-for="item in itemList" :key="item.id">
                             <tr>
-                                <td @click="viewItem(ci)">{{ci.id}}</td>
-                                <td @click="viewItem(ci)">{{ci.email}}</td>
-                                <td @click="viewItem(ci)">{{ci.title}}</td>
+                                <td @click="viewItem(item)">{{item.id}}</td>
+                                <td @click="viewItem(item)">{{item.email}}</td>
+                                <td @click="viewItem(item)">{{item.title}}</td>
                                 <td>
-                                    <router-link :to="{ name: 'CompanyInfoEdit', params: { id: ci.id }}">
+                                    <router-link :to="{ name: 'CompanyInfoEdit', params: { id: item.id }}">
                                         {{$t('edit')}}
                                     </router-link>
                                 </td>
                                 <td>
-                                    <router-link :to="{ name: 'CompanyInfoDelete', params: { id: ci.id }}">
+                                    <router-link :to="{ name: 'CompanyInfoDelete', params: { id: item.id }}">
                                         {{$t('delete')}}
                                     </router-link>
                                 </td>
                                 <td>
-                                    <router-link :to="{ name: 'CompanyInfoView', params: { id: ci.id }}">
+                                    <router-link :to="{ name: 'CompanyInfoView', params: { id: item.id }}">
                                         {{$t('view')}}
                                     </router-link>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <jw-pagination :items="itemList" @changePage="onChangePage" :pageSize="20"></jw-pagination>
                     </div>
                 </div>
             </div>
@@ -68,9 +67,6 @@
         computed: mapState({
             itemList: function (store) {
                 return store.companyInfo.companyInfos;
-            },
-            pageOfItems: function (store) {
-                return store.companyInfo.pageOfItems;
             }
         }),
         data() {
@@ -82,9 +78,6 @@
             this.$store.dispatch('companyInfo/fetchData');
         },
         methods: {
-            onChangePage(pageOfItems) {
-                this.$store.commit('companyInfo/commitSearchResult', pageOfItems);
-            },
             search() {
                 if (this.searchQuery.length > 0) {
                     this.$store.dispatch('companyInfo/fetchDataByEmail', this.searchQuery);

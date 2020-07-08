@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-container tag="header">
+    <b-container>
       <public-nav/>
     </b-container>
-    <b-container tag="main" >
+    <b-container>
       <router-view/>
     </b-container>
-    <b-container tag="footer" >
+    <b-container >
     </b-container>
   </div>
 </template>

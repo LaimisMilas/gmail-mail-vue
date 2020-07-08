@@ -64,6 +64,10 @@ export default {
         },
         commitResetEmail(state) {
             state.email = {};
+        },
+        commitReset(state) {
+            state.email = {};
+            state.emails = [];
         }
     }
 }

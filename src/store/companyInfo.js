@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
     namespaced: true,
     state: {
-        apiUrl: "/api/company/info",
+        apiUrl: '/api/company/info',
         companyInfos: [],
         companyInfo: {},
         pageOfItems: []
     },
     getters: {
         getUser: (state, getters, rootState, rootGetters) => {
-            return rootGetters["login/getUser"]
+            return rootGetters['login/getUser']
         },
         getHeader: (state, getters, rootState, rootGetters) => {
             return rootGetters['login/header'];
@@ -45,7 +45,7 @@ export default {
                 });
         },
         fetchDataInRawData({commit, getters}, searchQuery) {
-            let url = getters.getBaseUrl + "/search/rawData/" + searchQuery;
+            let url = getters.getBaseUrl + '/search/rawData/' + searchQuery;
             axios.get(url, getters.getHeader)
                 .then(resp => {
                     if (resp.status === 200) {
@@ -136,5 +136,9 @@ export default {
         commitSearchResult(state, items) {
             state.companyInfos = items;
         },
+        commitReset(state) {
+            state.companyInfo = {};
+            state.companyInfos = [];
+        }
     }
 }

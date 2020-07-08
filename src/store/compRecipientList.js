@@ -76,8 +76,9 @@ export default {
         commitSelectedRecipientList(state, id) {
             state.selectedId = id;
         },
-        commitResetCompRecipientList(state) {
+        commitReset(state) {
             state.compRecipientList = {};
+            state.compRecipientLists = [];
         },
         commitRecipients(state, recipients) {
             state.compRecipientList.recipients = recipients;

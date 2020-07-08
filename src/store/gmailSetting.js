@@ -74,6 +74,10 @@ export default {
         },
         commitGmailSettingCode(state , code) {
             state.code = code;
+        },
+        commitReset(state) {
+            state.gmailSetting = {};
+            state.gmailSettings = [];
         }
 
     }

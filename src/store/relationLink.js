@@ -64,6 +64,10 @@ export default {
         },
         commitResetRelationLink(state) {
             state.relationLink = {};
+        },
+        commitReset(state) {
+            state.relationLink = {};
+            state.relationLinks = [];
         }
     }
 }

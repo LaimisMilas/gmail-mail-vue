@@ -73,6 +73,10 @@ export default {
         },
         commitResetEmailHTML(state) {
             state.emailHTML = {};
+        },
+        commitReset(state) {
+            state.emailHTML = {};
+            state.emailHTMLs = [];
         }
     }
 }

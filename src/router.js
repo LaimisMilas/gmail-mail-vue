@@ -123,6 +123,12 @@ const router = new Router({
             meta: {layout: 'auth'}
         },
         {
+            path: '/logout',
+            name: 'logOut',
+            component: home,
+            meta: {layout: 'public'}
+        },
+        {
             path: '/dashboard',
             name: 'Dashboard',
             component: Dashboard,
@@ -588,8 +594,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     if (!store.getters['login/getToken']) {
-        if (to.path === '/' || to.path === '/login' || to.path === '/forget/password' || to.path === "/register") {
-            next();
+        if (to.path === '/' || to.path === '/login'|| to.path === '/logout' || to.path === '/forget/password' || to.path === "/register") {
+            next();1
         } else {
             next({
                 path: '/login',

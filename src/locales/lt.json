@@ -144,5 +144,11 @@
   "address": "address",
   "domain": "Domenas",
   "reset": "Resetinti",
-  "searchQuery": "Surasti"
+  "searchQuery": "Surasti",
+  "gmailAPILogin": "Prisijungti prie Gmail API",
+  "init.status": "Statusas",
+  "init.stop": "Stabdyti",
+  "init.start": "Paleisti",
+  "dashboard.add.campaign":"Sukurti kampanija?"
+
 }

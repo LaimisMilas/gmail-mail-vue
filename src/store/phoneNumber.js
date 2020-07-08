@@ -64,6 +64,10 @@ export default {
         },
         commitResetPhoneNumber(state) {
             state.phoneNumber = {};
+        },
+        commitReset(state) {
+            state.phoneNumber = {};
+            state.phoneNumbers = [];
         }
     }
 }

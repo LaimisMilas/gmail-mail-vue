@@ -91,6 +91,10 @@ export default {
         },
         commitResetCampaign(state) {
             state.campaign = {};
+        },
+        commitReset(state) {
+            state.campaign = {};
+            state.campaigns = [];
         }
     }
 }

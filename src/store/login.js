@@ -35,9 +35,13 @@ export default {
     },
     actions: {
         getCurrentUser({commit, getters, rootGetters}) {
+            console.log("before call api/users/current" + getters.header);
+
             axios.get(rootGetters['getBaseUrl'] +"/api/users/current", getters.header)
                 .then(resp => {
+                    console.log("response call api/users/current");
                     if (resp.status === 200) {
+                        console.log("response" + JSON.stringify(resp.data));
                         commit('commitUser', resp.data);
                         router.push({path: '/dashboard'})
                     }
@@ -45,14 +49,18 @@ export default {
         },
         userLogIn({state, commit, dispatch, getters}) {
             commit("commitDropData");
+            console.log("before login post " + JSON.stringify(state.login));
             axios
                 .post(getters.getBaseUrl + "/login", state.login)
                 .then(resp => {
                     if (resp.status === 200) {
+                        console.log(resp.data.token);
                         commit('commitToken', resp.data.token);
                         if (getters.getToken || getters.getToken.trim().length > 0) {
+                            console.log("before dispatch getCurrentUser");
                             dispatch('getCurrentUser');
                         } else {
+                            console.log("before get routing to login");
                             router.push({path: '/login'});
                         }
                     }
@@ -79,25 +87,18 @@ export default {
         commitCallAPI(state, value) {
             state.callAPI = value;
         },
-        commitDropData() {
-            this.commit("campaign/commitCampaigns", []);
-            this.commit("campaign/commitCampaign", {});
-            this.commit("companyInfo/commitCompanyInfos", []);
-            this.commit("companyInfo/commitCompanyInfo", {});
-            this.commit("compRecipientList/commitCompRecipientLists", []);
-            this.commit("compRecipientList/commitCompRecipientList", {});
-            this.commit("sendReg/commitSendRegs", []);
-            this.commit("sendReg/commitSendReg", {});
-            this.commit("gmailSetting/commitGmailSettings", []);
-            this.commit("gmailSetting/commitGmailSetting", {});
-            this.commit("campaign/commitCampaigns", []);
-            this.commit("campaign/commitCampaign", {});
-            this.commit("emailHTML/commitEmailHTMLs", []);
-            this.commit("emailHTML/commitEmailHTML", {});
-            this.commit("user/commitUsers", []);
-            this.commit("user/commitUser", {});
-            this.commit("userRole/commitUserRoles", []);
-            this.commit("userRole/commitUserRole", {});
+        commitDropData(state) {
+            localStorage.token = null;
+            state.user = {};
+            this.commit("campaign/commitReset");
+            this.commit("companyInfo/commitReset");
+            this.commit("compRecipientList/commitReset");
+            this.commit("sendReg/commitReset");
+            this.commit("gmailSetting/commitReset");
+            this.commit("campaign/commitReset");
+            this.commit("emailHTML/commitReset");
+            this.commit("user/commitReset");
+            this.commit("userRole/commitReset");
         }
     }
 }

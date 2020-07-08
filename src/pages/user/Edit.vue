@@ -55,14 +55,19 @@
 </template>
 <script>
     import {mapState} from "vuex";
+    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "UserEdit",
         props: ["id"],
+        components: { Multiselect },
         computed: mapState({
             item: function (store) {
                return store.user.user;
-            }
+            },
+            roleLists: function (store) {
+                return store.userRole.userRoles;
+            },
         }),
         created() {
            this.$store.commit('user/commitSelectedUser', this.$props.id);

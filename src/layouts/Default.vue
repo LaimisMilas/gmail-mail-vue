@@ -2,7 +2,7 @@
     <b-container>
         <b-row>
             <b-col>
-                <nav-buttom/>
+                <nav-buttom/> <div class="navUser">ID: {{user.id}}, {{user.userName}} kaip {{user.roles[0].role}} <a href="#" @click.prevent="logout">Atsijungti</a></div>
             </b-col>
         </b-row>
         <b-row>
@@ -21,7 +21,24 @@
 </template>
 
 <script>
+    import {mapState} from "vuex";
     export default {
-        name: "Default"
+        name: "Default",
+        computed: mapState({
+            user: (store) => {
+                return store.login.user;
+            }
+        }),
+        methods: {
+            logout(){
+                this.$store.commit('login/commitDropData');
+                this.$router.push({path: '/logout'});
+            }
+        }
     }
 </script>
+<style lang="scss">
+    .navUser{
+        float: right;
+    }
+</style>

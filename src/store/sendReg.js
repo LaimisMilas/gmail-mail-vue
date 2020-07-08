@@ -69,6 +69,10 @@ export default {
         },
         commitResetSendReg(state) {
             state.sendReg = {};
+        },
+        commitReset(state) {
+            state.sendReg = {};
+            state.sendRegs = [];
         }
     }
 }

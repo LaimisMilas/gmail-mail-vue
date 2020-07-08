@@ -66,6 +66,10 @@ export default {
         },
         commitResetUserRole(state) {
             state.userRole = {};
+        },
+        commitReset(state) {
+            state.userRole = {};
+            state.userRoles = [];
         }
     }
 }

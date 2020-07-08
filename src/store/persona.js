@@ -65,6 +65,10 @@ export default {
         },
         commitResetPersona(state) {
             state.persona = {};
+        },
+        commitReset(state) {
+            state.persona = {};
+            state.personas = [];
         }
     }
 }

@@ -1,32 +1,34 @@
 <template>
     <div>
         <div class="container">
+            <a :href="gmailAuthUrl">{{$t("gmailAPILogin")}}</a>
             <h3 class="text-center">Kampanijos</h3>
-            <table>
+            <router-link v-if="campaignList.length === 0" to="/campaign/add">
+                {{$t("dashboard.add.campaign")}}</router-link>
+            <table v-else>
                 <thead>
                 <tr>
-                    <th>{{$t('id')}}</th>
-                    <th>{{$t('userId')}}</th>
+                    <!--<th>{{$t('id')}}</th>
+                    <th>{{$t('userId')}}</th>-->
                     <th>{{$t('title')}}</th>
                     <th>{{$t('logKey')}}</th>
                 </tr>
                 </thead>
                 <tbody :key="item.id" v-for="item in campaignList">
                 <tr>
-                    <td>{{item.id}}</td>
-                    <td>{{item.userId}}</td>
+                    <!--<td>{{item.id}}</td>
+                    <td>{{item.userId}}</td>-->
                     <td>{{item.title}}</td>
                     <td>{{item.logKey}}</td>
-                    <td><input type="button" @click="viewCampaign(item.id)"  value="View" /></td>
-                    <td><input type="button" @click="initCompigne(item.id)"  value="Init" /></td>
-                    <td><input type="button" @click="getStatus(item.id)"  value="Status" /></td>
-                    <td><input type="button" @click="stopProcess(item.id)"  value="Stop" /></td>
-                    <td><input type="button" @click="startProcess(item.id)"  value="Start" /></td>
+                    <!--<td><input type="button" @click="viewCampaign(item.id)"  value="View" /></td>-->
+                    <td><input type="button" @click="initCompigne(item.id)"  :value="$t('init.send')" /></td>
+                    <td><input type="button" @click="getStatus(item.id)"  :value="$t('init.status')" /></td>
+                    <td><input type="button" @click="stopProcess(item.id)"  :value="$t('init.stop')" /></td>
+                    <td><input type="button" @click="startProcess(item.id)"  :value="$t('init.start')" /></td>
                 </tr>
                 </tbody>
             </table>
-            <input type="button" @click="getServiceStatus"  value="Service Status" />
-            <a :href="gmailAuthUrl">Gmail API Login</a>
+            <input v-show="serverStatusVisible" type="button" @click="getServiceStatus"  value="Service Status" />
             <div>{{logs}}</div>
         </div>
     </div>
@@ -55,6 +57,7 @@
         }),
         data() {
             return {
+                serverStatusVisible: false,
                 localState: {
                     compigne: {
                         id:0
@@ -73,9 +76,17 @@
         },
         created() {
             this.$store.dispatch('campaign/fetchData');
-            this.gmailAuthUrl = "http://127.0.0.1:8080/auth/login/gmail/" + this.user.id;
+            this.gmailAuthUrl = this.$store.state.baseUrl + "/auth/login/gmail/" + this.user.id;
+            this.isRoleAdmin();
         },
         methods: {
+            isRoleAdmin(){
+                if(this.user.roles.filter(item => {
+                    return item.role === "ADMIN";
+                }).length > 0){
+                    this.serverStatusVisible = true;
+                }
+            },
             initCompigne(campaignId) {
                 this.logs = "/api/do/send/init/" + campaignId;
                 axios.get(this.$store.state.baseUrl + "/api/do/send/init/" + campaignId,

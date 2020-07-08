@@ -76,6 +76,10 @@ export default {
         },
         commitResetUser(state) {
             state.user = {};
+        },
+        commitReset(state) {
+            state.user = {};
+            state.users = [];
         }
     }
 }

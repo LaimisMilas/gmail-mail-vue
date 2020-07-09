@@ -21,7 +21,7 @@ export default {
         },
         getToken: () => {
             let result = null;
-            if (localStorage.token) {
+            if (localStorage.getItem("token")) {
                 result = localStorage.token;
             }
             return result;
@@ -35,7 +35,7 @@ export default {
     },
     actions: {
         getCurrentUser({commit, getters, rootGetters}) {
-            console.log("before call api/users/current" + getters.header);
+            console.log("before call api/users/current" + JSON.stringify(getters.header));
 
             axios.get(rootGetters['getBaseUrl'] +"/api/users/current", getters.header)
                 .then(resp => {
@@ -79,7 +79,8 @@ export default {
     },
     mutations: {
         commitToken(state, token) {
-            localStorage.token = token;
+            localStorage.setItem("token", token);
+            //localStorage.token = token;
         },
         commitUser(state, user) {
             state.user = user;
@@ -88,7 +89,9 @@ export default {
             state.callAPI = value;
         },
         commitDropData(state) {
-            localStorage.token = null;
+            if(localStorage.getItem("token")){
+                localStorage.removeItem("token");
+            }
             state.user = {};
             this.commit("campaign/commitReset");
             this.commit("companyInfo/commitReset");

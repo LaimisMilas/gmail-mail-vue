@@ -593,7 +593,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    if (!store.getters['login/getToken']) {
+    if (!localStorage.getItem('token')) {
         if (to.path === '/' || to.path === '/login'|| to.path === '/logout' || to.path === '/forget/password' || to.path === "/register") {
             next();1
         } else {

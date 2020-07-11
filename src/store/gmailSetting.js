@@ -51,9 +51,9 @@ export default {
                     dispatch('fetchData');
                 });
         },
-        loginCallBack(state){
+        loginCallBack({rootGetters,state}){
             axios
-                .delete(rootState.baseUrl + "/auth/login/gmailCallback?code=" + state.code)
+                .get(rootGetters['getBaseUrl'] + "/auth/login/gmailCallback?code=" + state.code)
                 .then(resp => {
                     router.push({path: '/'})
                 });

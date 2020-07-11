@@ -4,7 +4,8 @@
             <a :href="gmailAuthUrl">{{$t("gmailAPILogin")}}</a>
             <h3 class="text-center">Kampanijos</h3>
             <router-link v-if="campaignList.length === 0" to="/campaign/add">
-                {{$t("dashboard.add.campaign")}}</router-link>
+                {{$t("dashboard.add.campaign")}}
+            </router-link>
             <table v-else>
                 <thead>
                 <tr>
@@ -20,24 +21,24 @@
                     <td>{{item.userId}}</td>-->
                     <td>{{item.title}}</td>
                     <td>{{item.logKey}}</td>
-                    <!--<td><input type="button" @click="viewCampaign(item.id)"  value="View" /></td>-->
-                    <td><input type="button" @click="initCompigne(item.id)"  :value="$t('init.send')" /></td>
-                    <td><input type="button" @click="getStatus(item.id)"  :value="$t('init.status')" /></td>
-                    <td><input type="button" @click="stopProcess(item.id)"  :value="$t('init.stop')" /></td>
-                    <td><input type="button" @click="startProcess(item.id)"  :value="$t('init.start')" /></td>
+                    <!--<td><input type="button" @click="viewCampaign(item.id)"  value="View" /></td>
+                    <td><input type="button" @click="getStatus(item.id)" :value="$t('init.status')"/></td>
+                    -->
+                    <td><input type="button" @click="initCompigne(item.id)" :value="$t('init.send')"/></td>
+                    <td><input type="button" @click="stopProcess(item.id)" :value="$t('init.stop')"/></td>
+                    <td><input type="button" @click="startProcess(item.id)" :value="$t('init.start')"/></td>
                 </tr>
                 </tbody>
             </table>
-            <input v-show="serverStatusVisible" type="button" @click="getServiceStatus"  value="Service Status" />
-            <div>{{logs}}</div>
+            <input v-show="serverStatusVisible" type="button" @click="getServiceStatus" value="Service Status"/>
+            <div>{{dashboard.logs}}</div>
         </div>
     </div>
 </template>
 
 <script>
 
-    import axios from "axios";
-    import {mapState} from "vuex";
+    import {mapState, mapActions} from "vuex";
 
     export default {
         name: "Dashboard",
@@ -51,16 +52,17 @@
             campaignList: (store) => {
                 return store.campaign.campaigns;
             },
-            baseUrl: (store) => {
-                return store.baseUrl;
+            dashboard: (store) => {
+                return store.dashboard;
             },
         }),
         data() {
             return {
+                periodStatus: {},
                 serverStatusVisible: false,
                 localState: {
                     compigne: {
-                        id:0
+                        id: 0
                     }
                 },
                 logs: "",
@@ -69,7 +71,7 @@
                     title: "",
                     subjectLine: "",
                     logKey: "",
-                    gmailHTML: { title: ""},
+                    gmailHTML: {title: ""},
                     recipientList: {title: ""}
                 }
             }
@@ -78,70 +80,47 @@
             this.$store.dispatch('campaign/fetchData');
             this.gmailAuthUrl = this.$store.state.baseUrl + "/auth/login/gmail/" + this.user.id;
             this.isRoleAdmin();
+            this.getServiceStatus();
+            this.updateStatus();
+        },
+        beforeDestroy() {
+            console.log("ondestroy");
+            this.stopStatus();
         },
         methods: {
-            isRoleAdmin(){
-                if(this.user.roles.filter(item => {
+            stopStatus() {
+                clearInterval(this.periodStatus);            },
+            updateStatus() {
+                this.periodStatus = setInterval(this.getStatus, 5000);
+               // setInterval(() => moment().format(), 1000)
+            },
+            ...mapActions(
+                {initCompigne: 'dashboard/initCompigne'}
+            ),
+            ...mapActions(
+                {getServiceStatus: 'dashboard/getServiceStatus'},
+            ),
+            ...mapActions(
+                {stopProcess: 'dashboard/stopProcess'},
+            ),
+            ...mapActions(
+                {startProcess: 'dashboard/startProcess'},
+            ),
+            ...mapActions(
+                {getStatus: 'dashboard/getStatus'}
+            ),
+            isRoleAdmin() {
+                if (this.user.roles.filter(item => {
                     return item.role === "ADMIN";
-                }).length > 0){
+                }).length > 0) {
                     this.serverStatusVisible = true;
                 }
             },
-            initCompigne(campaignId) {
-                this.logs = "/api/do/send/init/" + campaignId;
-                axios.get(this.$store.state.baseUrl + "/api/do/send/init/" + campaignId,
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;this.localState.compigne.id
-                });
-            },
-            viewCampaign(campaignId){
+            viewCampaign(campaignId) {
                 let result = this.campaignList.filter(campaign => campaign.id === campaignId);
-                if(result.length > 0){
+                if (result.length > 0) {
                     this.campaign = result[0];
                 }
-            },
-            getServiceStatus() {
-                this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/send/manager/status",
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;
-                });
-            },
-            getStatus(campaignId) {
-                this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/status/" + campaignId,
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;
-                });
-            },
-            stopProcess(campaignId) {
-                this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/stop/" + campaignId,
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;
-                });
-            },
-            startProcess(campaignId) {
-                this.logs = "";
-                axios.get(this.$store.state.baseUrl + "/api/do/send/start/" + campaignId,
-                    this.$store.getters['login/header'])
-                    .then(resp => {
-                        this.logs = resp.data;
-                    }).catch(reason => {
-                    this.logs = reason;
-                });
             },
             updateSendReg() {
                 this.$store.commit('sendReg/commitSendRegs', []);
@@ -159,6 +138,8 @@
 
 <style scoped>
 
-    label{ width:220px;}
+    label {
+        width: 220px;
+    }
 
 </style>

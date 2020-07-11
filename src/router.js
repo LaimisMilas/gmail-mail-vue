@@ -61,7 +61,6 @@ import gmailSettingView from './pages/gmailSetting/View.vue';
 import gmailSettingEdit from './pages/gmailSetting/Edit.vue';
 import gmailSettingDelete from './pages/gmailSetting/Delete.vue';
 import gmailSettingAdd from './pages/gmailSetting/Add.vue';
-import gmailLoginCallBack from './pages/gmailSetting/GmailLoginCallBack.vue'
 
 import personaList from './pages/persona/List.vue';
 import personaView from './pages/persona/View.vue';
@@ -140,11 +139,6 @@ const router = new Router({
             meta: {layout: 'public'}
         },
         // GmailSetting router begin
-        {
-            path: '/auth/login/gmailCallback/:code',
-            name: 'GmailLoginCallBack',
-            component: gmailLoginCallBack
-        },
         {
             path: '/gmail/setting/list',
             name: 'GmailSettingList',
@@ -593,9 +587,10 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+    console.log("router token: " + localStorage.getItem('token'))
     if (!localStorage.getItem('token')) {
         if (to.path === '/' || to.path === '/login'|| to.path === '/logout' || to.path === '/forget/password' || to.path === "/register") {
-            next();1
+            next();
         } else {
             next({
                 path: '/login',

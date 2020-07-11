@@ -69,7 +69,6 @@
 
 <script>
     import {mapState} from "vuex";
-    import Multiselect from 'vue-multiselect';
 
     export default {
         name: "CompanyInfoAdd",

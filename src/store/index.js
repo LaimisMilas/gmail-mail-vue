@@ -15,6 +15,7 @@ import phoneNumberStore from "./phoneNumber.js"
 import emailStore from "./email.js"
 import emailHistoryStore from "./emailHistory.js"
 import relationLinkStore from "./relationLink.js"
+import dashboardStore from "./dashboard.js";
 
 
 Vue.use(Vuex);
@@ -49,7 +50,8 @@ const store = new Vuex.Store({
         phoneNumber: phoneNumberStore,
         email: emailStore,
         emailHistory: emailHistoryStore,
-        relationLink: relationLinkStore
+        relationLink: relationLinkStore,
+        dashboard: dashboardStore
     }
 });
 

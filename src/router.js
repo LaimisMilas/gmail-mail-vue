@@ -62,42 +62,6 @@ import gmailSettingEdit from './pages/gmailSetting/Edit.vue';
 import gmailSettingDelete from './pages/gmailSetting/Delete.vue';
 import gmailSettingAdd from './pages/gmailSetting/Add.vue';
 
-import personaList from './pages/persona/List.vue';
-import personaView from './pages/persona/View.vue';
-import personaEdit from './pages/persona/Edit.vue';
-import personaDelete from './pages/persona/Delete.vue';
-import personaAdd from './pages/persona/Add.vue';
-
-import phoneNumberList from './pages/phoneNumber/List.vue';
-import phoneNumberView from './pages/phoneNumber/View.vue';
-import phoneNumberEdit from './pages/phoneNumber/Edit.vue';
-import phoneNumberDelete from './pages/phoneNumber/Delete.vue';
-import phoneNumberAdd from './pages/phoneNumber/Add.vue';
-
-import phoneNumberHistoryList from './pages/phoneNumberHistory/List.vue';
-import phoneNumberHistoryView from './pages/phoneNumberHistory/View.vue';
-import phoneNumberHistoryEdit from './pages/phoneNumberHistory/Edit.vue';
-import phoneNumberHistoryDelete from './pages/phoneNumberHistory/Delete.vue';
-import phoneNumberHistoryAdd from './pages/phoneNumberHistory/Add.vue';
-
-import emailList from './pages/email/List.vue';
-import emailView from './pages/email/View.vue';
-import emailEdit from './pages/email/Edit.vue';
-import emailDelete from './pages/email/Delete.vue';
-import emailAdd from './pages/email/Add.vue';
-
-import emailHistoryList from './pages/emailHistory/List.vue';
-import emailHistoryView from './pages/emailHistory/View.vue';
-import emailHistoryEdit from './pages/emailHistory/Edit.vue';
-import emailHistoryDelete from './pages/emailHistory/Delete.vue';
-import emailHistoryAdd from './pages/emailHistory/Add.vue';
-
-import relationLinkList from './pages/relationLink/List.vue';
-import relationLinkView from './pages/relationLink/View.vue';
-import relationLinkEdit from './pages/relationLink/Edit.vue';
-import relationLinkDelete from './pages/relationLink/Delete.vue';
-import relationLinkAdd from './pages/relationLink/Add.vue';
-
 Vue.use(Router);
 
 const router = new Router({
@@ -168,157 +132,6 @@ const router = new Router({
             component: gmailSettingAdd,
         },
         // GmailSetting router end
-        // Persona router begin
-        {
-            path: '/persona/list',
-            name: 'PersonaList',
-            component: personaList
-        },
-        {
-            path: '/persona/view/:id',
-            name: 'PersonaView',
-            component: personaView,
-            props: true
-        },
-        {
-            path: '/persona/edit/:id',
-            name: 'PersonaEdit',
-            component: personaEdit,
-            props: true
-        },
-        {
-            path: '/persona/delete/:id',
-            name: 'PersonaDelete',
-            component: personaDelete,
-            props: true
-        },
-        {
-            path: '/persona/add',
-            name: 'PersonaAdd',
-            component: personaAdd,
-        },
-        // Persona router end
-        // RelationLink router begin
-        {
-            path: '/relation/link/list',
-            name: 'RelationLinkList',
-            component: relationLinkList,
-        },
-        {
-            path: '/relation/link/view/:id',
-            name: 'RelationLinkView',
-            component: relationLinkView,
-            props: true
-        },
-        {
-            path: '/relation/link/edit/:id',
-            name: 'RelationLinkEdit',
-            component: relationLinkEdit,
-            props: true
-        },
-        {
-            path: '/relation/link/delete/:id',
-            name: 'RelationLinkDelete',
-            component: relationLinkDelete,
-            props: true
-        },
-        {
-            path: '/relation/link/add',
-            name: 'RelationLinkAdd',
-            component: relationLinkAdd,
-        },
-        // RelationLink router end
-        // Email router begin
-        {
-            path: '/email/list',
-            name: 'EmailList',
-            component: emailList,
-        },
-        {
-            path: '/email/view/:id',
-            name: 'EmailView',
-            component: emailView,
-            props: true
-        },
-        {
-            path: '/email/edit/:id',
-            name: 'EmailEdit',
-            component: emailEdit,
-            props: true
-        },
-        {
-            path: '/email/delete/:id',
-            name: 'EmailDelete',
-            component: emailDelete,
-            props: true
-        },
-        {
-            path: '/email/add',
-            name: 'EmailAdd',
-            component: emailAdd,
-        },
-// Email router end
-        // PhoneNumberHistory
-        {
-            path: '/phone/number/history/list',
-            name: 'PhoneNumberHistoryList',
-            component: phoneNumberHistoryList,
-        },
-        {
-            path: '/phone/number/history/view/:id',
-            name: 'PhoneNumberHistoryView',
-            component: phoneNumberHistoryView,
-            props: true
-        },
-        {
-            path: '/phone/number/history/edit/:id',
-            name: 'PhoneNumberHistoryEdit',
-            component: phoneNumberHistoryEdit,
-            props: true
-        },
-        {
-            path: '/phone/number/history/delete/:id',
-            name: 'PhoneNumberHistoryDelete',
-            component: phoneNumberHistoryDelete,
-            props: true
-        },
-        {
-            path: '/phone/number/history/add',
-            name: 'PhoneNumberHistoryAdd',
-            component: phoneNumberHistoryAdd,
-        },
-        // PhoneNumberHistory router end
-        // PhoneNumber router begin
-
-        {
-            path: '/phone/number/list',
-            name: 'PhoneNumberList',
-            component: phoneNumberList
-        },
-        {
-            path: '/phone/number/view/:id',
-            name: 'PhoneNumberView',
-            component: phoneNumberView,
-            props: true
-        },
-        {
-            path: '/phone/number/edit/:id',
-            name: 'PhoneNumberEdit',
-            component: phoneNumberEdit,
-            props: true
-        },
-        {
-            path: '/phone/number/delete/:id',
-            name: 'PhoneNumberDelete',
-            component: phoneNumberDelete,
-            props: true
-        },
-        {
-            path: '/phone/number/add',
-            name: 'PhoneNumberAdd',
-            component: phoneNumberAdd,
-        },
-        // PhoneNumber router end
         // User router begin
         {
             path: '/user/list',
@@ -349,36 +162,6 @@ const router = new Router({
             component: userAdd,
         },
         // User router end
-        // EmailHistory router begin
-        {
-            path: '/email/history/list',
-            name: 'EmailHistoryList',
-            component: emailHistoryList,
-        },
-        {
-            path: '/email/history/view/:id',
-            name: 'EmailHistoryView',
-            component: emailHistoryView,
-            props: true
-        },
-        {
-            path: '/email/history/edit/:id',
-            name: 'EmailHistoryEdit',
-            component: emailHistoryEdit,
-            props: true
-        },
-        {
-            path: '/email/history/delete/:id',
-            name: 'EmailHistoryDelete',
-            component: emailHistoryDelete,
-            props: true
-        },
-        {
-            path: '/email/history/add',
-            name: 'EmailHistoryAdd',
-            component: emailHistoryAdd,
-        },
-// EmailHistory router end
         // UserRole router begin
         {
             path: '/user/role/list',
@@ -587,7 +370,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    console.log("router token: " + localStorage.getItem('token'))
+    //console.log("router token: " + localStorage.getItem('token'));
     if (!localStorage.getItem('token')) {
         if (to.path === '/' || to.path === '/login'|| to.path === '/logout' || to.path === '/forget/password' || to.path === "/register") {
             next();

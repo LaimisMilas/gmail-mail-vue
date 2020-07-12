@@ -21,14 +21,17 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
     export default {
         name: "Default",
-        computed: mapState({
-            user: (store) => {
-                return store.login.user;
+        data(){
+            return {
+                user: {
+                    id:"",
+                    userName: "",
+                    roles: [{role: "ADMIN"}]
+                }
             }
-        }),
+        },
         methods: {
             logout(){
                 this.$store.commit('login/commitDropData');

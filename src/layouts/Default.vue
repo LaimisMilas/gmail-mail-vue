@@ -32,6 +32,12 @@
                 }
             }
         },
+        created() {
+            let user = this.$store.getters('login/getUser');
+            if(user && user.userName) {
+                this.user = user;
+            }
+        },
         methods: {
             logout(){
                 this.$store.commit('login/commitDropData');

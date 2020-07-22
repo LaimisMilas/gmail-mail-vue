@@ -372,7 +372,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
     //console.log("router token: " + localStorage.getItem('token'));
     if (!localStorage.getItem('token')) {
-        if (to.path === '/' || to.path === '/login'|| to.path === '/logout' || to.path === '/forget/password' || to.path === "/register") {
+        if (to.path === '/' ||
+            to.path === '/login'||
+            to.path === '/logout' ||
+            to.path === '/forget/password' ||
+            to.path === '/register') {
             next();
         } else {
             next({

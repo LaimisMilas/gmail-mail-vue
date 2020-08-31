@@ -3,7 +3,7 @@
         <div>
             <br>
             <br>
-            <h4>Nuo&nbsp;&nbsp;&nbsp;&nbsp;<span>Manes</span></h4>
+            <h4>Nuo&nbsp;&nbsp;&nbsp;&nbsp;<span>Manes ir</span></h4>
             <h4>Kam&nbsp;&nbsp;&nbsp;&nbsp;<span>Tau</span></h4>
             <h4>Tema&nbsp;&nbsp;&nbsp;&nbsp;<span>Programuotojas ieško darbo</span></h4>
             Sveiki, sukuriau šį projektą nes reikėjo pagalbos o kas geriau gali padėti jei ne paties sukurta programa :)

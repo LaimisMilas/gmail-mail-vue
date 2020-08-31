@@ -24,9 +24,9 @@ const store = new Vuex.Store({
     state,
     getters : {
         getBaseUrl: () => {
-            //return 'https://gmail-mail-sb.herokuapp.com';
+            return 'https://gmail-mail-sb.herokuapp.com';
             //return 'http://192.168.1.5:8080';
-            return 'http://127.0.0.1:8080';
+            //return 'http://127.0.0.1:8080';
         }
     },
     modules: {

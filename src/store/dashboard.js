@@ -81,6 +81,15 @@ export default {
                 commit("commitLogs", reason);
             });
         },
+        setLimit({commit, getters}, campaignId, limit) {
+            axios.get(getters.getBaseUrl + "/api/set/send/limit/" + campaignId + "/" + limit  ,
+                getters['header'])
+                .then(resp => {
+                    commit("commitLogs", resp.data);
+                }).catch(reason => {
+                commit("commitLogs", reason);
+            });
+        },
         updateSendReg({commit, dispatch}) {
             commit('sendReg/commitSendRegs', []);
             dispatch('sendReg/fetchData');

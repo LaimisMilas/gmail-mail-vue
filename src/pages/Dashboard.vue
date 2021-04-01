@@ -27,6 +27,16 @@
                     <td><input type="button" @click="initCompigne(item.id)" :value="$t('init.send')"/></td>
                     <td><input type="button" @click="stopProcess(item.id)" :value="$t('init.stop')"/></td>
                     <td><input type="button" @click="startProcess(item.id)" :value="$t('init.start')"/></td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" :value="limit"/></td>
+                                    <td><input type="button" @click="setLimit(item.id, limit)" :value="$t('init.limit')"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -58,6 +68,7 @@
         }),
         data() {
             return {
+                limit:0,
                 periodStatus: {},
                 serverStatusVisible: false,
                 localState: {
@@ -108,6 +119,9 @@
             ),
             ...mapActions(
                 {getStatus: 'dashboard/getStatus'}
+            ),
+            ...mapActions(
+                {setLimit: 'dashboard/setLimit'}
             ),
             isRoleAdmin() {
                 if (this.user.roles.filter(item => {

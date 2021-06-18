@@ -6,12 +6,12 @@
             <h4>Nuo&nbsp;&nbsp;&nbsp;&nbsp;<span>Manes ir</span></h4>
             <h4>Kam&nbsp;&nbsp;&nbsp;&nbsp;<span>Tau</span></h4>
             <h4>Tema&nbsp;&nbsp;&nbsp;&nbsp;<span>Programuotojas ieško darbo</span></h4>
-            Sveiki, sukuriau šį projektą nes reikėjo pagalbos o kas geriau gali padėti jei ne paties sukurta programa :)
-            Daug kartų, teko ieškotis darbo. Bandžiau siusti po viena laišką atrinktom kompanijoms. Paieškos labai
-            išsitęsė.
-            Čia Aš sumaščiau kad reikia daryti taip kad visi žinotu kad ieškausi darbo nesvarbu kokia veikla užsiema
+            Sveiki, sukuriau šį projektą nes reikėjo pagalbos o kas geriau gali padėti jei ne paties sukurta programa :).<br/>
+            Daug kartų, teko ieškotis darbo. Bandžiau siusti el. laišką kompanijoms kurios atitiko reikalavimus. Paieškos labai
+            išsitesė.
+            Čia sumasčiau, reikia daryti taip kad visi žinotu kad ieškausi darbo, nesvarbu kokia veikla užsiema
             įmonė, juk
-            jie turi draugų ir partnerių kuriems praneš apie mano laišką.<br/>
+            jie turi draugų ir partnerių su kuriais pasidalins mano laišką.<br/>
             Tada ir gimė mintis sukurti projektą. Parašiau programą kuri surinktų el.paštus iš įmonių katalogo. Tai buvo
             taip smagu :)
             Tada padariau prisijungima prie Gmail API, beliko tik parašyti siuntimo algoritmą. Laiškai pradėjo siustis,

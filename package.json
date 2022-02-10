@@ -20,7 +20,7 @@
     "core-js": "^3.6.4",
     "jw-vue-pagination": "^1.0.3",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "vmodal": "^0.1.12",
     "vue": "^2.6.11",

@@ -19,7 +19,7 @@
     "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.4",
     "jw-vue-pagination": "^1.0.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "vmodal": "^0.1.12",
